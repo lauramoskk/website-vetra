@@ -28,18 +28,25 @@ import Button from "../Button.astro";
         Home
       </a>
       <a
-        href="/about"
+        href="/about-us"
         onclick="closeMenu()"
         class="text-white text-lg font-medium hover:text-text-blue transition-colors duration-300 py-3 px-6 min-h-[44px] flex items-center justify-center"
       >
-        Sobre
+        About us
       </a>
       <a
-        href="/services"
+        href="/features"
         onclick="closeMenu()"
         class="text-white text-lg font-medium hover:text-text-blue transition-colors duration-300 py-3 px-6 min-h-[44px] flex items-center justify-center"
       >
-        Serviços
+        Features
+      </a>
+      <a
+        href="/team"
+        onclick="closeMenu()"
+        class="text-white text-lg font-medium hover:text-text-blue transition-colors duration-300 py-3 px-6 min-h-[44px] flex items-center justify-center"
+      >
+        Team
       </a>
     </AlignmentLayout>
 
@@ -51,14 +58,6 @@ import Button from "../Button.astro";
         onclick="closeMenu()"
       >
         <Button text="Fale Conosco" className="whitespace-nowrap" />
-      </a>
-      <a
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer"
-        onclick="closeMenu()"
-      >
-        <Button text="Portal do Cliente" className="whitespace-nowrap" />
       </a>
     </div>
   </AlignmentLayout>

@@ -1,68 +1,40 @@
 ---
+import Badge from "../Badge.astro";
 import Button from "../Button.astro";
 import SectionLayout from "../../layouts/SectionLayout.astro";
 import AlignmentLayout from "../../layouts/AlignmentLayout.astro";
 import Description from "../Description.astro";
+import FeaturesBanner from "./FeaturesBanner.astro";
 
 import BackgroundImage from "../../assets/details/background.png";
 import BackgroundImageMobile from "../../assets/details/background-mobile.png";
-import Image from "astro/components/Image.astro";
 import { cn } from "../../utils/cn";
+import { Image } from "astro:assets";
+import ArrowIcon from "../../assets/icons/arrow.png";
 
 // Classes organizadas por categoria para melhor legibilidade
 const sectionOuterClasses = cn(
 	// Layout
-	"flex items-center w-full",
-	// Identificador para estilos específicos
+	"flex items-center w-full relative",
+	// Identificador
 	"hero-section",
 );
 
 const sectionInnerClasses = cn(
 	// Layout & Sizing
-	"w-full h-[880px] max-w-[1370px] relative",
-	// Visual
-	"rounded-b-2xl bg-white/[0.04] bg-cover bg-center bg-no-repeat",
+	"w-full h-[800px]",
 	// Responsividade
-	"max-sm:h-[907px] max-sm:mx-2",
+	"max-sm:h-[907px]",
 );
 
 const mainLayoutClasses = cn(
 	// Spacing & Layout
-	"gap-[60px] h-[-webkit-fill-available] relative z-10",
-	// Responsividade
-	"max-sm:mx-4",
-);
-
-const heroImage1Classes = cn(
-	// Position
-	"absolute top-[161px] left-[78px]",
-	// Sizing
-	"w-[240px] h-[320px]",
-	// Visual
-	"bg-white/[0.04] rounded-lg",
-	// Responsividade
-	"max-sm:hidden",
-);
-
-const heroImage2Classes = cn(
-	// Position
-	"absolute bottom-[83px] right-[77px]",
-	// Sizing
-	"w-[240px] h-[320px]",
-	// Visual
-	"bg-white/[0.04] rounded-lg",
-	// Responsividade
-	"max-sm:hidden",
-);
-
-const imageClasses = cn(
-	// Sizing & Object
-	"w-full h-full object-cover rounded-lg",
+	"gap-12 h-[-webkit-fill-available] relative z-10",
 );
 
 const contentSectionClasses = cn(
 	// Spacing
-	"gap-[22px]",
+	"gap-2",
 );
 
 const heroTitleClasses = cn(
@@ -85,8 +57,13 @@ const buttonsContainerClasses = cn(
 <SectionLayout
 	outerClassName={sectionOuterClasses}
 	innerClassName={sectionInnerClasses}
+	autoMargin={true}
 >
-	<div class="hero-background absolute inset-0 rounded-b-2xl -z-10"></div>
+	<div
+		class="hero-background absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+	>
+	</div>
+
 	<AlignmentLayout
 		direction="vertical"
 		justify="center"
@@ -97,15 +74,29 @@ const buttonsContainerClasses = cn(
 			direction="vertical"
 			justify="center"
 			align="center"
-			className={contentSectionClasses}
+			className="w-full"
+			style="gap: 2rem;"
 		>
-			<h1 class={heroTitleClasses}>
-				Título Principal da <span class="text-text-blue">Landing Page</span>
-			</h1>
-			<Description
-				text="Subtítulo descritivo explicando a proposta de valor do produto ou serviço de forma clara e objetiva para o visitante."
-				className="max-w-[588px] text-center"
-			/>
+			<Badge text="Badge Text">
+				<Image
+					src={ArrowIcon}
+					alt="Arrow"
+					class="w-full h-full object-contain"
+				/>
+			</Badge>
+
+			<AlignmentLayout
+				direction="vertical"
+				justify="center"
+				align="center"
+				className={contentSectionClasses}
+			>
+				<h1 class={heroTitleClasses}>Trust the value<br />Trust Vetra.</h1>
+				<Description
+					text="Built to keep value steady and your plans in motion. Blends fast settlement, low fees, and true transparency so money feels simple, dependable, and ready for what’s next"
+					className="max-w-[588px] text-center"
+				/>
+			</AlignmentLayout>
 		</AlignmentLayout>
 
 		<AlignmentLayout
@@ -116,19 +107,31 @@ const buttonsContainerClasses = cn(
 		>
 			<a href="#contato" class="max-sm:w-full">
 				<Button
-					text="Call to Action Principal"
+					text="Stake Vetra"
 					variant="primary"
 					className="max-sm:w-full"
 				/>
 			</a>
 			<a href="#sobre" class="max-sm:w-full">
 				<Button
-					text="Call to Action Secundário"
+					text="View Whitepaper"
 					variant="outline"
 					className="max-sm:w-full"
 				/>
 			</a>
 		</AlignmentLayout>
+	</AlignmentLayout>
+
+	<AlignmentLayout
+		direction="vertical"
+		justify="center"
+		align="center"
+		className="w-full"
+		style="gap: 2rem;"
+	>
+		<Description text="Our partners" className="max-w-[588px] text-center" />
+
+		<FeaturesBanner />
 	</AlignmentLayout>
 </SectionLayout>
 

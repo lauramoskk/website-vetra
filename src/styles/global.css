@@ -7,16 +7,19 @@
 
   /* Colors */
   --color-logo: #949DA6;
-  
+
   /* Backgrounds */
   --color-background-card: #0D0B2D;
+  --color-background-page: #050109;
 
   /* Texts */
   --color-text-secondary: #F7F7F8;
-  --color-text-grey: #D9D9DE; /* Hero description */
-  --color-dark-text-grey: #0F0F11; /* Talk with us button */
+  --color-text-grey: #D9D9DE;
+  /* Hero description */
+  --color-dark-text-grey: #0F0F11;
+  /* Talk with us button */
   --color-text-blue: #2BDCE2;
-  --color-dark-text-blue: #0A0923;
+  --color-dark-text-blue: #050109;
 }
 
 body {
@@ -54,9 +57,11 @@ body {
   0% {
     transform: translateX(0);
   }
+
   50% {
     transform: translateX(8px);
   }
+
   100% {
     transform: translateX(0);
   }
