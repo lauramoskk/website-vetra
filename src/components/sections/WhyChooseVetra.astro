@@ -1,0 +1,196 @@
+---
+import SectionLayout from "../../layouts/SectionLayout.astro";
+import AlignmentLayout from "../../layouts/AlignmentLayout.astro";
+import Description from "../Description.astro";
+import Badge from "../Badge.astro";
+import { cn } from "../../utils/cn";
+import { Image } from "astro:assets";
+import ArrowIcon from "../../assets/icons/arrow.png";
+
+// Styles
+const sectionOuterClasses = cn(
+  "flex items-center w-full relative",
+  "why-choose-vetra-section",
+);
+
+const sectionInnerClasses = cn(
+  "w-full lg:h-[840px] h-auto lg:overflow-hidden overflow-visible", // Adjusted for content height
+);
+
+const mainLayoutClasses = cn(
+  "gap-16 relative z-10 lg:h-full h-auto", // Spacing between header and cards
+  "max-sm:flex-col",
+);
+
+const headerClasses = cn("gap-4", "max-w-[788px] text-center mx-auto");
+
+const titleClasses = cn(
+  "font-serif text-[56px] leading-[64px] font-bold text-white",
+  "max-sm:text-[40px] max-sm:leading-[48px]",
+);
+
+const gridClasses = cn(
+  "grid grid-cols-1 gap-6 w-full",
+  "lg:flex lg:flex-col lg:gap-8 lg:w-full", // Desktop: Vertical layout
+  "max-sm:grid-cols-1", // Mobile adapt
+);
+
+const cardClasses = cn(
+  "bg-white/5 border border-white/10 rounded-2xl p-8", // Glassmorphism-ish / Dark theme card
+  "flex flex-col gap-6",
+  "hover:bg-white/10 transition-colors duration-300",
+  "lg:w-full lg:shrink-0 lg:h-auto", // Full width on desktop
+);
+
+const cardTitleClasses = cn("font-serif text-2xl font-medium text-white");
+---
+
+<SectionLayout
+  outerClassName={sectionOuterClasses}
+  innerClassName={sectionInnerClasses}
+  autoMargin={true}
+>
+  <AlignmentLayout
+    direction="horizontal"
+    justify="center"
+    align="center"
+    className={mainLayoutClasses}
+  >
+    <!-- Header Section -->
+    <AlignmentLayout
+      direction="vertical"
+      justify="center"
+      align="center"
+      className={headerClasses}
+    >
+      <Badge text="The most trusted stablecoin">
+        <Image
+          src={ArrowIcon}
+          alt="Arrow"
+          class="w-full h-full object-contain"
+          width={12}
+          height={12}
+        />
+      </Badge>
+      <h2 class={titleClasses}>Why choose VETRA?</h2>
+      <Description
+        text="A stablecoin backed by real assets, powered by secure technology, and built on Polygon for scalability and trust."
+        className="max-w-[588px] text-center"
+      />
+    </AlignmentLayout>
+
+    <!-- Cards Grid -->
+    <!-- Cards Grid Wrapper (Mask) -->
+    <div
+      class="w-full lg:flex-1 lg:overflow-hidden relative custom-scrollbar-hide"
+      id="vetra-cards-mask"
+      style="height: 100%;"
+    >
+      <div class={gridClasses} id="vetra-cards-container">
+        <!-- Card 1: Security -->
+        <div class={cardClasses}>
+          <div
+            class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-2"
+          >
+            <!-- Placeholder Icon -->
+            <div class="w-6 h-6 bg-white/50 rounded-sm"></div>
+          </div>
+          <h3 class={cardTitleClasses}>Security</h3>
+          <Description
+            text="Built with OpenZeppelin standards ERC-20 upgradeable (UUPS) and role-based controls that restrict mint and burn to 1–2 designated operators. An independent third-party security audit is planned to validate the implementation."
+            className="text-left"
+          />
+        </div>
+
+        <!-- Card 2: Ecosystem -->
+        <div class={cardClasses}>
+          <div
+            class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-2"
+          >
+            <!-- Placeholder Icon -->
+            <div class="w-6 h-6 bg-white/50 rounded-sm"></div>
+          </div>
+          <h3 class={cardTitleClasses}>Ecosystem & Adoption</h3>
+          <Description
+            text="Deliverables for real use: an upgradeable contract with AccessControl, Hardhat deploy scripts, comprehensive tests, detailed technical documentation, and support for Polygonscan verification."
+            className="text-left"
+          />
+        </div>
+
+        <!-- Card 3: Transparency -->
+        <div class={cardClasses}>
+          <div
+            class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-2"
+          >
+            <!-- Placeholder Icon -->
+            <div class="w-6 h-6 bg-white/50 rounded-sm"></div>
+          </div>
+          <h3 class={cardTitleClasses}>Transparency</h3>
+          <Description
+            text="Chainlink Functions audit the 1:1 backing, and every supply change is emitted as TokensMinted/TokensBurned events. Reserve updates are trackable on-chain, making circulation and backing straightforward to verify."
+            className="text-left"
+          />
+        </div>
+
+        <!-- Card 4: Scalability -->
+        <div class={cardClasses}>
+          <div
+            class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-2"
+          >
+            <!-- Placeholder Icon -->
+            <div class="w-6 h-6 bg-white/50 rounded-sm"></div>
+          </div>
+          <h3 class={cardTitleClasses}>Scalability</h3>
+          <Description
+            text="Deployed on Polygon PoS for fast confirmations and low fees, while maintaining full EVM compatibility with wallets, bridges, and dApps."
+            className="text-left"
+          />
+        </div>
+      </div>
+    </div>
+  </AlignmentLayout>
+</SectionLayout>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initScroll = () => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1024px)", () => {
+      const section = document.querySelector(".why-choose-vetra-section");
+      const mask = document.querySelector("#vetra-cards-mask");
+      const container = document.querySelector("#vetra-cards-container");
+
+      if (!section || !mask || !container) return;
+
+      // Calculate translation distance
+      const getScrollAmount = () => {
+        return -(container.scrollHeight - mask.clientHeight);
+      };
+
+      const tween = gsap.to(container, {
+        y: getScrollAmount,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          pin: true,
+          start: "top top",
+          end: () => `+=${container.scrollHeight - mask.clientHeight + 150}`, // Adjust scroll duration
+          scrub: 1,
+          invalidateOnRefresh: true,
+          anticipatePin: 1,
+        },
+      });
+    });
+  };
+
+  // Run on load
+  initScroll();
+
+  // View transitions support
+  document.addEventListener("astro:page-load", initScroll);
+</script>
