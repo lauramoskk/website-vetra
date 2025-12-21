@@ -1,0 +1,45 @@
+---
+import { cn } from '../utils/cn';
+import Image from 'astro/components/Image.astro';
+import type { ImageMetadata } from 'astro';
+import AlignmentLayout from '../layouts/AlignmentLayout.astro';
+
+interface Props {
+  image: ImageMetadata;
+  alt?: string;
+}
+
+const { image, alt = 'Depoimento' }: Props = Astro.props;
+
+const cardClasses = cn(
+  // Sizing
+  'w-[384px] h-[480px] flex-shrink-0',
+  // Responsividade
+  'max-sm:w-full max-sm:h-auto'
+);
+
+const imageClasses = cn(
+  // Sizing
+  'w-full h-full',
+  // Visual
+  'object-contain rounded-[24px]'
+);
+---
+
+<AlignmentLayout
+  direction="horizontal"
+  justify="center"
+  align="center"
+  className={cardClasses}
+>
+  <Image
+    src={image}
+    alt={alt}
+    width={384}
+    height={480}
+    class={imageClasses}
+    loading="lazy"
+    format="webp"
+  />
+</AlignmentLayout>
+

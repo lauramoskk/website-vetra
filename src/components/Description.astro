@@ -1,0 +1,20 @@
+---
+import { cn } from '../utils/cn';
+
+interface Props {
+    text: string;
+    className?: string;
+}
+
+const { text, className = '' }: Props = Astro.props;
+
+// Classes organizadas por categoria
+const descriptionClasses = cn(
+	// Typography
+	'text-[16px] leading-[20px] text-text-grey',
+	// Custom
+	className
+);
+---
+
+<p class={descriptionClasses}>{text}</p>

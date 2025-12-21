@@ -1,0 +1,376 @@
+---
+import SectionLayout from "../../layouts/SectionLayout.astro";
+import AlignmentLayout from "../../layouts/AlignmentLayout.astro";
+
+import Image from "astro/components/Image.astro";
+import { cn } from "../../utils/cn";
+
+// Ícones de redes sociais
+import LinkedinIcon from "../../assets/icons/social/linkedin.svg";
+import FacebookIcon from "../../assets/icons/social/facebook.svg";
+import InstagramIcon from "../../assets/icons/social/instagram.svg";
+import YoutubeIcon from "../../assets/icons/social/youtube.svg";
+import TwitterIcon from "../../assets/icons/social/twitter.svg";
+
+// Classes organizadas por categoria
+const sectionOuterClasses = cn(
+  // Layout
+  "flex items-center",
+  // Visual
+  "bg-dark-text-blue",
+);
+
+const sectionInnerClasses = cn(
+  // Layout & Sizing
+  "w-full relative",
+  // Spacing
+  "pt-[72px] pb-[44px]",
+  // Responsividade
+  "max-sm:px-6",
+);
+
+const mainLayoutClasses = cn(
+  // Spacing
+  "gap-[56px]",
+);
+
+const contentRowClasses = cn(
+  // Layout
+  "flex items-start w-full",
+  // Spacing
+  "gap-[56px]",
+  // Responsividade
+  "max-sm:flex-col",
+);
+
+const logoSectionClasses = cn(
+  // Sizing
+  "w-[386px]",
+  // Spacing
+  "gap-10",
+  // Responsividade
+  "max-sm:w-full",
+);
+
+const logoContainerClasses = cn(
+  // Layout
+  "flex items-center",
+  // Spacing
+  "gap-4",
+);
+
+const logoImageClasses = cn(
+  // Sizing
+  "w-[60px] h-[60px]",
+);
+
+const logoTitleClasses = cn(
+  // Typography
+  "font-bold text-2xl text-text-secondary",
+);
+
+const contactInfoClasses = cn(
+  // Spacing - gap de 20px conforme Figma
+  "gap-5",
+);
+
+const contactItemClasses = cn(
+  // Layout
+  "flex items-center",
+  // Spacing
+  "gap-2",
+  // Interaction
+  "hover:opacity-80 transition-opacity",
+);
+
+const iconClasses = cn(
+  // Sizing
+  "w-6 h-6",
+  // Visual
+  "text-text-blue",
+);
+
+const contactTextClasses = cn(
+  // Typography
+  "text-[16px] leading-[20px] font-regular text-text-secondary",
+);
+
+const socialMediaIconsClasses = cn(
+  // Layout
+  "flex items-center justify-between",
+  // Spacing
+  "gap-2",
+  // Sizing
+  "w-full max-w-[200px]",
+);
+
+const socialIconClasses = cn(
+  // Layout
+  "flex justify-center items-center",
+  // Sizing
+  "min-w-10 min-h-10",
+  // Visual
+  "rounded",
+  // Interaction
+  "cursor-pointer hover:opacity-80 transition-opacity",
+);
+
+const navigationSectionClasses = cn(
+  // Spacing
+  "gap-10",
+  // Sizing
+  "flex-1",
+  // Responsividade
+  "max-sm:w-full",
+);
+
+const sectionTitleClasses = cn(
+  // Typography
+  "font-serif text-[16px] leading-[20px] font-semibold text-text-secondary",
+);
+
+const navLinksClasses = cn(
+  // Spacing - gap de 20px conforme Figma
+  "gap-5",
+);
+
+const navLinkClasses = cn(
+  // Typography
+  "text-[14px] leading-[18px] font-regular text-text-secondary",
+  // Interaction
+  "hover:text-text-blue transition-colors cursor-pointer",
+);
+
+const termsSectionClasses = cn(
+  // Spacing
+  "gap-10",
+  // Sizing
+  "flex-1",
+  // Responsividade
+  "max-sm:w-full max-sm:min-h-[211px]",
+);
+
+const footerBottomClasses = cn(
+  // Layout
+  "flex justify-center items-center",
+  // Spacing
+  "pt-6 w-full",
+  // Padding lateral
+  "px-[112px]",
+  // Responsividade
+  "max-sm:flex-col max-sm:items-start max-sm:gap-4 max-sm:px-6",
+);
+
+const copyrightClasses = cn(
+  // Typography
+  "text-[14px] leading-[18px] font-regular text-text-secondary",
+);
+---
+
+<SectionLayout
+  outerClassName={sectionOuterClasses}
+  innerClassName={sectionInnerClasses}
+>
+  <AlignmentLayout
+    direction="vertical"
+    justify="center"
+    align="center"
+    className={mainLayoutClasses}
+  >
+    <!-- Conteúdo Principal -->
+    <AlignmentLayout
+      direction="horizontal"
+      justify="between"
+      align="start"
+      className={contentRowClasses}
+    >
+      <!-- Seção Logo e Contato -->
+      <AlignmentLayout
+        direction="vertical"
+        justify="start"
+        align="start"
+        className={logoSectionClasses}
+      >
+        <!-- Logo -->
+        <div class={logoContainerClasses}>
+          <div class="text-white font-bold text-2xl">LOGO</div>
+        </div>
+
+        <!-- Informações de Contato -->
+        <AlignmentLayout
+          direction="vertical"
+          justify="start"
+          align="start"
+          className={contactInfoClasses}
+        >
+          <!-- Email -->
+          <!-- Email -->
+          <a href="mailto:contato@exemplo.com.br" class={contactItemClasses}>
+            <svg
+              class={iconClasses}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
+            </svg>
+            <span class={contactTextClasses}>contato@exemplo.com.br</span>
+          </a>
+
+          <!-- Telefone -->
+          <!-- Telefone -->
+          <a href="tel:+551100000000" class={contactItemClasses}>
+            <svg
+              class={iconClasses}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+              ></path>
+            </svg>
+            <span class={contactTextClasses}>(11) 0000-0000</span>
+          </a>
+
+          <!-- Endereço -->
+          <!-- Endereço -->
+          <div class={contactItemClasses}>
+            <svg
+              class={iconClasses}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+              ></path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span class={contactTextClasses}>
+              Endereço Completo<br />
+              Cidade - UF
+            </span>
+          </div>
+        </AlignmentLayout>
+
+        <!-- Redes Sociais -->
+        <div class={socialMediaIconsClasses}>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class={socialIconClasses}
+            aria-label="LinkedIn"
+          >
+            <Image src={LinkedinIcon} alt="LinkedIn" />
+          </a>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class={socialIconClasses}
+            aria-label="Facebook"
+          >
+            <Image src={FacebookIcon} alt="Facebook" />
+          </a>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class={socialIconClasses}
+            aria-label="Instagram"
+          >
+            <Image src={InstagramIcon} alt="Instagram" />
+          </a>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class={socialIconClasses}
+            aria-label="Youtube"
+          >
+            <Image src={YoutubeIcon} alt="Youtube" />
+          </a>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class={socialIconClasses}
+            aria-label="Twitter"
+          >
+            <Image src={TwitterIcon} alt="Twitter" />
+          </a>
+        </div>
+      </AlignmentLayout>
+
+      <!-- Seção Navegação -->
+      <AlignmentLayout
+        direction="vertical"
+        justify="start"
+        align="start"
+        className={navigationSectionClasses}
+      >
+        <h3 class={sectionTitleClasses}>Navegação</h3>
+        <AlignmentLayout
+          direction="vertical"
+          justify="start"
+          align="start"
+          className={navLinksClasses}
+        >
+          <a href="/" class={navLinkClasses}>Home</a>
+          <a href="#sobre" class={navLinkClasses}>Sobre</a>
+          <a href="#servicos" class={navLinkClasses}>Serviços</a>
+          <a href="#contato" class={navLinkClasses}>Contato</a>
+        </AlignmentLayout>
+      </AlignmentLayout>
+
+      <!-- Seção Termos -->
+      <AlignmentLayout
+        direction="vertical"
+        justify="start"
+        align="start"
+        className={termsSectionClasses}
+      >
+        <h3 class={sectionTitleClasses}>Termos</h3>
+        <AlignmentLayout
+          direction="vertical"
+          justify="start"
+          align="start"
+          className={navLinksClasses}
+        >
+          <a href="#" class={navLinkClasses}>Termos de uso</a>
+          <a href="#" class={navLinkClasses}>Política de Privacidade</a>
+        </AlignmentLayout>
+      </AlignmentLayout>
+    </AlignmentLayout>
+
+    <!-- Footer Bottom -->
+    <div
+      class={footerBottomClasses}
+      style="border-top: 1px solid; border-image: linear-gradient(90deg, rgba(10, 9, 35, 1) 4%, rgba(255, 255, 255, 1) 49%, rgba(10, 9, 35, 1) 93%) 1;"
+    >
+      <p class={copyrightClasses}>
+        © 2024 Nome da Empresa. Todos os direitos reservados.
+      </p>
+    </div>
+  </AlignmentLayout>
+</SectionLayout>

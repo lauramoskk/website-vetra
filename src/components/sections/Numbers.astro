@@ -1,0 +1,140 @@
+---
+import SectionLayout from "../../layouts/SectionLayout.astro";
+import AlignmentLayout from "../../layouts/AlignmentLayout.astro";
+import Title from "../Title.astro";
+import Description from "../Description.astro";
+import NumberCard from "../NumberCard.astro";
+
+import Arrow from "../../assets/icons/arrow.png";
+import { cn } from "../../utils/cn";
+
+// Classes organizadas por categoria para melhor legibilidade
+const sectionOuterClasses = cn(
+	// Layout
+	"flex items-center w-full relative overflow-hidden",
+);
+
+const sectionInnerClasses = cn(
+	// Layout & Sizing
+	"w-full h-[768px]",
+	// Responsividade
+	"max-sm:h-[1355px] max-sm:my-[88px]",
+);
+
+const mainLayoutClasses = cn(
+	// Spacing
+	"gap-[60px] h-[-webkit-fill-available]",
+	// Responsividade
+	"max-sm:justify-start",
+);
+
+const planetContainerClasses = cn(
+	// Position
+	"absolute top-[228px] left-[800px]",
+	// Sizing
+	"w-[705px] h-[705px]",
+	// Responsividade
+	"max-sm:top-auto max-sm:left-1/2 max-sm:-translate-x-1/2 max-sm:bottom-[-90px]",
+	"max-sm:w-[545px] max-sm:h-[545px]",
+);
+
+const titleSectionClasses = cn(
+	// Spacing
+	"gap-[135px]",
+	// Responsividade
+	"max-sm:w-full max-sm:flex-col max-sm:gap-4",
+);
+
+const cardsContainerClasses = cn(
+	// Spacing & Sizing
+	"gap-4 w-[592px]",
+	// Responsividade
+	"max-sm:w-full",
+);
+
+const cardsRowClasses = cn(
+	// Spacing & Layout
+	"gap-4 w-full",
+	// Responsividade
+	"max-sm:flex-col",
+);
+---
+
+<SectionLayout
+	autoMargin
+	outerClassName={sectionOuterClasses}
+	innerClassName={sectionInnerClasses}
+>
+	<AlignmentLayout
+		direction="vertical"
+		justify="center"
+		align="start"
+		className={mainLayoutClasses}
+	>
+		<div
+			class={planetContainerClasses +
+				" opacity-20 bg-white/5 rounded-full flex items-center justify-center border border-white/10"}
+		>
+			<!-- Graphic Placeholder -->
+		</div>
+
+		<AlignmentLayout
+			direction="horizontal"
+			justify="between"
+			align="center"
+			className={titleSectionClasses}
+		>
+			<Title text="Números que Comprovam Nossa Qualidade" />
+			<Description
+				text="Destaque estatísticas relevantes, anos de mercado ou número de clientes atendidos para gerar autoridade."
+			/>
+		</AlignmentLayout>
+
+		<AlignmentLayout
+			direction="vertical"
+			justify="start"
+			align="center"
+			className={cardsContainerClasses}
+		>
+			<AlignmentLayout
+				direction="horizontal"
+				justify="start"
+				align="stretch"
+				className={cardsRowClasses}
+			>
+				<NumberCard value="+99%" label="Métrica 1" icon={Arrow.src} />
+				<NumberCard value="+500" label="Métrica 2" icon={Arrow.src} />
+			</AlignmentLayout>
+
+			<AlignmentLayout
+				direction="horizontal"
+				justify="start"
+				align="stretch"
+				className={cardsRowClasses}
+			>
+				<NumberCard value="+20%" label="Métrica 3" icon={Arrow.src} />
+				<NumberCard
+					value="10 anos"
+					label="Experiência de Mercado"
+					icon={Arrow.src}
+				/>
+			</AlignmentLayout>
+
+			<AlignmentLayout
+				direction="horizontal"
+				justify="start"
+				align="stretch"
+				className={cardsRowClasses}
+			>
+				<NumberCard
+					value="+1 Milhão"
+					label="Impacto Total Gerado"
+					fullWidth={true}
+					centerContent={true}
+					icon={Arrow.src}
+					className="max-sm:justify-start"
+				/>
+			</AlignmentLayout>
+		</AlignmentLayout>
+	</AlignmentLayout>
+</SectionLayout>

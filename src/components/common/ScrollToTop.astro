@@ -1,0 +1,109 @@
+---
+import { cn } from "../../utils/cn";
+
+const scrollButtonClasses = cn(
+	// Position
+	'fixed bottom-8 right-8 z-50',
+	// Layout
+	'flex items-center justify-center',
+	// Sizing
+	'w-12 h-12',
+	// Visual
+	'bg-text-blue rounded-full',
+	// Shadow
+	'shadow-lg shadow-text-blue/30',
+	// Interaction
+	'cursor-pointer transition-all duration-300',
+	// Responsividade
+	'max-sm:bottom-6 max-sm:right-6 max-sm:w-11 max-sm:h-11',
+	// Estado inicial (oculto)
+	'opacity-0 invisible translate-y-4',
+	// Hover
+	'hover:bg-text-blue/90 hover:scale-110 hover:shadow-xl hover:shadow-text-blue/40',
+	// Active
+	'active:scale-95'
+);
+---
+
+<button
+	id="scroll-to-top"
+	class={scrollButtonClasses}
+	aria-label="Voltar ao topo"
+	onclick="scrollToTop()"
+>
+	<svg
+		class="w-6 h-6 text-dark-text-blue max-sm:w-5 max-sm:h-5"
+		fill="none"
+		stroke="currentColor"
+		stroke-width="2.5"
+		viewBox="0 0 24 24"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<path
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			d="M5 10l7-7m0 0l7 7m-7-7v18"
+		/>
+	</svg>
+</button>
+
+<script is:inline>
+	let scrollToTopButton = null;
+	const scrollThreshold = 300; // Mostrar botão após 300px de scroll
+
+	function initScrollToTop() {
+		scrollToTopButton = document.getElementById('scroll-to-top');
+		
+		if (!scrollToTopButton) {
+			setTimeout(initScrollToTop, 100);
+			return;
+		}
+
+		// Função para verificar posição do scroll
+		function handleScroll() {
+			if (!scrollToTopButton) return;
+
+			const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+
+			if (scrollY > scrollThreshold) {
+				scrollToTopButton.classList.add('scroll-visible');
+			} else {
+				scrollToTopButton.classList.remove('scroll-visible');
+			}
+		}
+
+		// Função para scroll suave ao topo
+		window.scrollToTop = function() {
+			window.scrollTo({
+				top: 0,
+				behavior: 'smooth'
+			});
+		};
+
+		// Adicionar listener de scroll
+		window.addEventListener('scroll', handleScroll, { passive: true });
+		
+		// Verificar estado inicial
+		handleScroll();
+	}
+
+	// Inicializar quando o DOM estiver pronto
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initScrollToTop);
+	} else {
+		initScrollToTop();
+	}
+</script>
+
+<style>
+	#scroll-to-top {
+		transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out, transform 0.3s ease-in-out;
+	}
+
+	#scroll-to-top.scroll-visible {
+		opacity: 1 !important;
+		visibility: visible !important;
+		transform: translateY(0) !important;
+	}
+</style>
+

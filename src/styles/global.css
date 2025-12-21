@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fonts */
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Roboto Serif", serif;
+
+  /* Colors */
+  --color-logo: #949DA6;
+  
+  /* Backgrounds */
+  --color-background-card: #0D0B2D;
+
+  /* Texts */
+  --color-text-secondary: #F7F7F8;
+  --color-text-grey: #D9D9DE; /* Hero description */
+  --color-dark-text-grey: #0F0F11; /* Talk with us button */
+  --color-text-blue: #2BDCE2;
+  --color-dark-text-blue: #0A0923;
+}
+
+body {
+  @apply font-sans;
+}
+
+/* Custom Scrollbar Styles */
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 157, 166, 0.4);
+  border-radius: 10px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 157, 166, 0.6);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 157, 166, 0.4) transparent;
+}
+
+/* Animação de movimento horizontal para o ícone de seta */
+@keyframes move-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(8px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.arrow-move {
+  animation: move-horizontal 2s ease-in-out infinite;
+}
+
+/* Scroll offset para compensar header fixo */
+html {
+  scroll-padding-top: 44px;
+}
+
+/* Para navegadores que não suportam scroll-padding-top */
+[id] {
+  scroll-margin-top: 44px;
+}

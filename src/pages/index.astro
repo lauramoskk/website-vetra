@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GenericHeader from "../components/common/GenericHeader.astro";
+import ScrollToTop from "../components/common/ScrollToTop.astro";
+import Hero from "../components/sections/Hero.astro";
+import Numbers from "../components/sections/Numbers.astro";
+import Features from "../components/sections/Features.astro";
+
+import Contact from "../components/sections/Contact.astro";
+import Footer from "../components/sections/Footer.astro";
+
+import "../styles/global.css";
+---
+
+<Layout>
+  {/* Structured Data (JSON-LD) */}
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Nome da Organização",
+      description: "Descrição da organização e seus serviços.",
+      url: "https://generic-client-base.com",
+      logo: "https://generic-client-base.com/favicon.png",
+      sameAs: [
+        "https://www.linkedin.com/company/exemplo",
+        "https://www.facebook.com/exemplo",
+        "https://www.instagram.com/exemplo",
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "Customer Service",
+        availableLanguage: "Portuguese",
+      },
+      areaServed: {
+        "@type": "Country",
+        name: "Brasil",
+      },
+      knowsAbout: ["Palavra-chave 1", "Palavra-chave 2", "Palavra-chave 3"],
+    })}
+  />
+  <GenericHeader />
+
+  <div class="relative z-10">
+    <main>
+      <Hero />
+      <Numbers />
+      <Features />
+      <Contact />
+    </main>
+    <Footer />
+  </div>
+
+  <ScrollToTop />
+</Layout>

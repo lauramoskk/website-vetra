@@ -1,0 +1,266 @@
+---
+import Button from "../Button.astro";
+import Image from "astro/components/Image.astro";
+import { cn } from "../../utils/cn";
+import AlignmentLayout from "../../layouts/AlignmentLayout.astro";
+
+// Classes organizadas por categoria para melhor legibilidade
+const headerClasses = cn(
+	// Custom class
+	// Position
+	"fixed top-0 left-1/2 -translate-x-1/2 z-30",
+	// Layout
+	"w-full flex justify-center items-center",
+	// Sizing
+	"max-h-[94px]",
+	// Spacing
+	"px-19 py-6",
+	// Visual
+	"border-b border-white/[0.04] transition-all duration-300",
+	// Responsividade
+	"max-sm:p-6",
+);
+
+const headerContainerClasses = cn(
+	// Layout
+	"flex justify-between items-center",
+	// Sizing
+	"w-full max-w-[1216px]",
+);
+
+const logoContainerClasses = cn(
+	// Layout
+	"items-center",
+	// Visual
+);
+
+// Invertendo cores para texto branco e rotacionando hue para manter o ícone ciano (aprox)
+const logoImageClasses = "w-[60px] h-[60px]";
+
+const navClasses = cn(
+	// Layout
+	"flex gap-8 items-center",
+	// Responsividade
+	"max-sm:hidden",
+);
+
+const navLinkClasses = "text-white";
+---
+
+<div class={headerClasses} id="header">
+	<div class={headerContainerClasses}>
+		<a href="/" class={logoContainerClasses} aria-label="Página inicial">
+			<div class="text-white font-bold text-xl">LOGO</div>
+		</a>
+
+		<nav class={navClasses} aria-label="Navegação principal">
+			<a href="/" class={navLinkClasses}>Home</a>
+			<a href="/about" class={navLinkClasses}>About</a>
+			<a href="/services" class={navLinkClasses}>Services</a>
+		</nav>
+
+		<div class="flex gap-4">
+			<a href="#" target="_blank" rel="noopener noreferrer">
+				<Button
+					text="Fale Conosco"
+					className="max-sm:hidden whitespace-nowrap"
+				/>
+			</a>
+			<a href="#" target="_blank" rel="noopener noreferrer">
+				<Button
+					text="Portal do Cliente"
+					className="max-sm:hidden whitespace-nowrap"
+				/>
+			</a>
+		</div>
+
+		<button
+			class="max-sm:flex hidden items-center justify-center w-10 h-10 rounded-lg border border-white/[0.1] bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 cursor-pointer group"
+			id="open-menu"
+			onclick="openMenu()"
+			aria-label="Abrir menu"
+		>
+			<svg
+				class="w-5 h-5 text-white"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				viewBox="0 0 24 24"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M4 6h16M4 12h16M4 18h16"></path>
+			</svg>
+		</button>
+
+		<button
+			class="hidden items-center justify-center w-10 h-10 rounded-lg border border-white/[0.1] bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 cursor-pointer"
+			id="close-menu"
+			onclick="closeMenu()"
+			aria-label="Fechar menu"
+		>
+			<svg
+				class="w-5 h-5 text-white"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				viewBox="0 0 24 24"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					d="M6 18L18 6M6 6l12 12"></path>
+			</svg>
+		</button>
+	</div>
+</div>
+
+<script is:inline>
+	let menuMobile, openMenuH, closeMenuH;
+
+	function initElements() {
+		menuMobile = document.getElementById("menu-mobile");
+		openMenuH = document.getElementById("open-menu");
+		closeMenuH = document.getElementById("close-menu");
+	}
+
+	function initHeader() {
+		const header = document.getElementById("header");
+		const scrollY =
+			window.scrollY ||
+			window.pageYOffset ||
+			document.documentElement.scrollTop ||
+			0;
+
+		if (!header) {
+			// Tentar novamente após um delay se o header não foi encontrado
+			setTimeout(initHeader, 100);
+			return;
+		}
+
+		if (scrollY > 100) {
+			header.classList.add("glass-header");
+		} else {
+			header.classList.remove("glass-header");
+		}
+	}
+
+	function openMenu() {
+		// Só permite abrir o menu em mobile
+		if (window.innerWidth >= 640) {
+			return;
+		}
+		if (!menuMobile || !openMenuH || !closeMenuH) {
+			initElements();
+		}
+		menuMobile?.classList.remove("hidden");
+		menuMobile?.classList.remove("menu-closed");
+		// Pequeno delay para garantir que o display: block seja aplicado antes da transição
+		setTimeout(() => {
+			menuMobile?.classList.add("menu-open");
+		}, 10);
+		openMenuH?.classList.add("hidden");
+		openMenuH?.classList.remove("max-sm:flex");
+		closeMenuH?.classList.remove("hidden");
+		closeMenuH?.classList.add("max-sm:flex");
+	}
+
+	function closeMenu() {
+		if (!menuMobile || !openMenuH || !closeMenuH) {
+			initElements();
+		}
+		menuMobile?.classList.remove("menu-open");
+		menuMobile?.classList.add("menu-closed");
+		menuMobile?.classList.add("hidden");
+		closeMenuH?.classList.add("hidden");
+		closeMenuH?.classList.remove("max-sm:flex");
+		openMenuH?.classList.remove("hidden");
+		openMenuH?.classList.add("max-sm:flex");
+	}
+
+	function syncMenuState() {
+		if (!menuMobile || !openMenuH || !closeMenuH) {
+			initElements();
+		}
+		const isMobileView = window.innerWidth < 640;
+
+		if (isMobileView) {
+			// Em mobile: garantir que o menu está fechado e os botões estão no estado correto
+			menuMobile?.classList.add("hidden");
+			menuMobile?.classList.remove("menu-open");
+			menuMobile?.classList.add("menu-closed");
+			// Botão abrir visível, botão fechar oculto
+			openMenuH?.classList.remove("hidden");
+			openMenuH?.classList.add("max-sm:flex");
+			closeMenuH?.classList.add("hidden");
+			closeMenuH?.classList.remove("max-sm:flex");
+		} else {
+			// Em desktop: garantir que tudo está oculto
+			menuMobile?.classList.add("hidden");
+			menuMobile?.classList.remove("menu-open");
+			menuMobile?.classList.add("menu-closed");
+			// Ambos os botões ocultos
+			openMenuH?.classList.add("hidden");
+			openMenuH?.classList.remove("max-sm:flex");
+			closeMenuH?.classList.add("hidden");
+			closeMenuH?.classList.remove("max-sm:flex");
+		}
+	}
+
+	// Inicializar quando o DOM estiver pronto
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", () => {
+			initElements();
+			initHeader();
+			syncMenuState();
+		});
+	} else {
+		initElements();
+		initHeader();
+		syncMenuState();
+	}
+
+	// Handle window resize
+	let isMobile = window.innerWidth < 640;
+	let resizeTimeout;
+	window.addEventListener("resize", () => {
+		clearTimeout(resizeTimeout);
+		resizeTimeout = setTimeout(() => {
+			const nowMobile = window.innerWidth < 640;
+			if (isMobile !== nowMobile) {
+				// Mudou de mobile para desktop ou vice-versa - sincronizar estado
+				syncMenuState();
+				isMobile = nowMobile;
+			}
+		}, 250);
+	});
+
+	window.addEventListener("scroll", initHeader, { passive: true });
+</script>
+
+<style>
+	/* Glass effect for header */
+	.glass-header {
+		background: rgba(0, 0, 0, 0.25);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+	}
+
+	.glass-header > * {
+		position: relative;
+		z-index: 2;
+	}
+
+	@media (max-width: 380px) {
+		.logo-title {
+			font-size: 20px;
+		}
+	}
+
+	@media (max-width: 360px) {
+		.logo-title {
+			display: none;
+		}
+	}
+</style>

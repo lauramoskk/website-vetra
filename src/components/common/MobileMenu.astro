@@ -1,0 +1,96 @@
+---
+import AlignmentLayout from "../../layouts/AlignmentLayout.astro";
+import Button from "../Button.astro";
+---
+
+<AlignmentLayout
+  id="menu-mobile"
+  className="hidden fixed w-screen h-screen menu-closed z-20"
+  style="background: rgba(13, 11, 45, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);"
+>
+  <AlignmentLayout
+    direction="vertical"
+    justify="center"
+    align="center"
+    className="relative w-full h-full px-6"
+  >
+    <AlignmentLayout
+      direction="vertical"
+      justify="center"
+      align="center"
+      className="gap-6 mb-12"
+    >
+      <a
+        href="/"
+        onclick="closeMenu()"
+        class="text-white text-lg font-medium hover:text-text-blue transition-colors duration-300 py-3 px-6 min-h-[44px] flex items-center justify-center"
+      >
+        Home
+      </a>
+      <a
+        href="/about"
+        onclick="closeMenu()"
+        class="text-white text-lg font-medium hover:text-text-blue transition-colors duration-300 py-3 px-6 min-h-[44px] flex items-center justify-center"
+      >
+        Sobre
+      </a>
+      <a
+        href="/services"
+        onclick="closeMenu()"
+        class="text-white text-lg font-medium hover:text-text-blue transition-colors duration-300 py-3 px-6 min-h-[44px] flex items-center justify-center"
+      >
+        Serviços
+      </a>
+    </AlignmentLayout>
+
+    <div class="flex flex-col items-center gap-6">
+      <a
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        onclick="closeMenu()"
+      >
+        <Button text="Fale Conosco" className="whitespace-nowrap" />
+      </a>
+      <a
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer"
+        onclick="closeMenu()"
+      >
+        <Button text="Portal do Cliente" className="whitespace-nowrap" />
+      </a>
+    </div>
+  </AlignmentLayout>
+</AlignmentLayout>
+
+<style>
+  #menu-mobile {
+    background: rgba(13, 11, 45, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease-in-out,
+      visibility 0.3s ease-in-out;
+  }
+
+  #menu-mobile:not(.hidden) {
+    display: block !important;
+  }
+
+  #menu-mobile.menu-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  #menu-mobile.menu-closed {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  #menu-mobile.hidden {
+    display: none !important;
+  }
+</style>

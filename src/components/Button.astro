@@ -1,0 +1,59 @@
+---
+import { cn } from "../utils/cn";
+import Image from "astro/components/Image.astro";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+	text: string;
+	variant?: "primary" | "outline" | "secondary";
+	className?: string;
+	style?: string;
+	icon?: ImageMetadata;
+}
+
+const {
+	text = "Fale Conosco",
+	variant = "primary",
+	className = "",
+	style = "",
+	icon = undefined,
+}: Props = Astro.props;
+
+// Classes base do botão
+const buttonBaseClasses = cn(
+	// Spacing
+	"px-6 py-3",
+	// Visual
+	"rounded-lg",
+	// Typography
+	"text-[14px] leading-6 font-bold",
+	// Interaction
+	"cursor-pointer",
+);
+
+// Mapeamento de classes para cada variant
+const variantClasses = {
+	primary: cn(
+		// Background & Text
+		"bg-text-blue text-dark-text-blue",
+	),
+	outline: cn(
+		// Background & Border
+		"bg-transparent border border-white text-white",
+	),
+	secondary: cn(
+		// Background & Text
+		"bg-white text-color-dark-text-grey px-11 py-[10px] rounded-[12px] font-regular text-[20px] leading-[140%]",
+		// Icon
+		"flex items-center gap-2",
+	),
+};
+
+// Classes finais do botão
+const buttonClasses = cn(buttonBaseClasses, variantClasses[variant], className);
+---
+
+<button class={buttonClasses} style={style}
+	>{text}
+	{icon && <Image src={icon} alt={text} width={24} height={24} />}</button
+>

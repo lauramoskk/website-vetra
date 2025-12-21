@@ -1,0 +1,100 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: string;
+}
+
+const {
+  title = "Título do Site - Slogan ou Proposta de Valor",
+  description = "Descrição curta do site para SEO, contendo as principais palavras-chave e objetivo do negócio.",
+  image = "/favicon.png",
+  type = "website",
+} = Astro.props;
+
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site || "https://generic-client-base.com",
+);
+---
+
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="palavra-chave 1, palavra-chave 2, termo relevante"
+    />
+    <meta name="author" content="Nome do Cliente" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="Portuguese" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, canonicalURL).href} />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Nome do Cliente" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, canonicalURL).href} />
+
+    <!-- Resource Hints -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Fonts with font-display swap for better performance -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+  </head>
+  <body class="bg-dark-text-blue relative">
+    <slot />
+  </body>
+</html>
+
+<style>
+  html {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    overscroll-behavior: none;
+    overflow-x: hidden;
+  }
+
+  body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+    overscroll-behavior: none;
+    overflow-x: hidden;
+  }
+</style>

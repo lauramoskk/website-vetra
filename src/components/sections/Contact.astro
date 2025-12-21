@@ -1,0 +1,95 @@
+---
+import SectionLayout from "../../layouts/SectionLayout.astro";
+import AlignmentLayout from "../../layouts/AlignmentLayout.astro";
+import Button from "../Button.astro";
+
+import { cn } from "../../utils/cn";
+import PhoneIcon from "../../assets/icons/phone.svg";
+
+// Classes organizadas por categoria para melhor legibilidade
+const sectionOuterClasses = cn(
+  // Layout
+  "flex items-center w-full relative",
+  // Identificador para estilos específicos
+  "contact-section",
+);
+
+const sectionInnerClasses = cn(
+  // Layout & Sizing
+  "w-full h-[587px] relative",
+  // Responsividade
+  "max-sm:h-[967px] max-sm:my-[88px]",
+);
+
+const mainLayoutClasses = cn(
+  // Spacing
+  "gap-[60px] h-[-webkit-fill-available]",
+  // Responsividade
+  "max-sm:justify-start",
+);
+
+const titleContainerClasses = cn(
+  // Spacing
+  "gap-6",
+);
+
+const titleSectionClasses = cn(
+  // Sizing
+  "w-[489px]",
+  // Spacing
+  "gap-12",
+  // Responsiveness
+  "max-sm:w-full",
+);
+
+const sectionOuterStyle = `background-color: #0D0B2D;`;
+---
+
+<SectionLayout
+  autoMargin
+  outerClassName={sectionOuterClasses}
+  innerClassName={sectionInnerClasses}
+  outerStyle={sectionOuterStyle}
+  id="contato"
+>
+  <AlignmentLayout
+    direction="vertical"
+    justify="center"
+    align="start"
+    className={mainLayoutClasses}
+  >
+    <AlignmentLayout
+      direction="vertical"
+      justify="start"
+      align="start"
+      className={titleSectionClasses}
+    >
+      <AlignmentLayout
+        direction="vertical"
+        justify="start"
+        align="start"
+        className={titleContainerClasses}
+      >
+        <h2
+          class="text-[40px] max-sm:text-[32px] leading-[140%] font-bold font-serif text-text-secondary"
+        >
+          Título da Seção de Contato
+        </h2>
+        <p
+          class="text-[18px] leading-[33px] font-regular font-sans text-text-secondary"
+        >
+          Chamada para ação convidando o usuário a entrar em contato com a
+          empresa.
+        </p>
+      </AlignmentLayout>
+      <a href="#" target="_blank" rel="noopener noreferrer">
+        <Button
+          text="Fale conosco"
+          variant="secondary"
+          style="font-weight: 400;"
+          icon={PhoneIcon}
+        />
+      </a>
+    </AlignmentLayout>
+  </AlignmentLayout>
+</SectionLayout>
