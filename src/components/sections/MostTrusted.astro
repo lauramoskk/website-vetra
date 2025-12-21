@@ -1,0 +1,182 @@
+---
+import Badge from "../Badge.astro";
+import SectionLayout from "../../layouts/SectionLayout.astro";
+import AlignmentLayout from "../../layouts/AlignmentLayout.astro";
+import Description from "../Description.astro";
+
+import { cn } from "../../utils/cn";
+import { Image } from "astro:assets";
+import ArrowIcon from "../../assets/icons/arrow.png";
+
+// Classes organizadas por categoria para melhor legibilidade
+const sectionOuterClasses = cn(
+	// Layout
+	"flex items-center w-full relative",
+	// Identificador
+	"hero-section",
+);
+
+const sectionInnerClasses = cn(
+	// Layout & Sizing
+	"w-full h-[840px]",
+	// Responsividade
+	"max-sm:h-fit",
+);
+
+const mainLayoutClasses = cn(
+	// Spacing & Layout
+	"gap-[9.4rem] h-[-webkit-fill-available] relative z-10",
+);
+
+const contentSectionClasses = cn(
+	// Spacing
+	"gap-2",
+);
+
+const heroTitleClasses = cn(
+	// Typography
+	"font-serif text-[56px] leading-[64px] font-bold text-center text-white",
+	// Sizing
+	"max-w-[788px]",
+	// Responsividade
+	"max-sm:text-[40px] max-sm:leading-[48px]",
+);
+
+const cardSectionClasses = cn(
+	// Spacing
+	"gap-2",
+	// Layout
+	"flex items-center w-full relative",
+	// Responsividade
+	"max-sm:flex-col",
+);
+---
+
+<SectionLayout
+	outerClassName={sectionOuterClasses}
+	innerClassName={sectionInnerClasses}
+	autoMargin={true}
+>
+	<AlignmentLayout
+		direction="vertical"
+		justify="center"
+		align="center"
+		className={mainLayoutClasses}
+	>
+		<AlignmentLayout
+			direction="vertical"
+			justify="center"
+			align="center"
+			className="w-full"
+			style="gap: 2rem;"
+		>
+			<Badge text="Badge Text">
+				<Image
+					src={ArrowIcon}
+					alt="Arrow"
+					class="w-full h-full object-contain"
+				/>
+			</Badge>
+
+			<AlignmentLayout
+				direction="vertical"
+				justify="center"
+				align="center"
+				className={contentSectionClasses}
+			>
+				<h1 class={heroTitleClasses}>Built for real user</h1>
+				<Description
+					text="Crafted for low-cost transfers, instant finality, and audit-ready transparency making digital value dependable for merchants, treasuries, and builders alike."
+					className="max-w-[588px] text-center"
+				/>
+			</AlignmentLayout>
+		</AlignmentLayout>
+
+		<AlignmentLayout
+			direction="horizontal"
+			justify="center"
+			align="center"
+			className="w-full"
+			style="gap: 2rem;"
+			className={cardSectionClasses}
+		>
+			<AlignmentLayout
+				direction="vertical"
+				justify="center"
+				align="center"
+				className={contentSectionClasses}
+			>
+				<div class="w-full h-[184px] bg-white"></div>
+
+				<AlignmentLayout
+					direction="vertical"
+					justify="center"
+					align="center"
+					className={contentSectionClasses}
+				>
+					<h3
+						class="font-serif text-[20px] leading-[24px] font-medium text-center text-white"
+					>
+						Purpose
+					</h3>
+					<Description
+						text="In a space crowded with opaque tokens and slow rails, VETRA aims to be the simplest way to hold and move a reliable dollar on Polygon. It’s built to feel boring in the best sense: predictable, auditable, and ready for everyday settlement."
+						className="max-w-[588px] text-center"
+					/>
+				</AlignmentLayout>
+			</AlignmentLayout>
+
+			<AlignmentLayout
+				direction="vertical"
+				justify="center"
+				align="center"
+				className={contentSectionClasses}
+			>
+				<div class="w-full h-[184px] bg-white"></div>
+
+				<AlignmentLayout
+					direction="vertical"
+					justify="center"
+					align="center"
+					className={contentSectionClasses}
+				>
+					<h3
+						class="font-serif text-[20px] leading-[24px] font-medium text-center text-white"
+					>
+						Purpose
+					</h3>
+					<Description
+						text="In a space crowded with opaque tokens and slow rails, VETRA aims to be the simplest way to hold and move a reliable dollar on Polygon. It’s built to feel boring in the best sense: predictable, auditable, and ready for everyday settlement."
+						className="max-w-[588px] text-center"
+					/>
+				</AlignmentLayout>
+			</AlignmentLayout>
+
+			<AlignmentLayout
+				direction="vertical"
+				justify="center"
+				align="center"
+				className={contentSectionClasses}
+			>
+				<div class="w-full h-[184px] bg-white"></div>
+
+				<AlignmentLayout
+					direction="vertical"
+					justify="center"
+					align="center"
+					className={contentSectionClasses}
+				>
+					<h3
+						class="font-serif text-[20px] leading-[24px] font-medium text-center text-white"
+					>
+						Purpose
+					</h3>
+					<Description
+						text="In a space crowded with opaque tokens and slow rails, VETRA aims to be the simplest way to hold and move a reliable dollar on Polygon. It’s built to feel boring in the best sense: predictable, auditable, and ready for everyday settlement."
+						className="max-w-[588px] text-center"
+					/>
+				</AlignmentLayout>
+			</AlignmentLayout>
+		</AlignmentLayout>
+	</AlignmentLayout>
+</SectionLayout>
