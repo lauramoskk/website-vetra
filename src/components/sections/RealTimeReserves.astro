@@ -1,0 +1,317 @@
+---
+import SectionLayout from "../../layouts/SectionLayout.astro";
+import AlignmentLayout from "../../layouts/AlignmentLayout.astro";
+import Title from "../Title.astro";
+import Description from "../Description.astro";
+import Badge from "../Badge.astro";
+import { cn } from "../../utils/cn";
+import { Image } from "astro:assets";
+import StarsIcon from "../../assets/icons/stars-light-sparkle.svg";
+import BrowserControlsIcon from "../../assets/icons/browser-controls.svg";
+import ArrowLeftBrowserIcon from "../../assets/icons/arrow-left-browser.svg";
+import ArrowRightBrowserIcon from "../../assets/icons/arrow-right-browser.svg";
+import PlusBrowserIcon from "../../assets/icons/plus-browser.svg";
+
+const sectionOuterClasses = cn(
+  "flex items-center w-full relative",
+  "real-time-reserves-section",
+);
+
+const sectionInnerClasses = cn("w-full pt-[88px]", "max-sm:h-fit");
+
+const mainLayoutClasses = cn(
+  "gap-16 relative z-10 w-full",
+  "flex flex-col items-center",
+);
+
+const textSmallParam = cn("text-white/40 text-sm");
+const textValue = cn("text-white text-2xl font-medium");
+const textLabel = cn("text-white/40 text-sm");
+
+// Typography Constants
+const TEXT_12_16 =
+  "text-[12px] leading-[16px] max-md:text-[12px] max-md:leading-[16px]";
+const TEXT_14_18 =
+  "text-[14px] leading-[18px] max-md:text-[14px] max-md:leading-[18px]";
+const TEXT_18_22 =
+  "text-[18px] leading-[22px] max-md:text-[18px] max-md:leading-[22px]";
+
+const headerClasses = cn("gap-4", "max-w-[788px] text-center mx-auto");
+
+const browserWindowClasses = cn(
+  "w-full bg-browser-bg rounded-t-2xl overflow-hidden shadow-2xl",
+);
+
+const browserToolbarClasses = cn("h-[52px] bg-browser-toolbar px-4");
+
+const windowControlsClasses = cn("flex gap-2");
+const windowControl = cn("w-3 h-3 rounded-full");
+
+// Dashboard Styles
+const dashboardContainerClasses = cn("p-8 pb-18.5 max-sm:p-8 gap-6");
+
+const headerDashboardClasses = cn(
+  "flex justify-between items-start max-sm:flex-col max-sm:gap-4",
+);
+
+const metricsGridClasses = cn(
+  "w-full grid grid-cols-3 gap-[10px] max-sm:grid-cols-1",
+);
+
+const metricCardClasses = cn(
+  "bg-dashboard-card-bg flex flex-col rounded-[4px] p-4 gap-1 h-fit",
+);
+
+const infoGridClasses = cn(
+  "bg-dashboard-card-bg flex-1 grid grid-cols-1 gap-6 max-sm:grid-cols-1 rounded-[4px]",
+);
+
+const infoCardClasses = cn(
+  "bg-dashboard-card-bg rounded-[4px] p-4 flex-1 h-auto flex flex-col justify-between",
+);
+---
+
+<SectionLayout
+  outerClassName={sectionOuterClasses}
+  innerClassName={sectionInnerClasses}
+  autoMargin={true}
+>
+  <AlignmentLayout
+    direction="vertical"
+    justify="center"
+    align="center"
+    className={mainLayoutClasses}
+  >
+    {/* Section Header */}
+    <AlignmentLayout
+      direction="vertical"
+      justify="center"
+      align="center"
+      className={headerClasses}
+    >
+      <Badge text="Transparency First">
+        <Image
+          src={StarsIcon}
+          alt="Stars"
+          class="w-full h-full object-contain"
+          width={12}
+          height={12}
+        />
+      </Badge>
+      <Title text="Built for real user" className="text-center" />
+      <Description
+        text="Crafted for low-cost transfers, instant finality, and audit-ready transparency making digital value dependable for merchants, treasuries, and builders alike."
+        className="max-w-[800px] text-center"
+      />
+    </AlignmentLayout>
+
+    {/* Browser Window */}
+    <div class={browserWindowClasses}>
+      {/* Toolbar */}
+      {/* Toolbar */}
+      <AlignmentLayout
+        direction="horizontal"
+        justify="between"
+        align="center"
+        className={browserToolbarClasses}
+      >
+        <AlignmentLayout
+          direction="horizontal"
+          justify="center"
+          align="center"
+          className="gap-[15px]"
+        >
+          <div class={windowControlsClasses}>
+            <div class={cn(windowControl, "bg-text-grey")}></div>
+            <div class={cn(windowControl, "bg-text-grey")}></div>
+            <div class={cn(windowControl, "bg-text-grey")}></div>
+          </div>
+
+          <div class="w-[37px] h-[22px]">
+            <Image
+              src={BrowserControlsIcon}
+              alt="Browser Controls"
+              class="w-full h-full object-contain"
+            />
+          </div>
+
+          <AlignmentLayout
+            direction="horizontal"
+            justify="center"
+            align="center"
+            className="gap-1 max-sm:hidden"
+          >
+            <Image
+              src={ArrowLeftBrowserIcon}
+              alt="Back"
+              width={25}
+              height={22}
+            />
+
+            <Image
+              src={ArrowRightBrowserIcon}
+              alt="Forward"
+              width={25}
+              height={22}
+            />
+          </AlignmentLayout>
+        </AlignmentLayout>
+
+        <div
+          class="flex-1 p-[6.5px] max-w-[558px] text-center text-browser-address-text text-[13px] bg-browser-address-bg font-light font-sans rounded-[6px]"
+        >
+          www.vetra.com.br/
+        </div>
+        <AlignmentLayout
+          direction="horizontal"
+          justify="end"
+          align="center"
+          className="w-[52px]"
+        >
+          <Image src={PlusBrowserIcon} alt="New Tab" width={13} height={13} />
+        </AlignmentLayout>
+      </AlignmentLayout>
+
+      {/* Dashboard Content */}
+      <AlignmentLayout
+        direction="vertical"
+        justify="start"
+        align="stretch"
+        className={dashboardContainerClasses}
+      >
+        {/* Dashboard Header */}
+        <div class={headerDashboardClasses}>
+          <AlignmentLayout
+            direction="vertical"
+            justify="start"
+            align="start"
+            className="gap-1"
+          >
+            <Title
+              text="Reservas em Tempo Real"
+              className="text-[#F4F6F7] text-[20px] leading-[24px] max-sm:text-[20px] max-sm:leading-[24px]"
+            />
+            <Description
+              text="Atualizado: 21 de nov. de 2025, 12:46"
+              className={TEXT_12_16}
+            />
+          </AlignmentLayout>
+          <AlignmentLayout
+            direction="horizontal"
+            justify="center"
+            align="center"
+            className="bg-dashboard-badge-bg rounded-[4px] p-4 max-sm:w-full"
+          >
+            <Title text="1 VTR = 1 USD garantido" className={TEXT_14_18} />
+          </AlignmentLayout>
+        </div>
+
+        {/* Metrics Grid */}
+        <div class={metricsGridClasses}>
+          {/* Card 1 */}
+          <div class={metricCardClasses}>
+            <Title text="$10.000.320.48" className={TEXT_18_22} />
+            <Description text="Reservas em Custódia" className={TEXT_12_16} />
+          </div>
+          {/* Card 2 */}
+          <div class={metricCardClasses}>
+            <Title text="$1.000.320.48" className={TEXT_18_22} />
+            <Description text="Débito total" className={TEXT_12_16} />
+          </div>
+          {/* Card 3 */}
+          <div class={metricCardClasses}>
+            <Title text="$500.320.48" className={TEXT_18_22} />
+            <Description text="Crédito total" className={TEXT_12_16} />
+          </div>
+        </div>
+
+        <AlignmentLayout
+          direction="horizontal"
+          justify="start"
+          align="stretch"
+          className="gap-2 w-full max-sm:flex-col"
+        >
+          {/* Info Grid */}
+          <div class={infoGridClasses}>
+            {/* Custody Certification */}
+            <AlignmentLayout direction="vertical" justify="start" align="start">
+              <AlignmentLayout
+                direction="horizontal"
+                justify="between"
+                align="center"
+                className="w-full gap-4 px-4 pt-4 pb-2"
+              >
+                <AlignmentLayout
+                  direction="vertical"
+                  justify="start"
+                  align="start"
+                  className="gap-1 max-w-[291px]"
+                >
+                  <Title
+                    text="Certificação de Custódia"
+                    className={TEXT_14_18}
+                  />
+                  <Description
+                    text="Documento oficial emitido pela FT Asset Management KB, validando a custódia total dos fundos VETRA."
+                    className={TEXT_12_16}
+                  />
+                </AlignmentLayout>
+                <button
+                  class="border border-badge-purple text-dashboard-badge-text px-4 py-2 rounded-full text-sm hover:bg-badge-purple/10 transition-colors whitespace-nowrap"
+                >
+                  Ver certificado
+                </button>
+              </AlignmentLayout>
+
+              <AlignmentLayout
+                direction="vertical"
+                justify="start"
+                align="start"
+                className="gap-1 px-4 pb-4 pt-2"
+              >
+                <div class="flex flex-col items-start gap-1">
+                  <Title text="Instituição" className={TEXT_12_16} />
+                  <Description
+                    text="FT Asset Management KB"
+                    className={TEXT_12_16}
+                  />
+                </div>
+                <div class="flex flex-col items-start gap-1">
+                  <Title text="Localização" className={TEXT_12_16} />
+                  <Description
+                    text="Estocolmo, Suécia"
+                    className={TEXT_12_16}
+                  />
+                </div>
+                <div class="flex flex-col items-start gap-1">
+                  <Title text="Localização" className={TEXT_12_16} />
+                  <Description
+                    text="Regulated Custodian"
+                    className={TEXT_12_16}
+                  />
+                </div>
+              </AlignmentLayout>
+            </AlignmentLayout>
+          </div>
+
+          {/* About Verification */}
+          <div class={infoCardClasses}>
+            <div class="flex flex-col gap-1">
+              <Title text="Sobre a Verificação" className={TEXT_14_18} />
+              <div>
+                <Description
+                  text="Todos os fundos VETRA são mantidos em custódia regulamentada pela FT Asset Management, uma instituição financeira licenciada na Suécia."
+                  className={TEXT_12_16}
+                />
+                <Description
+                  text="A paridade 1:1 entre VTR e USD é mantida e auditada continuamente, garantindo total transparência e segurança para todos os investidores."
+                  className={TEXT_12_16}
+                />
+              </div>
+            </div>
+          </div>
+        </AlignmentLayout>
+      </AlignmentLayout>
+    </div>
+  </AlignmentLayout>
+</SectionLayout>

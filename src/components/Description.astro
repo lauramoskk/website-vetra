@@ -13,10 +13,10 @@ const { text, className = "", variant = "primary" }: Props = Astro.props;
 const descriptionClasses = cn(
 	// Typography
 	"text-text-grey font-serif",
+	variant === "primary" && "text-[16px] leading-[20px]",
+	variant === "secondary" && "text-[14px] leading-[20px]",
 	// Custom
 	className,
-	variant === "primary" && "text-[16px] leading-[20px]",
-	variant === "secondary" && "text-[14px] leading-[18px]",
 );
 ---
 

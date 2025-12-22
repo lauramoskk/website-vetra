@@ -22,6 +22,16 @@
   /* Talk with us button */
   --color-text-blue: #2BDCE2;
   --color-dark-text-blue: #050109;
+
+  /* Real Time Reserves Section */
+  --color-browser-bg: #0E0515;
+  --color-browser-toolbar: #13071D;
+  --color-browser-address-bg: #100619;
+  --color-browser-address-text: #C8D2D9;
+  --color-dashboard-card-bg: #180F1E;
+  --color-dashboard-badge-bg: #2A0C46;
+  --color-dashboard-badge-text: #D8B4FE;
+  --color-badge-bg-dark: #3d2b4d;
 }
 
 /* Custom Scrollbar Styles */
