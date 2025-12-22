@@ -12,18 +12,18 @@ const headerClasses = cn(
 	// Layout
 	"w-full flex justify-center items-center",
 	// Sizing
-	"max-h-[80px]",
+	"h-auto",
 	// Spacing
-	"px-19 py-6",
+	"px-19 py-[10px]",
 	// Visual
 	"border-b border-white/[0.04] transition-all duration-300",
 	// Responsividade
-	"max-sm:p-6",
+	"max-sm:px-6 max-sm:py-[10px]",
 );
 
 const headerContainerClasses = cn(
 	// Layout
-	"flex justify-between items-center",
+	"flex justify-between items-center relative",
 	// Sizing
 	"w-full max-w-[1216px]",
 );
@@ -35,11 +35,11 @@ const logoContainerClasses = cn(
 );
 
 // Invertendo cores para texto branco e rotacionando hue para manter o ícone ciano (aprox)
-const logoImageClasses = "w-[60px] h-[60px]";
+const logoImageClasses = "w-[52px] h-[52px]";
 
 const navClasses = cn(
 	// Layout
-	"flex gap-8 items-center",
+	"flex gap-8 items-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2",
 	// Responsividade
 	"max-sm:hidden",
 );
@@ -61,7 +61,7 @@ const navLinkClasses = "text-white";
 		</nav>
 
 		<div class="flex gap-4">
-			<a href="#" target="_blank" rel="noopener noreferrer">
+			<a href="#" target="_blank" rel="noopener noreferrer" class="h-[56px]">
 				<Button
 					text="Fale Conosco"
 					className="max-sm:hidden whitespace-nowrap"

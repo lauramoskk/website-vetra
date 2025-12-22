@@ -3,6 +3,7 @@ import Badge from "../Badge.astro";
 import Button from "../Button.astro";
 import SectionLayout from "../../layouts/SectionLayout.astro";
 import AlignmentLayout from "../../layouts/AlignmentLayout.astro";
+import Title from "../Title.astro";
 import Description from "../Description.astro";
 import FeaturesBanner from "./FeaturesBanner.astro";
 
@@ -10,7 +11,7 @@ import BackgroundImage from "../../assets/details/background.png";
 import BackgroundImageMobile from "../../assets/details/background-mobile.png";
 import { cn } from "../../utils/cn";
 import { Image } from "astro:assets";
-import ArrowIcon from "../../assets/icons/arrow.png";
+import StarsIcon from "../../assets/icons/stars-light-sparkle.svg";
 
 // Classes organizadas por categoria para melhor legibilidade
 const sectionOuterClasses = cn(
@@ -39,9 +40,9 @@ const contentSectionClasses = cn(
 
 const heroTitleClasses = cn(
 	// Typography
-	"font-serif text-[56px] leading-[64px] font-bold text-center text-white",
+	"text-[80px] leading-[88px] text-center",
 	// Sizing
-	"max-w-[788px]",
+	"max-w-[656px]",
 	// Responsividade
 	"max-sm:text-[40px] max-sm:leading-[48px]",
 );
@@ -77,10 +78,10 @@ const buttonsContainerClasses = cn(
 			className="w-full"
 			style="gap: 2rem;"
 		>
-			<Badge text="Badge Text">
+			<Badge text="The best stablecoin of 2026">
 				<Image
-					src={ArrowIcon}
-					alt="Arrow"
+					src={StarsIcon}
+					alt="Stars"
 					class="w-full h-full object-contain"
 				/>
 			</Badge>
@@ -91,7 +92,10 @@ const buttonsContainerClasses = cn(
 				align="center"
 				className={contentSectionClasses}
 			>
-				<h1 class={heroTitleClasses}>Trust the value<br />Trust Vetra.</h1>
+				<Title
+					text="Trust the value Trust Vetra."
+					className={heroTitleClasses}
+				/>
 				<Description
 					text="Built to keep value steady and your plans in motion. Blends fast settlement, low fees, and true transparency so money feels simple, dependable, and ready for what’s next"
 					className="max-w-[588px] text-center"
@@ -105,14 +109,14 @@ const buttonsContainerClasses = cn(
 			align="center"
 			className={buttonsContainerClasses}
 		>
-			<a href="#contato" class="max-sm:w-full">
+			<a href="#contato" class="max-sm:w-full h-[56px]">
 				<Button
 					text="Stake Vetra"
 					variant="primary"
 					className="max-sm:w-full"
 				/>
 			</a>
-			<a href="#sobre" class="max-sm:w-full">
+			<a href="#sobre" class="max-sm:w-full h-[56px]">
 				<Button
 					text="View Whitepaper"
 					variant="outline"

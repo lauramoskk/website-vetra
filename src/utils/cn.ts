@@ -1,9 +1,13 @@
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
 /**
  * Função utilitária para combinar classes Tailwind de forma organizada e legível
- * Permite agrupar classes por categoria e facilita a manutenção
+ * Permite agrupar classes por categoria e facilita a manutenção.
+ * Usa `clsx` para lógica condicional e `tailwind-merge` para resolver conflitos de classes.
  */
-export function cn(...classes: (string | undefined | null | false)[]): string {
-	return classes.filter(Boolean).join(' ');
+export function cn(...inputs: ClassValue[]) {
+	return twMerge(clsx(inputs));
 }
 
 /**

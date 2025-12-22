@@ -1,5 +1,6 @@
 ---
 import { cn } from "../utils/cn";
+import Description from "./Description.astro";
 
 interface Props {
 	text: string;
@@ -12,17 +13,15 @@ const badgeContainerClasses = cn(
 	// Layout
 	"flex items-center",
 	// Visual
-	"bg-text-blue/8 rounded-lg",
+	"bg-badge-purple/8 rounded-[200px]",
 	// Spacing
 	"px-4 py-2",
 );
-
-const badgeTextClasses = "text-text-blue";
 ---
 
 <div class={badgeContainerClasses}>
 	<div class="w-6 h-6 mr-2">
 		<slot />
 	</div>
-	<span class={badgeTextClasses}>{text}</span>
+	<Description className="text-light-purple" text={text} variant="secondary" />
 </div>
