@@ -13,12 +13,10 @@ const { text, className = "", variant = "primary" }: Props = Astro.props;
 const titleClasses = cn(
 	// Typography
 	"font-sans font-medium text-text-secondary",
-	// Responsividade
-	"max-sm:text-[32px] max-sm:leading-[40px]",
 	// Custom
 	variant === "primary"
-		? "text-[56px] leading-[64px]"
-		: "text-[20px] leading-[24px]",
+		? "text-[56px] leading-[64px] max-md:text-[32px] max-md:leading-[40px]"
+		: "text-[20px] leading-[24px] max-md:text-[20px] max-md:leading-[24px]",
 	className,
 );
 ---
