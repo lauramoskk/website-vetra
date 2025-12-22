@@ -33,6 +33,10 @@
   --color-dashboard-badge-bg: #2A0C46;
   --color-dashboard-badge-text: #D8B4FE;
   --color-badge-bg-dark: #3d2b4d;
+
+  /* Section Backgrounds */
+  --color-newsletter-bg: #0F0519;
+  --color-footer-end: #1C092F;
 }
 
 /* Custom Scrollbar Styles */
