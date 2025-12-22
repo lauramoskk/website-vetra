@@ -3,6 +3,7 @@ import Button from "../Button.astro";
 import Image from "astro/components/Image.astro";
 import { cn } from "../../utils/cn";
 import Logo from "../../assets/logo.png";
+import Description from "../Description.astro";
 
 // Classes organizadas por categoria para melhor legibilidade
 const headerClasses = cn(
@@ -16,7 +17,7 @@ const headerClasses = cn(
 	// Spacing
 	"px-19 py-[10px]",
 	// Visual
-	"border-b border-white/[0.04] transition-all duration-300",
+	"transition-all duration-300",
 	// Responsividade
 	"max-sm:px-6 max-sm:py-[10px]",
 );
@@ -54,10 +55,18 @@ const navLinkClasses = "text-white";
 		</a>
 
 		<nav class={navClasses} aria-label="Navegação principal">
-			<a href="/" class={navLinkClasses}>Home</a>
-			<a href="/about-us" class={navLinkClasses}>About us</a>
-			<a href="/features" class={navLinkClasses}>Features</a>
-			<a href="/team" class={navLinkClasses}>Team</a>
+			<a href="/" class={navLinkClasses}>
+				<Description text="Home" variant="secondary" />
+			</a>
+			<a href="/about-us" class={navLinkClasses}>
+				<Description text="About us" variant="secondary" />
+			</a>
+			<a href="/features" class={navLinkClasses}>
+				<Description text="Features" variant="secondary" />
+			</a>
+			<a href="/team" class={navLinkClasses}>
+				<Description text="Team" variant="secondary" />
+			</a>
 		</nav>
 
 		<div class="flex gap-4">

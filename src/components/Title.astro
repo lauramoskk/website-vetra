@@ -4,17 +4,21 @@ import { cn } from "../utils/cn";
 interface Props {
 	text: string;
 	className?: string;
+	variant?: "primary" | "secondary";
 }
 
-const { text, className = "" }: Props = Astro.props;
+const { text, className = "", variant = "primary" }: Props = Astro.props;
 
 // Classes organizadas por categoria
 const titleClasses = cn(
 	// Typography
-	"font-sans text-[56px] leading-[64px] font-medium text-text-secondary",
+	"font-sans font-medium text-text-secondary",
 	// Responsividade
 	"max-sm:text-[32px] max-sm:leading-[40px]",
 	// Custom
+	variant === "primary"
+		? "text-[56px] leading-[64px]"
+		: "text-[20px] leading-[24px]",
 	className,
 );
 ---

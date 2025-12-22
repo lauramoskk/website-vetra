@@ -2,13 +2,14 @@
 import Badge from "../Badge.astro";
 import SectionLayout from "../../layouts/SectionLayout.astro";
 import AlignmentLayout from "../../layouts/AlignmentLayout.astro";
+import Title from "../Title.astro";
 import Description from "../Description.astro";
 
 import BackgroundImage from "../../assets/details/most-trusted-background.png";
 import BackgroundImageMobile from "../../assets/details/most-trusted-background-mobile.png";
 import { cn } from "../../utils/cn";
 import { Image } from "astro:assets";
-import ArrowIcon from "../../assets/icons/arrow.png";
+import StartsIcon from "../../assets/icons/stars-light-sparkle.svg";
 
 // Classes organizadas por categoria para melhor legibilidade
 const sectionOuterClasses = cn(
@@ -37,11 +38,7 @@ const contentSectionClasses = cn(
 
 const heroTitleClasses = cn(
 	// Typography
-	"font-serif text-[56px] leading-[64px] font-bold text-center text-white",
-	// Sizing
-	"max-w-[788px]",
-	// Responsividade
-	"max-sm:text-[40px] max-sm:leading-[48px]",
+	"text-center",
 );
 
 const cardSectionClasses = cn(
@@ -55,7 +52,7 @@ const cardSectionClasses = cn(
 
 const cardContentSectionClasses = cn(
 	// Co
-	"bg-white/10 backdrop-blur-[80px]",
+	"bg-white/10 backdrop-blur-[80px] max-h-[338px]",
 );
 ---
 
@@ -64,7 +61,7 @@ const cardContentSectionClasses = cn(
 	innerClassName={sectionInnerClasses}
 	autoMargin={true}
 >
-<div
+	<div
 		class="most-trusted-background absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat"
 	>
 	</div>
@@ -82,9 +79,9 @@ const cardContentSectionClasses = cn(
 			className="w-full"
 			style="gap: 1.5rem;"
 		>
-			<Badge text="Badge Text">
+			<Badge text="The most trusted stablecoin">
 				<Image
-					src={ArrowIcon}
+					src={StartsIcon}
 					alt="Arrow"
 					class="w-full h-full object-contain"
 				/>
@@ -94,8 +91,9 @@ const cardContentSectionClasses = cn(
 				direction="vertical"
 				justify="center"
 				align="center"
+				className="gap-2"
 			>
-				<h1 class={heroTitleClasses}>Built for real user</h1>
+				<Title text="Built for real user" className={heroTitleClasses} />
 				<Description
 					text="Crafted for low-cost transfers, instant finality, and audit-ready transparency making digital value dependable for merchants, treasuries, and builders alike."
 					className="max-w-[588px] text-center"
@@ -117,7 +115,7 @@ const cardContentSectionClasses = cn(
 				align="center"
 				className={cardContentSectionClasses}
 			>
-				<div class="w-full h-[184px] bg-white/5 rounded-t-2xl"></div>
+				<div class="w-full h-[184px] bg-white/5"></div>
 
 				<AlignmentLayout
 					direction="vertical"
@@ -125,14 +123,12 @@ const cardContentSectionClasses = cn(
 					align="center"
 					className={contentSectionClasses}
 				>
-					<h3
-						class="font-serif text-[20px] leading-[24px] font-medium text-center text-white"
-					>
-						Purpose
-					</h3>
+					<Title text="Purpose" variant="secondary" />
+
 					<Description
 						text="In a space crowded with opaque tokens and slow rails, VETRA aims to be the simplest way to hold and move a reliable dollar on Polygon. It’s built to feel boring in the best sense: predictable, auditable, and ready for everyday settlement."
 						className="max-w-[588px] text-center"
+						variant="secondary"
 					/>
 				</AlignmentLayout>
 			</AlignmentLayout>
@@ -141,9 +137,9 @@ const cardContentSectionClasses = cn(
 				direction="vertical"
 				justify="center"
 				align="center"
-				className={contentSectionClasses}
+				className={cardContentSectionClasses}
 			>
-				<div class="w-full h-[184px] bg-white/5 rounded-t-2xl"></div>
+				<div class="w-full h-[184px] bg-white/5"></div>
 
 				<AlignmentLayout
 					direction="vertical"
@@ -151,14 +147,12 @@ const cardContentSectionClasses = cn(
 					align="center"
 					className={contentSectionClasses}
 				>
-					<h3
-						class="font-serif text-[20px] leading-[24px] font-medium text-center text-white"
-					>
-						User
-					</h3>
+					<Title text="User" variant="secondary" />
+
 					<Description
 						text="Merchants and fintechs that need low-fee payments, treasuries and DAOs seeking a dependable unit of account, and developers who want a drop-in ERC-20 for onboarding users. VETRA fits where speed, clarity, and compatibility matter more than hype."
 						className="max-w-[588px] text-center"
+						variant="secondary"
 					/>
 				</AlignmentLayout>
 			</AlignmentLayout>
@@ -167,9 +161,9 @@ const cardContentSectionClasses = cn(
 				direction="vertical"
 				justify="center"
 				align="center"
-				className={contentSectionClasses}
+				className={cardContentSectionClasses}
 			>
-				<div class="w-full h-[184px] bg-white/5 rounded-t-2xl"></div>
+				<div class="w-full h-[184px] bg-white/5"></div>
 
 				<AlignmentLayout
 					direction="vertical"
@@ -177,14 +171,12 @@ const cardContentSectionClasses = cn(
 					align="center"
 					className={contentSectionClasses}
 				>
-					<h3
-						class="font-serif text-[20px] leading-[24px] font-medium text-center text-white"
-					>
-						Impact
-					</h3>
+					<Title text="Impact" variant="secondary" />
+
 					<Description
 						text="Money moves like messages: near-instant, with costs that don’t break the use case. Clear data and open documentation make integration straightforward, and a public transparency posture turns trust from a promise into something you can actually check"
 						className="max-w-[588px] text-center"
+						variant="secondary"
 					/>
 				</AlignmentLayout>
 			</AlignmentLayout>
@@ -200,7 +192,9 @@ const cardContentSectionClasses = cn(
 >
 	(function () {
 		"use strict";
-		const mostTrustedBackground = document.querySelector(".most-trusted-background");
+		const mostTrustedBackground = document.querySelector(
+			".most-trusted-background",
+		);
 		if (!mostTrustedBackground) return;
 
 		function updateBackgroundImage() {
