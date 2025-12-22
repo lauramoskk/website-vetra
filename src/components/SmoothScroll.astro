@@ -1,0 +1,51 @@
+---
+/* Componente de Scroll Suave */
+---
+
+<script>
+  import Lenis from "@studio-freight/lenis";
+
+  // Inicializa o Lenis
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    direction: "vertical",
+    gestureDirection: "vertical",
+    smooth: true,
+    mouseMultiplier: 1,
+    smoothTouch: false, // Opcional: ativa scroll suave no touch (celulares)
+    touchMultiplier: 2,
+    infinite: false,
+  });
+
+  // Loop de animação (obrigatório para o Lenis funcionar)
+  function raf(time: number) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
+</script>
+
+<style is:global>
+  /* CSS necessário para evitar conflitos */
+  html.lenis {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+</style>

@@ -11,6 +11,8 @@ import BrowserControlsIcon from "../../assets/icons/browser-controls.svg";
 import ArrowLeftBrowserIcon from "../../assets/icons/arrow-left-browser.svg";
 import ArrowRightBrowserIcon from "../../assets/icons/arrow-right-browser.svg";
 import PlusBrowserIcon from "../../assets/icons/plus-browser.svg";
+import BackgroundImage from "../../assets/details/real-time-background.png";
+import BackgroundImageMobile from "../../assets/details/real-time-background-mobile.png";
 
 const sectionOuterClasses = cn(
   "flex items-center w-full relative",
@@ -23,10 +25,6 @@ const mainLayoutClasses = cn(
   "gap-16 relative z-10 w-full",
   "flex flex-col items-center",
 );
-
-const textSmallParam = cn("text-white/40 text-sm");
-const textValue = cn("text-white text-2xl font-medium");
-const textLabel = cn("text-white/40 text-sm");
 
 // Typography Constants
 const TEXT_12_16 =
@@ -76,6 +74,11 @@ const infoCardClasses = cn(
   innerClassName={sectionInnerClasses}
   autoMargin={true}
 >
+  <div
+    class="real-time-background absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+  >
+  </div>
+
   <AlignmentLayout
     direction="vertical"
     justify="center"
@@ -315,3 +318,38 @@ const infoCardClasses = cn(
     </div>
   </AlignmentLayout>
 </SectionLayout>
+
+<script
+  define:vars={{
+    bgDesktop: BackgroundImage.src,
+    bgMobile: BackgroundImageMobile.src,
+  }}
+>
+  (function () {
+    "use strict";
+    const realTimeBackground = document.querySelector(".real-time-background");
+    if (!realTimeBackground) return;
+
+    function updateBackgroundImage() {
+      const isMobile = window.innerWidth < 640;
+      realTimeBackground.style.backgroundImage = `url('${isMobile ? bgMobile : bgDesktop}')`;
+    }
+
+    // Atualizar na inicialização
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", updateBackgroundImage, {
+        once: true,
+      });
+    } else {
+      updateBackgroundImage();
+    }
+
+    // Handle window resize com debounce
+    let resizeTimeout;
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(updateBackgroundImage, 250);
+    };
+    window.addEventListener("resize", handleResize, { passive: true });
+  })();
+</script>
