@@ -4,6 +4,8 @@ import SectionLayout from "../../layouts/SectionLayout.astro";
 import AlignmentLayout from "../../layouts/AlignmentLayout.astro";
 import Description from "../Description.astro";
 
+import BackgroundImage from "../../assets/details/most-trusted-background.png";
+import BackgroundImageMobile from "../../assets/details/most-trusted-background-mobile.png";
 import { cn } from "../../utils/cn";
 import { Image } from "astro:assets";
 import ArrowIcon from "../../assets/icons/arrow.png";
@@ -12,8 +14,6 @@ import ArrowIcon from "../../assets/icons/arrow.png";
 const sectionOuterClasses = cn(
 	// Layout
 	"flex items-center w-full relative",
-	// Identificador
-	"hero-section",
 );
 
 const sectionInnerClasses = cn(
@@ -31,6 +31,8 @@ const mainLayoutClasses = cn(
 const contentSectionClasses = cn(
 	// Spacing
 	"gap-2",
+	// Padding
+	"p-4",
 );
 
 const heroTitleClasses = cn(
@@ -50,6 +52,11 @@ const cardSectionClasses = cn(
 	// Responsividade
 	"max-sm:flex-col",
 );
+
+const cardContentSectionClasses = cn(
+	// Co
+	"bg-white/10 backdrop-blur-[80px]",
+);
 ---
 
 <SectionLayout
@@ -57,6 +64,11 @@ const cardSectionClasses = cn(
 	innerClassName={sectionInnerClasses}
 	autoMargin={true}
 >
+<div
+		class="most-trusted-background absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+	>
+	</div>
+
 	<AlignmentLayout
 		direction="vertical"
 		justify="center"
@@ -68,7 +80,7 @@ const cardSectionClasses = cn(
 			justify="center"
 			align="center"
 			className="w-full"
-			style="gap: 2rem;"
+			style="gap: 1.5rem;"
 		>
 			<Badge text="Badge Text">
 				<Image
@@ -82,7 +94,6 @@ const cardSectionClasses = cn(
 				direction="vertical"
 				justify="center"
 				align="center"
-				className={contentSectionClasses}
 			>
 				<h1 class={heroTitleClasses}>Built for real user</h1>
 				<Description
@@ -104,7 +115,7 @@ const cardSectionClasses = cn(
 				direction="vertical"
 				justify="center"
 				align="center"
-				className={contentSectionClasses}
+				className={cardContentSectionClasses}
 			>
 				<div class="w-full h-[184px] bg-white/5 rounded-t-2xl"></div>
 
@@ -180,3 +191,38 @@ const cardSectionClasses = cn(
 		</AlignmentLayout>
 	</AlignmentLayout>
 </SectionLayout>
+
+<script
+	define:vars={{
+		bgDesktop: BackgroundImage.src,
+		bgMobile: BackgroundImageMobile.src,
+	}}
+>
+	(function () {
+		"use strict";
+		const mostTrustedBackground = document.querySelector(".most-trusted-background");
+		if (!mostTrustedBackground) return;
+
+		function updateBackgroundImage() {
+			const isMobile = window.innerWidth < 640;
+			mostTrustedBackground.style.backgroundImage = `url('${isMobile ? bgMobile : bgDesktop}')`;
+		}
+
+		// Atualizar na inicialização
+		if (document.readyState === "loading") {
+			document.addEventListener("DOMContentLoaded", updateBackgroundImage, {
+				once: true,
+			});
+		} else {
+			updateBackgroundImage();
+		}
+
+		// Handle window resize com debounce
+		let resizeTimeout;
+		const handleResize = () => {
+			clearTimeout(resizeTimeout);
+			resizeTimeout = setTimeout(updateBackgroundImage, 250);
+		};
+		window.addEventListener("resize", handleResize, { passive: true });
+	})();
+</script>
