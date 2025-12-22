@@ -6,6 +6,10 @@ import Badge from "../Badge.astro";
 import { cn } from "../../utils/cn";
 import { Image } from "astro:assets";
 import ArrowIcon from "../../assets/icons/arrow.png";
+import SecurityIcon from "../../assets/icons/shield-check.svg";
+import EcosystemIcon from "../../assets/icons/globe.svg";
+import TransparencyIcon from "../../assets/icons/eye.svg";
+import ScalabilityIcon from "../../assets/icons/zap.svg";
 
 // Styles
 const sectionOuterClasses = cn(
@@ -92,8 +96,8 @@ const cardTitleClasses = cn("font-serif text-2xl font-medium text-white");
           <div
             class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-2"
           >
-            <!-- Placeholder Icon -->
-            <div class="w-6 h-6 bg-white/50 rounded-sm"></div>
+            <!-- Icon -->
+            <Image src={SecurityIcon} alt="Security" class="w-6 h-6" />
           </div>
           <h3 class={cardTitleClasses}>Security</h3>
           <Description
@@ -107,8 +111,8 @@ const cardTitleClasses = cn("font-serif text-2xl font-medium text-white");
           <div
             class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-2"
           >
-            <!-- Placeholder Icon -->
-            <div class="w-6 h-6 bg-white/50 rounded-sm"></div>
+            <!-- Icon -->
+            <Image src={EcosystemIcon} alt="Ecosystem" class="w-6 h-6" />
           </div>
           <h3 class={cardTitleClasses}>Ecosystem & Adoption</h3>
           <Description
@@ -122,8 +126,8 @@ const cardTitleClasses = cn("font-serif text-2xl font-medium text-white");
           <div
             class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-2"
           >
-            <!-- Placeholder Icon -->
-            <div class="w-6 h-6 bg-white/50 rounded-sm"></div>
+            <!-- Icon -->
+            <Image src={TransparencyIcon} alt="Transparency" class="w-6 h-6" />
           </div>
           <h3 class={cardTitleClasses}>Transparency</h3>
           <Description
@@ -137,8 +141,8 @@ const cardTitleClasses = cn("font-serif text-2xl font-medium text-white");
           <div
             class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-2"
           >
-            <!-- Placeholder Icon -->
-            <div class="w-6 h-6 bg-white/50 rounded-sm"></div>
+            <!-- Icon -->
+            <Image src={ScalabilityIcon} alt="Scalability" class="w-6 h-6" />
           </div>
           <h3 class={cardTitleClasses}>Scalability</h3>
           <Description
