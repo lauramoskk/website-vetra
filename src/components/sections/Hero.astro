@@ -23,14 +23,16 @@ const sectionOuterClasses = cn(
 
 const sectionInnerClasses = cn(
 	// Layout & Sizing
-	"w-full h-[800px] gap-0 ",
+	"w-full h-[800px] gap-0",
 	// Responsividade
 	"max-sm:h-[842px]",
 );
 
 const mainLayoutClasses = cn(
+	//
+	"absolute top-[136px] md:top-[168px] max-md:px-6 left-1/2 -translate-x-1/2 w-full",
 	// Spacing & Layout
-	"gap-12 relative z-10",
+	"gap-12 z-10",
 );
 
 const contentSectionClasses = cn(
@@ -44,7 +46,7 @@ const heroTitleClasses = cn(
 	// Sizing
 	"max-w-[656px]",
 	// Responsividade
-	"max-sm:text-[40px] max-sm:leading-[48px]",
+	"max-sm:text-[56px] max-sm:leading-[64px]",
 );
 
 const buttonsContainerClasses = cn(
@@ -93,7 +95,7 @@ const buttonsContainerClasses = cn(
 				className={contentSectionClasses}
 			>
 				<Title
-					text="Trust the value Trust Vetra."
+					text="Trust the value <br />Trust Vetra."
 					className={heroTitleClasses}
 				/>
 				<Description
@@ -130,7 +132,7 @@ const buttonsContainerClasses = cn(
 		direction="vertical"
 		justify="center"
 		align="center"
-		className="w-full"
+		className="w-full absolute bottom-[64px] md:bottom-[44px] left-1/2 -translate-x-1/2"
 		style="gap: 1.5rem;"
 	>
 		<Description text="Our partners" className="max-w-[588px] text-center" />
