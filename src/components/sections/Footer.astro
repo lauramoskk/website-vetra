@@ -26,21 +26,16 @@ const backgroundLayerClasses = cn(
   "bg-[linear-gradient(to_bottom,var(--color-newsletter-bg)_0%,var(--color-footer-end)_100%)]",
 );
 
-const sectionInnerClasses = cn(
-  "w-full relative",
-  "pt-[72px] pb-[44px]",
-  "max-md:py-[64px]",
-  "max-sm:px-6",
-);
+const sectionInnerClasses = cn("w-full relative", "py-[88px]", "max-sm:px-6");
 
 const mainLayoutClasses = cn(
-  "gap-[32px] w-full", // Adjusted gap
+  "gap-[64px] w-full", // Adjusted gap
 );
 
 const contentRowClasses = cn(
   "flex items-start justify-between w-full",
-  "gap-[56px]",
-  "max-md:flex-col max-md:gap-[56px]",
+  "gap-[120px]",
+  "max-md:flex-col",
 );
 
 // Left Column (Logo + Text)
@@ -54,8 +49,8 @@ const logoClasses = cn("w-[64px] h-[64px] object-contain");
 
 // Right Area (Contact + Social)
 const rightAreaClasses = cn(
-  "flex items-start gap-[126px]", // Gap based on visual estimation/pixel measurement
-  "max-md:flex-col max-md:gap-[56px] max-md:w-full",
+  "flex items-start gap-[120px]", // Gap based on visual estimation/pixel measurement
+  "max-md:flex-col max-md:w-full",
 );
 
 // Contact Column
@@ -87,8 +82,7 @@ const socialIconClasses = cn(
 // Bottom Row
 const footerBottomClasses = cn(
   "flex justify-between items-center border-t border-footer-border",
-  "w-full mt-[134px] pt-6",
-  "max-md:mt-[56px]",
+  "w-full pt-6",
   "max-md:items-center max-md:gap-8",
 );
 
