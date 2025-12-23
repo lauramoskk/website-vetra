@@ -45,24 +45,47 @@ const navClasses = cn(
 	"max-sm:hidden",
 );
 
-const navLinkClasses = "text-white";
+const { pathname } = Astro.url;
+
+const isActive = (path: string) => {
+	if (path === "/") {
+		return pathname === "/";
+	}
+	return pathname.startsWith(path);
+};
+
+const getNavClasses = (path: string) => {
+	return isActive(path) ? "nav-active" : "text-white";
+};
 ---
 
 <div class={headerClasses} id="header">
 	<div class={headerContainerClasses}>
-		<a href="/" class={logoContainerClasses} aria-label="Página inicial">
+		<a href="/" class={logoContainerClasses} aria-label="Home">
 			<Image src={Logo} alt="Logo" class={logoImageClasses} />
 		</a>
 
-		<nav class={navClasses} aria-label="Navegação principal">
-			<a href="/" class={navLinkClasses}>
-				<Description text="Home" variant="secondary" />
+		<nav class={navClasses} aria-label="Navigation">
+			<a href="/">
+				<Description
+					text="Home"
+					variant="secondary"
+					className={getNavClasses("/")}
+				/>
 			</a>
-			<a href="/contact-us" class={navLinkClasses}>
-				<Description text="Contact us" variant="secondary" />
+			<a href="/contact-us">
+				<Description
+					text="Contact us"
+					variant="secondary"
+					className={getNavClasses("/contact-us")}
+				/>
 			</a>
-			<a href="/whitepaper" class={navLinkClasses}>
-				<Description text="Whitepaper" variant="secondary" />
+			<a href="/whitepaper">
+				<Description
+					text="Whitepaper"
+					variant="secondary"
+					className={getNavClasses("/whitepaper")}
+				/>
 			</a>
 		</nav>
 
@@ -79,7 +102,7 @@ const navLinkClasses = "text-white";
 			class="max-sm:flex hidden items-center justify-center w-10 h-10 rounded-lg border border-white/[0.1] bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 cursor-pointer group"
 			id="open-menu"
 			onclick="openMenu()"
-			aria-label="Abrir menu"
+			aria-label="Open menu"
 		>
 			<svg
 				class="w-5 h-5 text-white"
@@ -263,5 +286,12 @@ const navLinkClasses = "text-white";
 		.logo-title {
 			display: none;
 		}
+	}
+
+	:global(.nav-active) {
+		color: white;
+		text-shadow:
+			0 0 10px rgba(255, 255, 255, 0.8),
+			0 0 20px rgba(165, 94, 244, 0.3);
 	}
 </style>
