@@ -12,7 +12,8 @@ const { text, className = "", variant = "primary" }: Props = Astro.props;
 // Classes organizadas por categoria
 const descriptionClasses = cn(
 	// Typography
-	"text-text-grey font-serif",
+	"text-text-grey",
+	!className.includes("font-") && "font-serif", // Fallback to font-serif if no font is provided
 	variant === "primary" && "text-[16px] leading-[20px]",
 	variant === "secondary" && "text-[14px] leading-[20px]",
 	// Custom

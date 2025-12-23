@@ -6,8 +6,18 @@ import { twMerge } from "tailwind-merge";
  * Permite agrupar classes por categoria e facilita a manutenção.
  * Usa `clsx` para lógica condicional e `tailwind-merge` para resolver conflitos de classes.
  */
+import { extendTailwindMerge } from "tailwind-merge";
+
+const customTwMerge = extendTailwindMerge({
+	extend: {
+		classGroups: {
+			"font-family": ["font-inter"],
+		},
+	},
+});
+
 export function cn(...inputs: ClassValue[]) {
-	return twMerge(clsx(inputs));
+	return customTwMerge(clsx(inputs));
 }
 
 /**
