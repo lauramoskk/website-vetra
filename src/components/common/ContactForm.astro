@@ -1,0 +1,136 @@
+---
+import { cn } from "../../utils/cn";
+import Button from "../Button.astro";
+
+const containerClasses = cn(
+  "bg-white/8 backdrop-blur-[80px] p-8 rounded-[16px] w-full max-w-[584px]",
+  "flex flex-col gap-6",
+);
+
+const labelClasses = cn(
+  "text-[#C9CED3] font-inter text-[14px] leading-[18px] font-normal mb-2 block",
+);
+
+const inputWrapperClasses = cn(
+  "relative flex items-center bg-white/2 rounded-[8px] h-12 px-4 gap-3",
+  "focus-within:border-white/20 transition-all",
+);
+
+const textareaWrapperClasses = cn(
+  "relative flex items-start bg-white/2 rounded-[8px] min-h-[120px] p-4 gap-3",
+  "focus-within:border-white/20 transition-all",
+);
+
+const inputClasses = cn(
+  "bg-transparent border-none outline-none text-[#CBD1D6] w-full",
+  "placeholder:font-inter placeholder:text-[#CBD1D6] placeholder:text-[14px] placeholder:leading-[18px]",
+  "text-[14px] leading-[18px] font-normal",
+);
+
+const iconClasses = cn("w-6 h-6 text-text-grey/60 shrink-0");
+---
+
+<div class={containerClasses}>
+  <p class="text-[20px] leading-[24px] font-sans font-medium text-[#F4F6F7]">
+    Contact our team!
+  </p>
+
+  <form class="flex flex-col gap-4">
+    <div class="flex flex-col">
+      <label class={labelClasses}>First name</label>
+      <div class={inputWrapperClasses}>
+        <div class={iconClasses}>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-full h-full"
+          >
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <input type="text" placeholder="Ex: John" class={inputClasses} />
+      </div>
+    </div>
+
+    <div class="flex flex-col">
+      <label class={labelClasses}>Last name</label>
+      <div class={inputWrapperClasses}>
+        <div class={iconClasses}>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-full h-full"
+          >
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <input type="text" placeholder="Ex: Doe" class={inputClasses} />
+      </div>
+    </div>
+
+    <div class="flex flex-col">
+      <label class={labelClasses}>Email</label>
+      <div class={inputWrapperClasses}>
+        <div class={iconClasses}>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-full h-full"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            ></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </div>
+        <input
+          type="email"
+          placeholder="Ex: email@email.com"
+          class={inputClasses}
+        />
+      </div>
+    </div>
+
+    <div class="flex flex-col">
+      <label class={labelClasses}>Description</label>
+      <div class={textareaWrapperClasses}>
+        <div class={cn(iconClasses, "mt-1")}>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="w-full h-full"
+          >
+            <path
+              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+            ></path>
+          </svg>
+        </div>
+        <textarea
+          placeholder="Type here..."
+          class={cn(inputClasses, "resize-none h-full")}></textarea>
+      </div>
+    </div>
+
+    <div class="mt-2">
+      <Button text="Send Email" variant="primary" className="w-full sm:w-fit" />
+    </div>
+  </form>
+</div>
