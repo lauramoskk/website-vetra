@@ -12,6 +12,7 @@ import ArrowLeftBrowserIcon from "../../assets/icons/arrow-left-browser.svg";
 import ArrowRightBrowserIcon from "../../assets/icons/arrow-right-browser.svg";
 import PlusBrowserIcon from "../../assets/icons/plus-browser.svg";
 import PulseGlow from "../effects/PulseGlow.astro";
+import Skeleton from "../Skeleton.astro";
 import BackgroundImage from "../../assets/details/real-time-background.png";
 import BackgroundImageMobile from "../../assets/details/real-time-background-mobile.png";
 
@@ -196,10 +197,14 @@ const infoCardClasses = cn(
               text="Reservas em Tempo Real"
               className="text-[#F4F6F7] text-[20px] leading-[24px] max-sm:text-[20px] max-sm:leading-[24px]"
             />
-            <Description
-              text="Atualizado: 21 de nov. de 2025, 12:46"
-              className={TEXT_12_16}
-            />
+            <div class="relative min-w-[150px]" data-loading="true">
+              <Skeleton className="skeleton-placeholder h-4 w-32" />
+              <Description
+                text="Atualizado: 21 de nov. de 2025, 12:46"
+                className={cn(TEXT_12_16, "dynamic-content hidden")}
+                id="reserves-updated-at"
+              />
+            </div>
           </AlignmentLayout>
           <AlignmentLayout
             direction="horizontal"
@@ -215,17 +220,38 @@ const infoCardClasses = cn(
         <div class={metricsGridClasses}>
           {/* Card 1 */}
           <div class={metricCardClasses}>
-            <Title text="$10.000.320.48" className={TEXT_18_22} />
+            <div class="relative min-h-[22px]" data-loading="true">
+              <Skeleton className="skeleton-placeholder h-[22px] w-24" />
+              <Title
+                text="$10.000.320.48"
+                className={cn(TEXT_18_22, "dynamic-content hidden")}
+                id="total-balance"
+              />
+            </div>
             <Description text="Reservas em Custódia" className={TEXT_12_16} />
           </div>
           {/* Card 2 */}
           <div class={metricCardClasses}>
-            <Title text="$1.000.320.48" className={TEXT_18_22} />
+            <div class="relative min-h-[22px]" data-loading="true">
+              <Skeleton className="skeleton-placeholder h-[22px] w-24" />
+              <Title
+                text="$1.000.320.48"
+                className={cn(TEXT_18_22, "dynamic-content hidden")}
+                id="total-debit"
+              />
+            </div>
             <Description text="Débito total" className={TEXT_12_16} />
           </div>
           {/* Card 3 */}
           <div class={metricCardClasses}>
-            <Title text="$500.320.48" className={TEXT_18_22} />
+            <div class="relative min-h-[22px]" data-loading="true">
+              <Skeleton className="skeleton-placeholder h-[22px] w-24" />
+              <Title
+                text="$500.320.48"
+                className={cn(TEXT_18_22, "dynamic-content hidden")}
+                id="total-credit"
+              />
+            </div>
             <Description text="Crédito total" className={TEXT_12_16} />
           </div>
         </div>
@@ -276,10 +302,14 @@ const infoCardClasses = cn(
               >
                 <div class="flex flex-col items-start gap-1">
                   <Title text="Instituição" className={TEXT_12_16} />
-                  <Description
-                    text="FT Asset Management KB"
-                    className={TEXT_12_16}
-                  />
+                  <div class="relative min-h-[16px]" data-loading="true">
+                    <Skeleton className="skeleton-placeholder h-4 w-32" />
+                    <Description
+                      text="FT Asset Management KB"
+                      className={cn(TEXT_12_16, "dynamic-content hidden")}
+                      id="custodian-institution"
+                    />
+                  </div>
                 </div>
                 <div class="flex flex-col items-start gap-1">
                   <Title text="Localização" className={TEXT_12_16} />
@@ -353,5 +383,79 @@ const infoCardClasses = cn(
       resizeTimeout = setTimeout(updateBackgroundImage, 250);
     };
     window.addEventListener("resize", handleResize, { passive: true });
+
+    // Fetch and sync data
+    const API_URL = "/api/reserves.json";
+
+    const formatCurrency = (value) => {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+      }).format(value);
+    };
+
+    const formatDate = (dateString) => {
+      // Input: "23-12-2025 07:00:06"
+      const [datePart, timePart] = dateString.split(" ");
+      const [day, month, year] = datePart.split("-");
+      const [hour, minute] = timePart.split(":");
+
+      const date = new Date(year, month - 1, day, hour, minute);
+
+      return new Intl.DateTimeFormat("pt-BR", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      })
+        .format(date)
+        .replace(".", "");
+    };
+
+    async function fetchData() {
+      try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        const summary = data.StatementSummary;
+
+        if (summary) {
+          const updatedAtEl = document.getElementById("reserves-updated-at");
+          const totalBalanceEl = document.getElementById("total-balance");
+          const totalDebitEl = document.getElementById("total-debit");
+          const totalCreditEl = document.getElementById("total-credit");
+          const institutionEl = document.getElementById(
+            "custodian-institution",
+          );
+
+          if (updatedAtEl)
+            updatedAtEl.innerText = `Atualizado: ${formatDate(summary.DateTime)}`;
+          if (totalBalanceEl)
+            totalBalanceEl.innerText = formatCurrency(summary.TotalBalance);
+          if (totalDebitEl)
+            totalDebitEl.innerText = formatCurrency(summary.TotalDebit);
+          if (totalCreditEl)
+            totalCreditEl.innerText = formatCurrency(summary.TotalCredit);
+          if (institutionEl) institutionEl.innerText = summary.companyname;
+
+          // Toggle skeletons off
+          document.querySelectorAll('[data-loading="true"]').forEach((el) => {
+            el.querySelector(".skeleton-placeholder")?.classList.add("hidden");
+            el.querySelector(".dynamic-content")?.classList.remove("hidden");
+            el.removeAttribute("data-loading");
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching reserve data:", error);
+        // Fallback: show content anyway if error occurs after some delay
+        document.querySelectorAll('[data-loading="true"]').forEach((el) => {
+          el.querySelector(".skeleton-placeholder")?.classList.add("hidden");
+          el.querySelector(".dynamic-content")?.classList.remove("hidden");
+        });
+      }
+    }
+
+    fetchData();
   })();
 </script>

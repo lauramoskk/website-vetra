@@ -5,9 +5,10 @@ interface Props {
 	text: string;
 	className?: string;
 	variant?: "primary" | "secondary";
+	id?: string;
 }
 
-const { text, className = "", variant = "primary" }: Props = Astro.props;
+const { text, className = "", variant = "primary", id }: Props = Astro.props;
 
 // Classes organizadas por categoria
 const titleClasses = cn(
@@ -21,4 +22,4 @@ const titleClasses = cn(
 );
 ---
 
-<p class={titleClasses} set:html={text} />
+<p id={id} class={titleClasses} set:html={text} />
