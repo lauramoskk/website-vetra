@@ -1,0 +1,240 @@
+---
+import SectionLayout from "../../layouts/SectionLayout.astro";
+import AlignmentLayout from "../../layouts/AlignmentLayout.astro";
+import Title from "../Title.astro";
+import Description from "../Description.astro";
+import { cn } from "../../utils/cn";
+
+// Navigation Items
+const navItems = [
+  { id: "overview", label: "1. Executive Overview" },
+  { id: "how-it-works", label: "2. How It Work" },
+  { id: "invariant", label: "3. 1:1 Invariant (the “safety brake”)" },
+  {
+    id: "backing",
+    label: "4. Backing and Partnership with FT Asset Management KB",
+  },
+  { id: "controls", label: "5. Controls, Roles, and Governance" },
+  { id: "security", label: "6. Security and Incident Response" },
+  { id: "transparency", label: "7. Transparency and Reporting" },
+  { id: "economics", label: "8. Economic Parameters (Tokenomics)" },
+  { id: "roadmap", label: "9. Implementation Roadmap" },
+  { id: "audit", label: "10. Audit and Verification" },
+  { id: "use-cases", label: "11. Use Cases" },
+  { id: "team", label: "12. Team, Contacts, and Verification" },
+  { id: "legal", label: "13. Legal Notice" },
+];
+
+// Content Data (Currently only Overview is populated as per instructions)
+const contentData = {
+  overview: {
+    title: "Executive Overview",
+    text: "VETRA (VTR) is an institutional stablecoin backed 1:1 by U.S. dollars and deployed on the Polygon network. For each mint, the contract guarantees that total supply does not exceed the value of reserves. Reserves are updated via Chainlink Functions and recorded on-chain with an eight-decimal USD value, a timestamp, and a security identifier. The backing is provided by FT Asset Management KB, headquartered in Stockholm, with an initial commitment of USD 100,000,000.00 dedicated to the currency’s liquidity, credibility, and stability.",
+  },
+  "how-it-works": {
+    title: "How It Work",
+    text: "Content for How It Work coming soon...",
+  },
+  // Add other placeholders if needed, or handle dynamically
+};
+
+// Styles
+const sectionOuterClasses = cn("flex items-start w-full relative");
+const sectionInnerClasses = cn("w-full h-auto py-[88px] relative"); // Ensure relative for absolute positioning context if needed
+const mainLayoutClasses = cn(
+  "grid grid-cols-1 lg:grid-cols-12 gap-[72px] w-full relative z-10 items-start", // Items start for sticky
+);
+
+// Navigation Styles
+const navColumnClasses = cn(
+  "lg:col-span-4 flex flex-col gap-4 relative min-w-0", // Added min-w-0 to prevent grid blowout
+  "lg:sticky lg:top-24", // Sticky positioning for desktop
+);
+const navItemClasses = (isActive: boolean) =>
+  cn(
+    "flex items-center justify-between p-4 rounded-[32px] cursor-pointer transition-all duration-300 text-sm font-medium",
+    isActive
+      ? "bg-[#1E0B2B] text-[#B073FF] border border-[#3D1D55]"
+      : "bg-transparent text-gray-400 hover:text-white hover:bg-white/5",
+  );
+
+// Content Styles
+const contentColumnClasses = cn(
+  "lg:col-span-8 flex flex-col gap-2 pt-2 min-h-[50vh]",
+); // Min height to prevent jumpiness
+
+// Mobile Scroll Container
+const mobileNavContainerClasses = cn(
+  "flex lg:flex-col gap-2 lg:gap-0",
+  "max-lg:overflow-x-auto max-lg:pb-4 max-lg:snap-x",
+  "w-full hide-scrollbar", // Ensure full width and hide scrollbar
+  "mask-image-linear-to-r", // Custom class if exists, otherwise might need definition or removal if not defined.
+  // Assuming it was a placeholder. I will remove it for safety unless I know it exists.
+  // Replaced with safer approach:
+  // standard classes
+);
+---
+
+<SectionLayout
+  outerClassName={sectionOuterClasses}
+  innerClassName={sectionInnerClasses}
+  autoMargin={true}
+>
+  <div class={mainLayoutClasses}>
+    {/* Navigation Column */}
+    <div class={navColumnClasses}>
+      {/* Mobile: Horizontal Scroll / Desktop: Vertical List */}
+      <div
+        class={cn(
+          "flex lg:flex-col gap-4",
+          "max-lg:overflow-x-auto max-lg:pb-4 max-lg:snap-x",
+          "max-w-[280px] w-full hide-scrollbar",
+        )}
+        id="whitepaper-nav"
+      >
+        {
+          navItems.map((item, index) => (
+            <button
+              class={cn(
+                "nav-item whitespace-nowrap lg:whitespace-normal text-left max-lg:snap-start shrink-0",
+                "px-4 py-2 min-h-[52px] rounded-full cursor-pointer", // Pill on mobile, standard on desktop
+                index === 0 // Default active
+                  ? "bg-[#190C26] text-light-purple"
+                  : "text-text-grey hover:text-white transition-colors",
+              )}
+              data-id={item.id}
+            >
+              <span class="flex items-center justify-between w-full gap-4 font-serif text-[14px] leading-[18px]">
+                {item.label}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class={cn("w-4 min-w-4 h-4 transition-transform")}
+                >
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    {/* Content Column */}
+    <div class={contentColumnClasses} id="whitepaper-content-area">
+      <Title
+        text={contentData.overview.title}
+        className="text-left text-[24px] leading-[32px] max-md:text-[24px] max-md:leading-[32px]"
+      />
+      <Description
+        text={contentData.overview.text}
+        className="text-left text-text-grey"
+      />
+    </div>
+  </div>
+</SectionLayout>
+
+<script>
+  // Simple client-side logic for checking active state and updating content
+  // Note: For a static site, we might want to render all content and hide/show,
+  // or use a lightweight framework wrapper. Here we'll use vanilla JS for simplicity.
+
+  const contentData = {
+    overview: {
+      title: "Executive Overview",
+      text: "VETRA (VTR) is an institutional stablecoin backed 1:1 by U.S. dollars and deployed on the Polygon network. For each mint, the contract guarantees that total supply does not exceed the value of reserves. Reserves are updated via Chainlink Functions and recorded on-chain with an eight-decimal USD value, a timestamp, and a security identifier. The backing is provided by FT Asset Management KB, headquartered in Stockholm, with an initial commitment of USD 100,000,000.00 dedicated to the currency’s liquidity, credibility, and stability.",
+    },
+  };
+
+  function initWhitepaperTabs() {
+    const navItems = document.querySelectorAll(".nav-item");
+    const contentArea = document.getElementById("whitepaper-content-area");
+
+    if (!navItems.length || !contentArea) return;
+
+    navItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        // Remove active class from all
+        navItems.forEach((nav) => {
+          nav.classList.remove("bg-[#190C26]", "text-light-purple");
+          nav.classList.add(
+            "text-text-grey",
+            "hover:text-white",
+            "transition-colors",
+          );
+        });
+
+        // Add active class to clicked
+        item.classList.remove(
+          "text-text-grey",
+          "hover:text-white",
+          "transition-colors",
+        );
+        item.classList.add("bg-[#190C26]", "text-light-purple");
+
+        // Update Content
+        const id = item.getAttribute("data-id");
+        if (!id) return; // Guard clause
+
+        // Type safe access for vanilla JS in Astro
+        // @ts-ignore
+        const data = contentData[id] || {
+          title: item.textContent.trim().replace(/^\d+\.\s*/, ""),
+          text: "Content coming soon...",
+        };
+
+        // We need to query selector specifically inside the content area to update safely
+        // But since we used components, we might need to swap innerHTML or similar.
+        // A cleaner way for Astro components is often having them all rendered and toggling hidden.
+        // But for this quantity of text, replacing innerHTML is fine for a simple task.
+
+        // Re-construct the HTML structure to match Title/Description components
+        // Title: h2 with classes
+        // Description: p with classes
+
+        // Use a fade effect
+        contentArea.style.opacity = "0";
+        setTimeout(() => {
+          contentArea.innerHTML = `
+                <div class="flex flex-col gap-2 text-left">
+                    <h2 class="font-sans text-[24px] md:text-[24px] leading-[32px] font-medium text-text-secondary">
+                        ${data.title}
+                    </h2>
+                    <p class="font-serif text-[16px] md:text-[16px] leading-[20px] text-text-grey">
+                        ${data.text}
+                    </p>
+                </div>
+            `;
+          contentArea.style.opacity = "1";
+        }, 200);
+      });
+    });
+  }
+
+  document.addEventListener("astro:page-load", initWhitepaperTabs);
+  // Also run initially in case view transitions aren't used or fallback
+  if (document.readyState === "complete") {
+    initWhitepaperTabs();
+  } else {
+    document.addEventListener("DOMContentLoaded", initWhitepaperTabs);
+  }
+</script>
+
+<style>
+  /* Custom scrollbar hiding */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
