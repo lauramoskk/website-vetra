@@ -6,7 +6,7 @@ import Button from "../Button.astro";
 <AlignmentLayout
   id="menu-mobile"
   className="hidden fixed w-screen h-screen menu-closed z-20"
-  style="background: rgba(13, 11, 45, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);"
+  style="background: var(--color-banner-depth); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);"
 >
   <AlignmentLayout
     direction="vertical"
@@ -23,30 +23,23 @@ import Button from "../Button.astro";
       <a
         href="/"
         onclick="closeMenu()"
-        class="text-white text-lg font-medium hover:text-text-blue transition-colors duration-300 py-3 px-6 min-h-[44px] flex items-center justify-center"
+        class="text-white text-[24px] font-medium font-sans hover:text-light-purple transition-colors duration-300 py-3 px-6 min-h-[44px] flex items-center justify-center"
       >
         Home
       </a>
       <a
-        href="/about-us"
+        href="/contact-us"
         onclick="closeMenu()"
-        class="text-white text-lg font-medium hover:text-text-blue transition-colors duration-300 py-3 px-6 min-h-[44px] flex items-center justify-center"
+        class="text-white text-[24px] font-medium font-sans hover:text-light-purple transition-colors duration-300 py-3 px-6 min-h-[44px] flex items-center justify-center"
       >
-        About us
+        Contact us
       </a>
       <a
-        href="/features"
+        href="/whitepaper"
         onclick="closeMenu()"
-        class="text-white text-lg font-medium hover:text-text-blue transition-colors duration-300 py-3 px-6 min-h-[44px] flex items-center justify-center"
+        class="text-white text-[24px] font-medium font-sans hover:text-light-purple transition-colors duration-300 py-3 px-6 min-h-[44px] flex items-center justify-center"
       >
-        Features
-      </a>
-      <a
-        href="/team"
-        onclick="closeMenu()"
-        class="text-white text-lg font-medium hover:text-text-blue transition-colors duration-300 py-3 px-6 min-h-[44px] flex items-center justify-center"
-      >
-        Team
+        Whitepaper
       </a>
     </AlignmentLayout>
 
@@ -57,39 +50,43 @@ import Button from "../Button.astro";
         rel="noopener noreferrer"
         onclick="closeMenu()"
       >
-        <Button text="Fale Conosco" className="whitespace-nowrap" />
+        <Button
+          text="Stake Vetra"
+          className="whitespace-nowrap w-full"
+          variant="primary"
+        />
       </a>
     </div>
   </AlignmentLayout>
+
+  <style>
+    #menu-mobile {
+      background: rgba(13, 11, 45, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        opacity 0.3s ease-in-out,
+        visibility 0.3s ease-in-out;
+    }
+
+    #menu-mobile:not(.hidden) {
+      display: block !important;
+    }
+
+    #menu-mobile.menu-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #menu-mobile.menu-closed {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    #menu-mobile.hidden {
+      display: none !important;
+    }
+  </style>
 </AlignmentLayout>
-
-<style>
-  #menu-mobile {
-    background: rgba(13, 11, 45, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    opacity: 0;
-    visibility: hidden;
-    transition:
-      opacity 0.3s ease-in-out,
-      visibility 0.3s ease-in-out;
-  }
-
-  #menu-mobile:not(.hidden) {
-    display: block !important;
-  }
-
-  #menu-mobile.menu-open {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  #menu-mobile.menu-closed {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  #menu-mobile.hidden {
-    display: none !important;
-  }
-</style>
