@@ -11,6 +11,7 @@ import BrowserControlsIcon from "../../assets/icons/browser-controls.svg";
 import ArrowLeftBrowserIcon from "../../assets/icons/arrow-left-browser.svg";
 import ArrowRightBrowserIcon from "../../assets/icons/arrow-right-browser.svg";
 import PlusBrowserIcon from "../../assets/icons/plus-browser.svg";
+import PulseGlow from "../effects/PulseGlow.astro";
 import BackgroundImage from "../../assets/details/real-time-background.png";
 import BackgroundImageMobile from "../../assets/details/real-time-background-mobile.png";
 
@@ -75,9 +76,10 @@ const infoCardClasses = cn(
   autoMargin={true}
 >
   <div
-    class="real-time-background absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+    class="real-time-background absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat opacity-50"
   >
   </div>
+  <PulseGlow bottom={false} />
 
   <AlignmentLayout
     direction="vertical"

@@ -10,6 +10,7 @@ import BackgroundImageMobile from "../../assets/details/most-trusted-background-
 import { cn } from "../../utils/cn";
 import { Image } from "astro:assets";
 import StartsIcon from "../../assets/icons/stars-light-sparkle.svg";
+import PulseGlow from "../effects/PulseGlow.astro";
 
 // Classes organizadas por categoria para melhor legibilidade
 const sectionOuterClasses = cn(
@@ -62,9 +63,10 @@ const cardContentSectionClasses = cn(
 	autoMargin={true}
 >
 	<div
-		class="most-trusted-background absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+		class="most-trusted-background absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat opacity-50"
 	>
 	</div>
+	<PulseGlow bottom={true} className="-z-10" />
 
 	<AlignmentLayout
 		direction="vertical"
