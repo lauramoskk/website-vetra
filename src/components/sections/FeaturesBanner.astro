@@ -1,16 +1,17 @@
 ---
-import PurpleShine from "../elements/PurpleShine.astro";
+import CryptoIcon from "../../assets/partners/crypto.svg";
+import CoinbaseIcon from "../../assets/partners/coinbase.svg";
+import RobinhoodIcon from "../../assets/partners/robinhood.svg";
 
-const navigationItems = [
-  "Intelligent Interfaces",
-  "Adaptive UX",
-  "AI-Driven Design",
-  "Human-Centric",
-  "Smart Automations",
-  "Intuitive Journeys",
-  "Visual Simplicity",
-  "Seamless Interactions",
+import { Image } from "astro:assets";
+
+const partners = [
+  { src: CryptoIcon, alt: "Crypto" },
+  { src: CoinbaseIcon, alt: "Coinbase" },
+  { src: RobinhoodIcon, alt: "Robinhood" },
 ];
+
+const navigationItems = [...partners, ...partners, ...partners];
 
 // Duplicate items to ensure smooth scrolling loop without JS calculation
 // 3 sets is usually enough for most screens if the content width > viewport width
@@ -23,8 +24,7 @@ const duplicatedItems = Array(duplicateCount).fill(navigationItems).flat();
     {
       duplicatedItems.map((item, index) => (
         <div class="slide">
-          <span>{item}</span>
-          <PurpleShine class="shine-icon" />
+          <Image src={item.src} alt={item.alt} class="slide-icon" />
         </div>
       ))
     }
@@ -60,17 +60,8 @@ const duplicatedItems = Array(duplicateCount).fill(navigationItems).flat();
   .slide {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
-    margin-right: 1.5rem; /* Matches the gap between items visually */
-    white-space: nowrap;
-    color: var(--color-banner-text);
-    font-weight: 500;
-  }
-
-  .shine-icon {
-    color: var(--color-shine-icon); /* A purple color matching the theme */
-    width: 24px;
-    height: 24px;
+    margin-right: 40px;
+    width: max-content;
   }
 
   .banner::before,
