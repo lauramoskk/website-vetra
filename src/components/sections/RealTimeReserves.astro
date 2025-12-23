@@ -41,7 +41,7 @@ const browserWindowClasses = cn(
   "w-full bg-browser-bg rounded-t-2xl overflow-hidden",
 );
 
-const browserToolbarClasses = cn("h-[52px] bg-browser-toolbar px-4");
+const browserToolbarClasses = cn("h-[52px] bg-browser-toolbar px-5 gap-[10px]");
 
 const windowControlsClasses = cn("flex gap-2");
 const windowControl = cn("w-3 h-3 rounded-full");
@@ -122,9 +122,9 @@ const infoCardClasses = cn(
       >
         <AlignmentLayout
           direction="horizontal"
-          justify="center"
+          justify="start"
           align="center"
-          className="gap-[15px]"
+          className="gap-[15px] flex-1 min-w-fit"
         >
           <div class={windowControlsClasses}>
             <div class={cn(windowControl, "bg-text-grey")}></div>
@@ -132,7 +132,7 @@ const infoCardClasses = cn(
             <div class={cn(windowControl, "bg-text-grey")}></div>
           </div>
 
-          <div class="w-[37px] h-[22px]">
+          <div class="w-[37px] h-[22px] max-sm:hidden">
             <Image
               src={BrowserControlsIcon}
               alt="Browser Controls"
@@ -163,7 +163,7 @@ const infoCardClasses = cn(
         </AlignmentLayout>
 
         <div
-          class="flex-1 p-[6.5px] max-w-[558px] text-center text-browser-address-text text-[13px] bg-browser-address-bg font-light font-sans rounded-[6px]"
+          class="p-[6.5px] w-full max-w-[558px] max-sm:max-w-[226px] text-center text-browser-address-text text-[13px] bg-browser-address-bg font-light font-sans rounded-[6px]"
         >
           www.vetra.com.br/
         </div>
@@ -171,7 +171,7 @@ const infoCardClasses = cn(
           direction="horizontal"
           justify="end"
           align="center"
-          className="w-[52px]"
+          className="flex-1 min-w-fit"
         >
           <Image src={PlusBrowserIcon} alt="New Tab" width={13} height={13} />
         </AlignmentLayout>
