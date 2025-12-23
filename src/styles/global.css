@@ -38,6 +38,12 @@
   --color-newsletter-bg: #0F0519;
   --color-footer-end: #1C092F;
   --color-footer-border: #1F0A33;
+
+  /* Contact Section */
+  --color-contact-form-bg: #19151D;
+  --color-contact-input-bg: #1E1A22;
+  --color-contact-label: #C9CED3;
+  --color-contact-input-text: #CBD1D6;
 }
 
 /* Custom Scrollbar Styles */
