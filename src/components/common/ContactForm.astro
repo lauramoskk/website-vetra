@@ -1,9 +1,13 @@
 ---
 import { cn } from "../../utils/cn";
 import Button from "../Button.astro";
+import EmailIcon from "../../assets/icons/form/email-mail.svg";
+import UserIcon from "../../assets/icons/form/user-rounded.svg";
+import TextIcon from "../../assets/icons/form/text-square.svg";
+import { Image } from "astro:assets";
 
 const containerClasses = cn(
-  "bg-white/8 backdrop-blur-[80px] p-8 rounded-[16px] w-full max-w-[584px]",
+  "bg-[#19151D] backdrop-blur-[80px] p-8 rounded-[16px] w-full max-w-[584px]",
   "flex flex-col gap-6",
 );
 
@@ -12,12 +16,12 @@ const labelClasses = cn(
 );
 
 const inputWrapperClasses = cn(
-  "relative flex items-center bg-white/2 rounded-[8px] h-12 px-4 gap-3",
+  "relative flex items-center bg-[#1E1A22] rounded-[8px] h-12 px-4 gap-3",
   "focus-within:border-white/20 transition-all",
 );
 
 const textareaWrapperClasses = cn(
-  "relative flex items-start bg-white/2 rounded-[8px] min-h-[120px] p-4 gap-3",
+  "relative flex items-start bg-[#1E1A22] rounded-[8px] min-h-[120px] p-4 gap-3",
   "focus-within:border-white/20 transition-all",
 );
 
@@ -35,23 +39,12 @@ const iconClasses = cn("w-6 h-6 text-text-grey/60 shrink-0");
     Contact our team!
   </p>
 
-  <form class="flex flex-col gap-4">
+  <form class="flex flex-col gap-2">
     <div class="flex flex-col">
       <label class={labelClasses}>First name</label>
       <div class={inputWrapperClasses}>
         <div class={iconClasses}>
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="w-full h-full"
-          >
-            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
+          <Image src={UserIcon} alt="User" class="h-full object-contain" />
         </div>
         <input type="text" placeholder="Ex: John" class={inputClasses} />
       </div>
@@ -61,18 +54,7 @@ const iconClasses = cn("w-6 h-6 text-text-grey/60 shrink-0");
       <label class={labelClasses}>Last name</label>
       <div class={inputWrapperClasses}>
         <div class={iconClasses}>
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="w-full h-full"
-          >
-            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
+          <Image src={UserIcon} alt="User" class="h-full object-contain" />
         </div>
         <input type="text" placeholder="Ex: Doe" class={inputClasses} />
       </div>
@@ -82,20 +64,7 @@ const iconClasses = cn("w-6 h-6 text-text-grey/60 shrink-0");
       <label class={labelClasses}>Email</label>
       <div class={inputWrapperClasses}>
         <div class={iconClasses}>
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="w-full h-full"
-          >
-            <path
-              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-            ></path>
-            <polyline points="22,6 12,13 2,6"></polyline>
-          </svg>
+          <Image src={EmailIcon} alt="Email" class="h-full object-contain" />
         </div>
         <input
           type="email"
@@ -108,20 +77,8 @@ const iconClasses = cn("w-6 h-6 text-text-grey/60 shrink-0");
     <div class="flex flex-col">
       <label class={labelClasses}>Description</label>
       <div class={textareaWrapperClasses}>
-        <div class={cn(iconClasses, "mt-1")}>
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="w-full h-full"
-          >
-            <path
-              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-            ></path>
-          </svg>
+        <div class={cn(iconClasses)}>
+          <Image src={TextIcon} alt="Text" class="h-full object-contain" />
         </div>
         <textarea
           placeholder="Type here..."
@@ -129,8 +86,8 @@ const iconClasses = cn("w-6 h-6 text-text-grey/60 shrink-0");
       </div>
     </div>
 
-    <div class="mt-2">
-      <Button text="Send Email" variant="primary" className="w-full sm:w-fit" />
+    <div class="mt-4">
+      <Button text="Send Email" variant="primary" className="sm:w-fit" />
     </div>
   </form>
 </div>

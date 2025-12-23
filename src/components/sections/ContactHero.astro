@@ -18,13 +18,15 @@ const sectionOuterClasses = cn(
 );
 
 const sectionInnerClasses = cn(
-  "w-full pt-[136px] pb-[88px] md:pt-[168px] md:pb-[120px]",
-  "max-sm:h-auto",
+  // Layout & Sizing
+  "w-full h-[800px] gap-0",
+  // Responsividade
+  "max-sm:h-[1100px] max-sm:py-[64px] max-sm:justify-end",
 );
 
 const mainLayoutClasses = cn("w-full gap-12 md:gap-24 relative z-10");
 
-const contentSectionClasses = cn("flex flex-col gap-8 flex-1");
+const contentSectionClasses = cn("flex flex-col gap-6 flex-1");
 
 const heroTitleClasses = cn(
   "text-[80px] leading-[88px]",
