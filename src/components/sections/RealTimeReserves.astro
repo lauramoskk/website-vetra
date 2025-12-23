@@ -194,13 +194,13 @@ const infoCardClasses = cn(
             className="gap-1"
           >
             <Title
-              text="Reservas em Tempo Real"
+              text="Real-Time Reserves"
               className="text-text-secondary text-[20px] leading-[24px] max-sm:text-[20px] max-sm:leading-[24px]"
             />
             <div class="relative min-w-[150px]" data-loading="true">
               <Skeleton className="skeleton-placeholder h-4 w-32" />
               <Description
-                text="Atualizado: 21 de nov. de 2025, 12:46"
+                text="Updated: Nov 21, 2025, 12:46"
                 className={cn(TEXT_12_16, "dynamic-content hidden")}
                 id="reserves-updated-at"
               />
@@ -212,7 +212,7 @@ const infoCardClasses = cn(
             align="center"
             className="bg-dashboard-badge-bg rounded-[4px] p-4 max-sm:w-full"
           >
-            <Title text="1 VTR = 1 USD garantido" className={TEXT_14_18} />
+            <Title text="1 VTR = 1 USD guaranteed" className={TEXT_14_18} />
           </AlignmentLayout>
         </div>
 
@@ -228,7 +228,7 @@ const infoCardClasses = cn(
                 id="total-balance"
               />
             </div>
-            <Description text="Reservas em Custódia" className={TEXT_12_16} />
+            <Description text="Reserves in Custody" className={TEXT_12_16} />
           </div>
           {/* Card 2 */}
           <div class={metricCardClasses}>
@@ -240,7 +240,7 @@ const infoCardClasses = cn(
                 id="total-debit"
               />
             </div>
-            <Description text="Débito total" className={TEXT_12_16} />
+            <Description text="Total Debit" className={TEXT_12_16} />
           </div>
           {/* Card 3 */}
           <div class={metricCardClasses}>
@@ -252,7 +252,7 @@ const infoCardClasses = cn(
                 id="total-credit"
               />
             </div>
-            <Description text="Crédito total" className={TEXT_12_16} />
+            <Description text="Total Credit" className={TEXT_12_16} />
           </div>
         </div>
 
@@ -278,19 +278,16 @@ const infoCardClasses = cn(
                   align="start"
                   className="gap-1 max-w-[291px]"
                 >
-                  <Title
-                    text="Certificação de Custódia"
-                    className={TEXT_14_18}
-                  />
+                  <Title text="Custody Certification" className={TEXT_14_18} />
                   <Description
-                    text="Documento oficial emitido pela FT Asset Management KB, validando a custódia total dos fundos VETRA."
+                    text="Official document issued by FT Asset Management KB, validating total custody of VETRA funds."
                     className={TEXT_12_16}
                   />
                 </AlignmentLayout>
                 <button
                   class="border border-badge-purple text-dashboard-badge-text px-4 py-2 rounded-full text-sm hover:bg-badge-purple/10 transition-colors whitespace-nowrap"
                 >
-                  Ver certificado
+                  View certificate
                 </button>
               </AlignmentLayout>
 
@@ -301,7 +298,7 @@ const infoCardClasses = cn(
                 className="gap-1 px-4 pb-4 pt-2"
               >
                 <div class="flex flex-col items-start gap-1">
-                  <Title text="Instituição" className={TEXT_12_16} />
+                  <Title text="Institution" className={TEXT_12_16} />
                   <div class="relative min-h-[16px]" data-loading="true">
                     <Skeleton className="skeleton-placeholder h-4 w-32" />
                     <Description
@@ -312,14 +309,14 @@ const infoCardClasses = cn(
                   </div>
                 </div>
                 <div class="flex flex-col items-start gap-1">
-                  <Title text="Localização" className={TEXT_12_16} />
+                  <Title text="Location" className={TEXT_12_16} />
                   <Description
-                    text="Estocolmo, Suécia"
+                    text="Stockholm, Sweden"
                     className={TEXT_12_16}
                   />
                 </div>
                 <div class="flex flex-col items-start gap-1">
-                  <Title text="Localização" className={TEXT_12_16} />
+                  <Title text="Regulation" className={TEXT_12_16} />
                   <Description
                     text="Regulated Custodian"
                     className={TEXT_12_16}
@@ -332,14 +329,14 @@ const infoCardClasses = cn(
           {/* About Verification */}
           <div class={infoCardClasses}>
             <div class="flex flex-col gap-1">
-              <Title text="Sobre a Verificação" className={TEXT_14_18} />
+              <Title text="About Verification" className={TEXT_14_18} />
               <div>
                 <Description
-                  text="Todos os fundos VETRA são mantidos em custódia regulamentada pela FT Asset Management, uma instituição financeira licenciada na Suécia."
+                  text="All VETRA funds are held in regulated custody by FT Asset Management, a licensed financial institution in Sweden."
                   className={TEXT_12_16}
                 />
                 <Description
-                  text="A paridade 1:1 entre VTR e USD é mantida e auditada continuamente, garantindo total transparência e segurança para todos os investidores."
+                  text="The 1:1 parity between VTR and USD is maintained and audited continuously, ensuring total transparency and security for all investors."
                   className={TEXT_12_16}
                 />
               </div>
@@ -403,7 +400,7 @@ const infoCardClasses = cn(
 
       const date = new Date(year, month - 1, day, hour, minute);
 
-      return new Intl.DateTimeFormat("pt-BR", {
+      return new Intl.DateTimeFormat("en-US", {
         day: "numeric",
         month: "short",
         year: "numeric",
@@ -430,7 +427,7 @@ const infoCardClasses = cn(
           );
 
           if (updatedAtEl)
-            updatedAtEl.innerText = `Atualizado: ${formatDate(summary.DateTime)}`;
+            updatedAtEl.innerText = `Updated: ${formatDate(summary.DateTime)}`;
           if (totalBalanceEl)
             totalBalanceEl.innerText = formatCurrency(summary.TotalBalance);
           if (totalDebitEl)

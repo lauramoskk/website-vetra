@@ -8,8 +8,8 @@ interface Props {
 }
 
 const {
-  title = "Título do Site - Slogan ou Proposta de Valor",
-  description = "Descrição curta do site para SEO, contendo as principais palavras-chave e objetivo do negócio.",
+  title = "Vetra - The Best Stablecoin of 2026",
+  description = "Built for real user. Crafted for low-cost transfers, instant finality, and audit-ready transparency making digital value dependable.",
   image = "/favicon.png",
   type = "website",
 } = Astro.props;
@@ -21,7 +21,7 @@ const canonicalURL = new URL(
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -34,11 +34,11 @@ const canonicalURL = new URL(
     <meta name="description" content={description} />
     <meta
       name="keywords"
-      content="palavra-chave 1, palavra-chave 2, termo relevante"
+      content="stablecoin, crypto, payment, global transfer, low cost, instant settlement, vetra"
     />
-    <meta name="author" content="Nome do Cliente" />
+    <meta name="author" content="Vetra" />
     <meta name="robots" content="index, follow" />
-    <meta name="language" content="Portuguese" />
+    <meta name="language" content="English" />
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph / Facebook -->
@@ -47,8 +47,8 @@ const canonicalURL = new URL(
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, canonicalURL).href} />
-    <meta property="og:locale" content="pt_BR" />
-    <meta property="og:site_name" content="Nome do Cliente" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Vetra" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
