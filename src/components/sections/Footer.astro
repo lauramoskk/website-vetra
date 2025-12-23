@@ -76,7 +76,7 @@ const socialIconContainerClasses = cn(
 );
 
 const socialIconClasses = cn(
-  "w-6 h-6 text-white", // Adjust icon size inside circle
+  "w-6 h-6 text-text-secondary", // Adjust icon size inside circle
 );
 
 // Bottom Row
@@ -210,7 +210,11 @@ const backToTopClasses = cn(
         aria-label="Back to top"
         onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
       >
-        <Image src={ArrowUpIcon} alt="Arrow Up" class="w-6 h-6 text-white" />
+        <Image
+          src={ArrowUpIcon}
+          alt="Arrow Up"
+          class="w-6 h-6 text-text-secondary"
+        />
       </button>
     </div>
   </AlignmentLayout>

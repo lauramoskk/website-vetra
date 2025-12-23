@@ -63,12 +63,12 @@ const duplicatedItems = Array(duplicateCount).fill(navigationItems).flat();
     gap: 1.5rem;
     margin-right: 1.5rem; /* Matches the gap between items visually */
     white-space: nowrap;
-    color: #b2b3c7;
+    color: var(--color-banner-text);
     font-weight: 500;
   }
 
   .shine-icon {
-    color: #705cf6; /* A purple color matching the theme */
+    color: var(--color-shine-icon); /* A purple color matching the theme */
     width: 24px;
     height: 24px;
   }
@@ -86,12 +86,20 @@ const duplicatedItems = Array(duplicateCount).fill(navigationItems).flat();
 
   .banner::before {
     left: 0;
-    background: linear-gradient(to right, #050109 0%, rgba(5, 1, 9, 0) 100%);
+    background: linear-gradient(
+      to right,
+      var(--color-background-page) 0%,
+      rgba(5, 1, 9, 0) 100%
+    );
   }
 
   .banner::after {
     right: 0;
-    background: linear-gradient(to left, #050109 0%, rgba(5, 1, 9, 0) 100%);
+    background: linear-gradient(
+      to left,
+      var(--color-background-page) 0%,
+      rgba(5, 1, 9, 0) 100%
+    );
   }
 
   @keyframes scroll {

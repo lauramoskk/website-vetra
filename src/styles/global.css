@@ -44,6 +44,15 @@
   --color-contact-input-bg: #1E1A22;
   --color-contact-label: #C9CED3;
   --color-contact-input-text: #CBD1D6;
+
+  /* Inputs */
+  --color-text-input-border: #A2A8B3;
+  --color-input-hover-bg: #180F1E;
+  --color-input-text: #CBD1D6;
+
+  /* Features Banner */
+  --color-shine-icon: #705cf6;
+  --color-banner-text: #b2b3c7;
 }
 
 /* Custom Scrollbar Styles */

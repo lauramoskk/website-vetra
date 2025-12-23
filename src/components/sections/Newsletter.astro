@@ -32,20 +32,20 @@ const headerClasses = cn("flex flex-col gap-4 text-center items-center w-full");
 
 const inputContainerClasses = cn(
   "flex items-center gap-4 max-md:w-full max-md:justify-between p-4",
-  "border border-[#A2A8B3] rounded-[8px]",
-  "bg-transparent hover:bg-[#180F1E] transition-colors duration-300", // Using dark bg to match theme
+  "border border-text-input-border rounded-[8px]",
+  "bg-transparent hover:bg-input-hover-bg transition-colors duration-300", // Using dark bg to match theme
   "focus-within:border-white focus-within:ring-1 focus-within:ring-white",
   "h-[48px]",
 );
 
 const inputClasses = cn(
-  "bg-transparent border-none outline-none text-[#CBD1D6] max-w-[106px]",
+  "bg-transparent border-none outline-none text-input-text max-w-[106px]",
   "placeholder:text-text-secondary placeholder:font-inter placeholder:text-[14px] placeholder:leading-[24px]",
   "font-inter text-[14px] leading-[24px]",
 );
 
 const iconContainerClasses = cn(
-  "flex items-center justify-center w-6 h-6 text-[#F4F6F7]",
+  "flex items-center justify-center w-6 h-6 text-text-secondary",
 );
 
 const submitButtonClasses = cn(
@@ -74,7 +74,7 @@ const submitButtonClasses = cn(
       />
       <Description
         text="Crafted for low-cost transfers, instant finality, and audit-ready transparency making digital value dependable for merchants, treasuries, and builders alike."
-        className="max-w-[680px] text-center text-[#A2B1BE] text-base"
+        className="max-w-[680px] text-center text-text-grey text-base"
       />
     </AlignmentLayout>
 

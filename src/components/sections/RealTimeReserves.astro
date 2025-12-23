@@ -80,7 +80,7 @@ const infoCardClasses = cn(
     class="real-time-background absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat"
   >
   </div>
-  <PulseGlow bottom={false} />
+  <PulseGlow bottom={false} className="-z-10" />
 
   <AlignmentLayout
     direction="vertical"
@@ -195,7 +195,7 @@ const infoCardClasses = cn(
           >
             <Title
               text="Reservas em Tempo Real"
-              className="text-[#F4F6F7] text-[20px] leading-[24px] max-sm:text-[20px] max-sm:leading-[24px]"
+              className="text-text-secondary text-[20px] leading-[24px] max-sm:text-[20px] max-sm:leading-[24px]"
             />
             <div class="relative min-w-[150px]" data-loading="true">
               <Skeleton className="skeleton-placeholder h-4 w-32" />
