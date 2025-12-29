@@ -5,13 +5,15 @@ import AlignmentLayout from "../../layouts/AlignmentLayout.astro";
 import Title from "../Title.astro";
 import Description from "../Description.astro";
 
-// Placeholder images - using the same as MostTrusted for now as requested "logic of wallpaper"
-// Ideally these should be specific to this section, but we use these as fallback/placeholders
 import BackgroundImage from "../../assets/details/team-background.png";
 import BackgroundImageMobile from "../../assets/details/team-background-mobile.png";
 import { cn } from "../../utils/cn";
 import { Image } from "astro:assets";
 import StartsIcon from "../../assets/icons/stars-light-sparkle.svg";
+import LinkedinIcon from "../../assets/icons/linkedin.svg";
+import FounderImage from "../../assets/details/team-founder.png";
+import CoFounderImage from "../../assets/details/team-co-founder.png";
+import ReserveCustodianImage from "../../assets/details/team-reserve-custodian.png";
 import PulseGlow from "../effects/PulseGlow.astro";
 
 // Classes organizadas por categoria para melhor legibilidade
@@ -35,6 +37,8 @@ const contentSectionClasses = cn(
   "gap-4",
   // Padding
   "p-4",
+  // Sizing
+  "min-h-[202px]",
 );
 
 const heroTitleClasses = cn(
@@ -120,7 +124,22 @@ const cardContentSectionClasses = cn(
         align="center"
         className={cardContentSectionClasses}
       >
-        <div class="w-full h-[316px] bg-white/5 rounded-t-[8px]"></div>
+        <div
+          class="w-full h-[316px] bg-white/5 rounded-t-[8px] relative bg-cover bg-center bg-no-repeat"
+          style={`background-image: url('${FounderImage.src}')`}
+        >
+          <div
+            class="absolute bottom-4 right-4 bg-[var(--color-contact-linkedin-background)]/64 rounded-full p-2"
+          >
+            <Image
+              src={LinkedinIcon}
+              width={24}
+              height={24}
+              alt="Linkedin"
+              class="w-[24px] h-[24px] object-cover"
+            />
+          </div>
+        </div>
 
         <AlignmentLayout
           direction="vertical"
@@ -134,17 +153,18 @@ const cardContentSectionClasses = cn(
             align="start"
             className="gap-1"
           >
-            <Title text="Customer Support" variant="secondary" />
+            <Title text="Pedro Fares Ramos" variant="secondary" />
             <Description
-              text="Need help with your account or transactions? Our support team is ready to assist you."
+              text="FOUNDER, CHAIRMAN & CEO"
               className="uppercase"
               variant="secondary"
             />
           </AlignmentLayout>
 
           <Description
-            text="Need help with your account or transactions? Our support team is ready to assist you."
+            text="The visionary behind VETRA, he leads the global strategy and the mission to revolutionize the market for dollar-backed stablecoins. With extensive experience in cryptocurrencies since 2016, he oversees the company’s expansion into new international markets."
             variant="secondary"
+            className="leading-[18px]"
           />
         </AlignmentLayout>
       </AlignmentLayout>
@@ -155,7 +175,22 @@ const cardContentSectionClasses = cn(
         align="center"
         className={cardContentSectionClasses}
       >
-        <div class="w-full h-[316px] bg-white/5 rounded-t-[8px]"></div>
+        <div
+          class="w-full h-[316px] bg-white/5 rounded-t-[8px] relative bg-cover bg-center bg-no-repeat"
+          style={`background-image: url('${CoFounderImage.src}')`}
+        >
+          <div
+            class="absolute bottom-4 right-4 bg-[var(--color-contact-linkedin-background)]/64 rounded-full p-2"
+          >
+            <Image
+              src={LinkedinIcon}
+              width={24}
+              height={24}
+              alt="Linkedin"
+              class="w-[24px] h-[24px] object-cover"
+            />
+          </div>
+        </div>
 
         <AlignmentLayout
           direction="vertical"
@@ -169,16 +204,16 @@ const cardContentSectionClasses = cn(
             align="start"
             className="gap-1"
           >
-            <Title text="Customer Support" variant="secondary" />
+            <Title text="Rosemberg Alves Nascimento" variant="secondary" />
             <Description
-              text="Need help with your account or transactions? Our support team is ready to assist you."
+              text="CO-FOUNDER & HEAD OF GLOBAL PARTNERSHIPS"
               className="uppercase"
               variant="secondary"
             />
           </AlignmentLayout>
 
           <Description
-            text="Need help with your account or transactions? Our support team is ready to assist you."
+            text="Responsible for forging and managing VETRA’s global strategic partnerships, driving our presence and adoption in new markets."
             variant="secondary"
           />
         </AlignmentLayout>
@@ -188,7 +223,22 @@ const cardContentSectionClasses = cn(
         align="center"
         className={cardContentSectionClasses}
       >
-        <div class="w-full h-[316px] bg-white/5 rounded-t-[8px]"></div>
+        <div
+          class="w-full h-[316px] bg-white/5 rounded-t-[8px] relative bg-cover bg-center bg-no-repeat"
+          style={`background-image: url('${ReserveCustodianImage.src}')`}
+        >
+          <div
+            class="absolute bottom-4 right-4 bg-[var(--color-contact-linkedin-background)]/64 rounded-full p-2"
+          >
+            <Image
+              src={LinkedinIcon}
+              width={24}
+              height={24}
+              alt="Linkedin"
+              class="w-[24px] h-[24px] object-cover"
+            />
+          </div>
+        </div>
 
         <AlignmentLayout
           direction="vertical"
@@ -202,16 +252,16 @@ const cardContentSectionClasses = cn(
             align="start"
             className="gap-1"
           >
-            <Title text="Customer Support" variant="secondary" />
+            <Title text="Christine Schöberlein" variant="secondary" />
             <Description
-              text="Need help with your account or transactions? Our support team is ready to assist you."
+              text="EUROPEAN RESERVE CUSTODIAN"
               className="uppercase"
               variant="secondary"
             />
           </AlignmentLayout>
 
           <Description
-            text="Need help with your account or transactions? Our support team is ready to assist you."
+            text="Managing VETRA's institutional custody relationship with FT Asset Management in Sweden. Ensuring European regulatory standards and transparent reserve management."
             variant="secondary"
           />
         </AlignmentLayout>
