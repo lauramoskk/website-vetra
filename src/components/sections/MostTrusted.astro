@@ -11,6 +11,10 @@ import { cn } from "../../utils/cn";
 import { Image } from "astro:assets";
 import StartsIcon from "../../assets/icons/stars-light-sparkle.svg";
 import PulseGlow from "../effects/PulseGlow.astro";
+import VetraCoinImage from "../../assets/details/most-trusted-vetra-coin.png";
+import PurposeImage from "../../assets/details/most-trusted-purpose.png";
+import UserImage from "../../assets/details/most-trusted-user.png";
+import ImpactImage from "../../assets/details/most-trusted-impact.png";
 
 // Classes organizadas por categoria para melhor legibilidade
 const sectionOuterClasses = cn(
@@ -53,7 +57,7 @@ const cardSectionClasses = cn(
 
 const cardContentSectionClasses = cn(
 	// Co
-	"bg-white/[0.08] backdrop-blur-[80px] max-h-[338px] rounded-[8px]",
+	"bg-[var(--color-card-background)]/32 backdrop-blur-[80px] max-h-[338px] rounded-[8px]",
 );
 ---
 
@@ -67,6 +71,16 @@ const cardContentSectionClasses = cn(
 	>
 	</div>
 	<PulseGlow bottom={true} className="-z-10" />
+
+	<div
+		class="absolute top-[22px] left-1/2 right-1/2 -translate-x-1/2 w-[795px] h-[795px]"
+	>
+		<Image
+			src={VetraCoinImage}
+			alt="Vetra Coin"
+			class="w-full h-full object-contain"
+		/>
+	</div>
 
 	<AlignmentLayout
 		direction="vertical"
@@ -115,7 +129,11 @@ const cardContentSectionClasses = cn(
 				align="center"
 				className={cardContentSectionClasses}
 			>
-				<div class="w-full h-[184px]"></div>
+				<div
+					class="w-full h-[184px] rounded-t-[8px] bg-cover bg-center bg-no-repeat"
+					style={`background-image: url('${PurposeImage.src}')`}
+				>
+				</div>
 
 				<AlignmentLayout
 					direction="vertical"
@@ -139,7 +157,11 @@ const cardContentSectionClasses = cn(
 				align="center"
 				className={cardContentSectionClasses}
 			>
-				<div class="w-full h-[184px]"></div>
+				<div
+					class="w-full h-[184px] rounded-t-[8px] bg-cover bg-center bg-no-repeat"
+					style={`background-image: url('${UserImage.src}')`}
+				>
+				</div>
 
 				<AlignmentLayout
 					direction="vertical"
@@ -163,7 +185,11 @@ const cardContentSectionClasses = cn(
 				align="center"
 				className={cardContentSectionClasses}
 			>
-				<div class="w-full h-[184px]"></div>
+				<div
+					class="w-full h-[184px] rounded-t-[8px] bg-cover bg-center bg-no-repeat"
+					style={`background-image: url('${ImpactImage.src}')`}
+				>
+				</div>
 
 				<AlignmentLayout
 					direction="vertical"

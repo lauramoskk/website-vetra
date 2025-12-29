@@ -7,10 +7,10 @@ import Badge from "../Badge.astro";
 import { cn } from "../../utils/cn";
 import { Image } from "astro:assets";
 import StarsIcon from "../../assets/icons/stars-light-sparkle.svg";
-import SecurityIcon from "../../assets/icons/shield-check.svg";
-import EcosystemIcon from "../../assets/icons/globe.svg";
-import TransparencyIcon from "../../assets/icons/eye.svg";
-import ScalabilityIcon from "../../assets/icons/zap.svg";
+import SecurityImage from "../../assets/details/why-choose-security.png";
+import EcosystemImage from "../../assets/details/why-choose-ecosystem.png";
+import TransparencyImage from "../../assets/details/why-choose-transparency.png";
+import ScalabilityImage from "../../assets/details/why-choose-scalability.png";
 
 // Styles
 const sectionOuterClasses = cn(
@@ -36,9 +36,9 @@ const gridClasses = cn(
 );
 
 const cardClasses = cn(
-  "bg-white/[0.08] backdrop-blur-[80px] rounded-[8px]", // Matching MostTrusted style
+  "bg-card-background backdrop-blur-[80px] rounded-[8px]", // Matching MostTrusted style
   "flex flex-col",
-  "lg:w-full lg:shrink-0 lg:h-auto", // Full width on desktop
+  "lg:w-[592px] lg:shrink-0 lg:h-auto", // Full width on desktop
 );
 ---
 
@@ -86,7 +86,15 @@ const cardClasses = cn(
       <div class={gridClasses} id="vetra-cards-container">
         <!-- Card 1: Security -->
         <div class={cardClasses}>
-          <div class="w-full h-[184px]"></div>
+          <div class="w-full h-[282px]">
+            <Image
+              src={SecurityImage}
+              alt="Security"
+              class="w-full h-full rounded-t-[8px]"
+              width={592}
+              height={282}
+            />
+          </div>
 
           <AlignmentLayout
             direction="vertical"
@@ -101,7 +109,7 @@ const cardClasses = cn(
             />
             <Description
               text="Built with OpenZeppelin standards ERC-20 upgradeable (UUPS) and role-based controls that restrict mint and burn to 1–2 designated operators. An independent third-party security audit is planned to validate the implementation."
-              className="text-center"
+              className="text-center leading-[18px]"
               variant="secondary"
             />
           </AlignmentLayout>
@@ -109,7 +117,15 @@ const cardClasses = cn(
 
         <!-- Card 2: Ecosystem -->
         <div class={cardClasses}>
-          <div class="w-full h-[184px]"></div>
+          <div class="w-full h-[282px]">
+            <Image
+              src={EcosystemImage}
+              alt="Ecosystem"
+              class="w-full h-full rounded-t-[8px]"
+              width={592}
+              height={282}
+            />
+          </div>
 
           <AlignmentLayout
             direction="vertical"
@@ -132,7 +148,15 @@ const cardClasses = cn(
 
         <!-- Card 3: Transparency -->
         <div class={cardClasses}>
-          <div class="w-full h-[184px]"></div>
+          <div class="w-full h-[282px]">
+            <Image
+              src={TransparencyImage}
+              alt="Transparency"
+              class="w-full h-full rounded-t-[8px]"
+              width={592}
+              height={282}
+            />
+          </div>
 
           <AlignmentLayout
             direction="vertical"
@@ -155,7 +179,15 @@ const cardClasses = cn(
 
         <!-- Card 4: Scalability -->
         <div class={cardClasses}>
-          <div class="w-full h-[184px]"></div>
+          <div class="w-full h-[282px]">
+            <Image
+              src={ScalabilityImage}
+              alt="Scalability"
+              class="w-full h-full rounded-t-[8px]"
+              width={592}
+              height={282}
+            />
+          </div>
 
           <AlignmentLayout
             direction="vertical"

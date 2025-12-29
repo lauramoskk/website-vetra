@@ -10,6 +10,7 @@
   --color-logo: #949DA6;
   --color-badge-purple: #A55EF4;
   --color-light-purple: #BA8CF9;
+  --color-glow-to-coin: #701F94;
 
   /* Backgrounds */
   --color-background-card: #0D0B2D;
@@ -38,6 +39,9 @@
   --color-newsletter-bg: #0F0519;
   --color-footer-end: #1C092F;
   --color-footer-border: #1F0A33;
+
+  /* Cards */
+  --color-card-background: #0E0515;
 
   /* Contact Section */
   --color-contact-form-bg: #19151D;
