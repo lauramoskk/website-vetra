@@ -79,17 +79,27 @@ const buttonsContainerClasses = cn(
 		>
 		</div>
 
-		<Image
-			src={VetraCoin}
-			alt="Vetra Coin"
-			class="w-[176px] h-[176px] max-sm:w-[120px] max-sm:h-[120px] object-contain absolute right-[-280px] max-sm:right-[-60px] top-[-24px] max-sm:top-[-50px]"
-		/>
+		<div
+			class="absolute right-[-280px] max-sm:right-[-60px] top-[-24px] max-sm:top-[-50px] w-[176px] h-[176px] max-sm:w-[120px] max-sm:h-[120px] pointer-events-none"
+		>
+			<Image
+				src={VetraCoin}
+				alt="Vetra Coin"
+				class="w-full h-full object-contain parallax-coin"
+				data-speed-x="0.15"
+			/>
+		</div>
 
-		<Image
-			src={VetraCoin}
-			alt="Vetra Coin"
-			class="w-[176px] h-[176px] max-sm:w-[120px] max-sm:h-[120px] object-contain rotate-[90deg] absolute left-[-280px] max-sm:left-[-60px] bottom-[-56px] max-sm:bottom-[-112px]"
-		/>
+		<div
+			class="absolute left-[-280px] max-sm:left-[-60px] bottom-[-56px] max-sm:bottom-[-112px] w-[176px] h-[176px] max-sm:w-[120px] max-sm:h-[120px] rotate-[90deg] pointer-events-none"
+		>
+			<Image
+				src={VetraCoin}
+				alt="Vetra Coin"
+				class="w-full h-full object-contain parallax-coin"
+				data-speed-y="0.1"
+			/>
+		</div>
 
 		<AlignmentLayout
 			direction="vertical"
@@ -194,5 +204,32 @@ const buttonsContainerClasses = cn(
 			resizeTimeout = setTimeout(updateBackgroundImage, 250);
 		};
 		window.addEventListener("resize", handleResize, { passive: true });
+
+		// Parallax Logic
+		const parallaxElements = document.querySelectorAll(".parallax-coin");
+
+		function handleScroll() {
+			const scrollY = window.scrollY;
+
+			// Otimização: se não houver scroll ou elementos, retorna
+			if (parallaxElements.length === 0) return;
+
+			requestAnimationFrame(() => {
+				parallaxElements.forEach((el) => {
+					// Read speeds for each axis (default to 0 to avoid unwanted movement)
+					const speedX = parseFloat(el.getAttribute("data-speed-x") || "0");
+					const speedY = parseFloat(el.getAttribute("data-speed-y") || "0");
+
+					const xPos = scrollY * speedX;
+					const yPos = scrollY * speedY;
+
+					if (speedX !== 0 || speedY !== 0) {
+						el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
+					}
+				});
+			});
+		}
+
+		window.addEventListener("scroll", handleScroll, { passive: true });
 	})();
 </script>
