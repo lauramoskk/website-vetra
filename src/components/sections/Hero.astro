@@ -11,6 +11,7 @@ import BackgroundImage from "../../assets/details/background.png";
 import BackgroundImageMobile from "../../assets/details/background-mobile.png";
 import { cn } from "../../utils/cn";
 import { Image } from "astro:assets";
+import VetraCoin from "../../assets/details/vetra-coin.png";
 import StarsIcon from "../../assets/icons/stars-light-sparkle.svg";
 
 // Classes organizadas por categoria para melhor legibilidade
@@ -30,7 +31,7 @@ const sectionInnerClasses = cn(
 
 const mainLayoutClasses = cn(
 	//
-	"absolute top-[136px] md:top-[168px] max-md:px-6 left-1/2 -translate-x-1/2 w-full",
+	"absolute top-[136px] md:top-[168px] max-md:px-6 left-1/2 -translate-x-1/2 w-[656px] max-sm:w-full",
 	// Spacing & Layout
 	"gap-12 z-10",
 );
@@ -73,6 +74,18 @@ const buttonsContainerClasses = cn(
 		align="center"
 		className={mainLayoutClasses}
 	>
+		<Image
+			src={VetraCoin}
+			alt="Vetra Coin"
+			class="w-[176px] h-[176px] max-sm:w-[120px] max-sm:h-[120px] object-contain absolute right-[-280px] max-sm:right-[-60px] top-[-24px] max-sm:top-[-50px]"
+		/>
+
+		<Image
+			src={VetraCoin}
+			alt="Vetra Coin"
+			class="w-[176px] h-[176px] max-sm:w-[120px] max-sm:h-[120px] object-contain rotate-[90deg] absolute left-[-280px] max-sm:left-[-60px] bottom-[-56px] max-sm:bottom-[-112px]"
+		/>
+
 		<AlignmentLayout
 			direction="vertical"
 			justify="center"
