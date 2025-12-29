@@ -7,28 +7,27 @@ import { cn } from "../../utils/cn";
 import { Image } from "astro:assets";
 import EmailIcon from "../../assets/icons/newsletter/email-icon.svg";
 import ArrowIcon from "../../assets/icons/newsletter/arrow-icon.svg";
+import Video from "../../assets/content/6875475.mp4";
 
 const sectionOuterClasses = cn(
   "flex items-center w-full relative",
   "newsletter-section",
 );
 
-const backgroundLayerClasses = cn(
-  "absolute inset-y-0 left-1/2 -translate-x-1/2 w-screen -z-10",
-  "bg-[linear-gradient(to_bottom,var(--color-newsletter-bg),var(--color-newsletter-bg))]",
+const videoClasses = cn(
+  "absolute inset-y-0 left-1/2 -translate-x-1/2 w-screen h-full object-cover -z-10",
 );
 
 const sectionInnerClasses = cn(
-  "w-full py-[188px]",
+  "w-full py-[188px] max-md:py-[88px] h-[560px]",
   "flex justify-center items-center",
 );
 
 const containerClasses = cn(
-  "flex flex-col items-center gap-8 w-full max-w-[788px]",
-  "max-md:gap-6",
+  "flex flex-col items-center gap-6 w-full max-w-[788px]",
 );
 
-const headerClasses = cn("flex flex-col gap-4 text-center items-center w-full");
+const headerClasses = cn("flex flex-col gap-2 text-center items-center w-full");
 
 const inputContainerClasses = cn(
   "flex items-center gap-4 max-md:w-full max-md:justify-between p-4",
@@ -60,7 +59,16 @@ const submitButtonClasses = cn(
   innerClassName={sectionInnerClasses}
   autoMargin={true}
 >
-  <div class={backgroundLayerClasses}></div>
+  <video src={Video} class={videoClasses} autoplay loop muted playsinline
+  ></video>
+  <div
+    class="absolute inset-0 w-full h-full -z-[5] pointer-events-none"
+    style={{
+      background:
+        "linear-gradient(270deg, rgba(15, 5, 25, 0.72) 0%, #0F0519 71.04%)",
+    }}
+  >
+  </div>
   <div class={containerClasses}>
     <AlignmentLayout
       direction="vertical"
@@ -74,7 +82,7 @@ const submitButtonClasses = cn(
       />
       <Description
         text="Crafted for low-cost transfers, instant finality, and audit-ready transparency making digital value dependable for merchants, treasuries, and builders alike."
-        className="max-w-[680px] text-center text-text-grey text-base"
+        className="max-w-[680px] text-center text-text-grey"
       />
     </AlignmentLayout>
 
