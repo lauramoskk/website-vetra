@@ -1,6 +1,6 @@
 ---
 import SectionLayout from "../../layouts/SectionLayout.astro";
-import AlignmentLayout from "../../layouts/AlignmentLayout.astro";
+
 import Title from "../Title.astro";
 import Description from "../Description.astro";
 import { cn } from "../../utils/cn";
@@ -62,17 +62,6 @@ const navItemClasses = (isActive: boolean) =>
 const contentColumnClasses = cn(
   "lg:col-span-8 flex flex-col gap-2",
   "lg:sticky lg:top-24 self-start", // Content sticky with self-start for grid
-);
-
-// Mobile Scroll Container
-const mobileNavContainerClasses = cn(
-  "flex lg:flex-col gap-2 lg:gap-0",
-  "max-lg:overflow-x-auto max-lg:pb-4 max-lg:snap-x",
-  "w-full hide-scrollbar", // Ensure full width and hide scrollbar
-  "mask-image-linear-to-r", // Custom class if exists, otherwise might need definition or removal if not defined.
-  // Assuming it was a placeholder. I will remove it for safety unless I know it exists.
-  // Replaced with safer approach:
-  // standard classes
 );
 ---
 
