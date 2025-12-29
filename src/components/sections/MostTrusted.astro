@@ -79,6 +79,7 @@ const cardContentSectionClasses = cn(
 			src={VetraCoinImage}
 			alt="Vetra Coin"
 			class="w-full h-full object-contain"
+			quality="max"
 		/>
 	</div>
 
@@ -123,89 +124,52 @@ const cardContentSectionClasses = cn(
 			align="center"
 			className={cardSectionClasses}
 		>
-			<AlignmentLayout
-				direction="vertical"
-				justify="center"
-				align="center"
-				className={cardContentSectionClasses}
-			>
-				<div
-					class="w-full h-[184px] rounded-t-[8px] bg-cover bg-center bg-no-repeat"
-					style={`background-image: url('${PurposeImage.src}')`}
-				>
-				</div>
+			{
+				[
+					{
+						title: "Purpose",
+						desc: "In a space crowded with opaque tokens and slow rails, VETRA aims to be the simplest way to hold and move a reliable dollar on Polygon. It’s built to feel boring in the best sense: predictable, auditable, and ready for everyday settlement.",
+						img: PurposeImage,
+					},
+					{
+						title: "User",
+						desc: "Merchants and fintechs that need low-fee payments, treasuries and DAOs seeking a dependable unit of account, and developers who want a drop-in ERC-20 for onboarding users. VETRA fits where speed, clarity, and compatibility matter more than hype.",
+						img: UserImage,
+					},
+					{
+						title: "Impact",
+						desc: "Money moves like messages: near-instant, with costs that don’t break the use case. Clear data and open documentation make integration straightforward, and a public transparency posture turns trust from a promise into something you can actually check",
+						img: ImpactImage,
+					},
+				].map((card) => (
+					<AlignmentLayout
+						direction="vertical"
+						justify="center"
+						align="center"
+						className={cardContentSectionClasses}
+					>
+						<div
+							class="w-full h-[184px] rounded-t-[8px] bg-cover bg-center bg-no-repeat"
+							style={`background-image: url('${card.img.src}')`}
+						></div>
 
-				<AlignmentLayout
-					direction="vertical"
-					justify="center"
-					align="center"
-					className={contentSectionClasses}
-				>
-					<Title text="Purpose" variant="secondary" />
+						<AlignmentLayout
+							direction="vertical"
+							justify="center"
+							align="center"
+							className={contentSectionClasses}
+						>
+							<Title text={card.title} variant="secondary" />
 
-					<Description
-						text="In a space crowded with opaque tokens and slow rails, VETRA aims to be the simplest way to hold and move a reliable dollar on Polygon. It’s built to feel boring in the best sense: predictable, auditable, and ready for everyday settlement."
-						className="max-w-[588px] text-center"
-						variant="secondary"
-					/>
-				</AlignmentLayout>
-			</AlignmentLayout>
-
-			<AlignmentLayout
-				direction="vertical"
-				justify="center"
-				align="center"
-				className={cardContentSectionClasses}
-			>
-				<div
-					class="w-full h-[184px] rounded-t-[8px] bg-cover bg-center bg-no-repeat"
-					style={`background-image: url('${UserImage.src}')`}
-				>
-				</div>
-
-				<AlignmentLayout
-					direction="vertical"
-					justify="center"
-					align="center"
-					className={contentSectionClasses}
-				>
-					<Title text="User" variant="secondary" />
-
-					<Description
-						text="Merchants and fintechs that need low-fee payments, treasuries and DAOs seeking a dependable unit of account, and developers who want a drop-in ERC-20 for onboarding users. VETRA fits where speed, clarity, and compatibility matter more than hype."
-						className="max-w-[588px] text-center"
-						variant="secondary"
-					/>
-				</AlignmentLayout>
-			</AlignmentLayout>
-
-			<AlignmentLayout
-				direction="vertical"
-				justify="center"
-				align="center"
-				className={cardContentSectionClasses}
-			>
-				<div
-					class="w-full h-[184px] rounded-t-[8px] bg-cover bg-center bg-no-repeat"
-					style={`background-image: url('${ImpactImage.src}')`}
-				>
-				</div>
-
-				<AlignmentLayout
-					direction="vertical"
-					justify="center"
-					align="center"
-					className={contentSectionClasses}
-				>
-					<Title text="Impact" variant="secondary" />
-
-					<Description
-						text="Money moves like messages: near-instant, with costs that don’t break the use case. Clear data and open documentation make integration straightforward, and a public transparency posture turns trust from a promise into something you can actually check"
-						className="max-w-[588px] text-center"
-						variant="secondary"
-					/>
-				</AlignmentLayout>
-			</AlignmentLayout>
+							<Description
+								text={card.desc}
+								className="max-w-[588px] text-center"
+								variant="secondary"
+							/>
+						</AlignmentLayout>
+					</AlignmentLayout>
+				))
+			}
 		</AlignmentLayout>
 	</AlignmentLayout>
 </SectionLayout>
