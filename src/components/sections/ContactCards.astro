@@ -68,10 +68,16 @@ const cardContentSectionClasses = cn(
   innerClassName={sectionInnerClasses}
   autoMargin={true}
 >
-  <div
-    class="contact-cards-background absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat"
-  >
-  </div>
+  <Image
+    src={BackgroundImage}
+    alt="Background"
+    class="absolute inset-0 -z-10 w-full h-full object-cover max-sm:hidden"
+  />
+  <Image
+    src={BackgroundImageMobile}
+    alt="Background"
+    class="absolute inset-0 -z-10 w-full h-full object-cover sm:hidden"
+  />
   <PulseGlow bottom={true} className="-z-10" />
 
   <AlignmentLayout
@@ -269,40 +275,3 @@ const cardContentSectionClasses = cn(
     </AlignmentLayout>
   </AlignmentLayout>
 </SectionLayout>
-
-<script
-  define:vars={{
-    bgDesktop: BackgroundImage.src,
-    bgMobile: BackgroundImageMobile.src,
-  }}
->
-  (function () {
-    "use strict";
-    const contactBackground = document.querySelector(
-      ".contact-cards-background",
-    );
-    if (!contactBackground) return;
-
-    function updateBackgroundImage() {
-      const isMobile = window.innerWidth < 640;
-      contactBackground.style.backgroundImage = `url('${isMobile ? bgMobile : bgDesktop}')`;
-    }
-
-    // Atualizar na inicialização
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", updateBackgroundImage, {
-        once: true,
-      });
-    } else {
-      updateBackgroundImage();
-    }
-
-    // Handle window resize com debounce
-    let resizeTimeout;
-    const handleResize = () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(updateBackgroundImage, 250);
-    };
-    window.addEventListener("resize", handleResize, { passive: true });
-  })();
-</script>

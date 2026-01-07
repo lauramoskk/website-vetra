@@ -66,10 +66,16 @@ const cardContentSectionClasses = cn(
 	innerClassName={sectionInnerClasses}
 	autoMargin={true}
 >
-	<div
-		class="most-trusted-background absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat opacity-70"
-	>
-	</div>
+	<Image
+		src={BackgroundImage}
+		alt="Background"
+		class="absolute inset-0 -z-10 w-full h-full object-cover max-sm:hidden opacity-70"
+	/>
+	<Image
+		src={BackgroundImageMobile}
+		alt="Background"
+		class="absolute inset-0 -z-10 w-full h-full object-cover sm:hidden opacity-70"
+	/>
 	<PulseGlow bottom={true} className="-z-10" />
 
 	<div
@@ -151,7 +157,7 @@ const cardContentSectionClasses = cn(
 						<div
 							class="w-full h-[184px] rounded-t-[8px] bg-cover bg-center bg-no-repeat"
 							style={`background-image: url('${card.img.src}')`}
-						></div>
+						/>
 
 						<AlignmentLayout
 							direction="vertical"
@@ -173,40 +179,3 @@ const cardContentSectionClasses = cn(
 		</AlignmentLayout>
 	</AlignmentLayout>
 </SectionLayout>
-
-<script
-	define:vars={{
-		bgDesktop: BackgroundImage.src,
-		bgMobile: BackgroundImageMobile.src,
-	}}
->
-	(function () {
-		"use strict";
-		const mostTrustedBackground = document.querySelector(
-			".most-trusted-background",
-		);
-		if (!mostTrustedBackground) return;
-
-		function updateBackgroundImage() {
-			const isMobile = window.innerWidth < 640;
-			mostTrustedBackground.style.backgroundImage = `url('${isMobile ? bgMobile : bgDesktop}')`;
-		}
-
-		// Atualizar na inicialização
-		if (document.readyState === "loading") {
-			document.addEventListener("DOMContentLoaded", updateBackgroundImage, {
-				once: true,
-			});
-		} else {
-			updateBackgroundImage();
-		}
-
-		// Handle window resize com debounce
-		let resizeTimeout;
-		const handleResize = () => {
-			clearTimeout(resizeTimeout);
-			resizeTimeout = setTimeout(updateBackgroundImage, 250);
-		};
-		window.addEventListener("resize", handleResize, { passive: true });
-	})();
-</script>

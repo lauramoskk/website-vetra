@@ -29,13 +29,6 @@ const sectionInnerClasses = cn(
 	"max-sm:h-[842px]",
 );
 
-const mainLayoutClasses = cn(
-	//
-	"absolute top-[136px] md:top-[168px] max-md:px-6 left-1/2 -translate-x-1/2 w-[656px] max-sm:w-full",
-	// Spacing & Layout
-	"gap-12 z-10",
-);
-
 const contentSectionClasses = cn(
 	// Spacing
 	"gap-2",
@@ -63,16 +56,19 @@ const buttonsContainerClasses = cn(
 	innerClassName={sectionInnerClasses}
 	autoMargin={true}
 >
-	<div
-		class="hero-background absolute inset-0 -z-10 bg-cover bg-no-repeat max-sm:bg-center"
-	>
-	</div>
+	<Image
+		src={BackgroundImage}
+		alt="Background"
+		class="absolute inset-0 -z-10 w-full h-full object-cover max-sm:hidden"
+	/>
+	<Image
+		src={BackgroundImageMobile}
+		alt="Background"
+		class="absolute inset-0 -z-10 w-full h-full object-cover sm:hidden"
+	/>
 
-	<AlignmentLayout
-		direction="vertical"
-		justify="center"
-		align="center"
-		className={mainLayoutClasses}
+	<div
+		class="absolute top-[136px] md:top-[168px] max-md:px-6 left-1/2 -translate-x-1/2 w-[656px] max-sm:w-full gap-12 z-10 flex flex-col items-center justify-center transform-gpu"
 	>
 		<div
 			class="w-[240px] h-[240px] blur-[150px] bg-glow-to-coin absolute z-[-1]"
@@ -158,7 +154,7 @@ const buttonsContainerClasses = cn(
 				/>
 			</a>
 		</AlignmentLayout>
-	</AlignmentLayout>
+	</div>
 
 	<AlignmentLayout
 		direction="vertical"
@@ -176,38 +172,9 @@ const buttonsContainerClasses = cn(
 	</AlignmentLayout>
 </SectionLayout>
 
-<script
-	define:vars={{
-		bgDesktop: BackgroundImage.src,
-		bgMobile: BackgroundImageMobile.src,
-	}}
->
+<script>
 	(function () {
 		"use strict";
-		const heroBackground = document.querySelector(".hero-background");
-		if (!heroBackground) return;
-
-		function updateBackgroundImage() {
-			const isMobile = window.innerWidth < 640;
-			heroBackground.style.backgroundImage = `url('${isMobile ? bgMobile : bgDesktop}')`;
-		}
-
-		// Atualizar na inicialização
-		if (document.readyState === "loading") {
-			document.addEventListener("DOMContentLoaded", updateBackgroundImage, {
-				once: true,
-			});
-		} else {
-			updateBackgroundImage();
-		}
-
-		// Handle window resize com debounce
-		let resizeTimeout;
-		const handleResize = () => {
-			clearTimeout(resizeTimeout);
-			resizeTimeout = setTimeout(updateBackgroundImage, 250);
-		};
-		window.addEventListener("resize", handleResize, { passive: true });
 
 		// Parallax Logic
 		const parallaxElements = document.querySelectorAll(".parallax-coin");
