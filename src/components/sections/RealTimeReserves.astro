@@ -296,12 +296,10 @@ const infoCardClasses = cn(
               >
                 <div class="flex flex-col items-start gap-1">
                   <Title text="Institution" className={TEXT_12_16} />
-                  <div class="relative min-h-[16px]" data-loading="true">
-                    <Skeleton className="skeleton-placeholder h-4 w-32" />
+                  <div class="relative min-h-[16px]">
                     <Description
                       text="FT Asset Management KB"
-                      className={cn(TEXT_12_16, "dynamic-content hidden")}
-                      id="custodian-institution"
+                      className={cn(TEXT_12_16)}
                     />
                   </div>
                 </div>
@@ -313,9 +311,9 @@ const infoCardClasses = cn(
                   />
                 </div>
                 <div class="flex flex-col items-start gap-1">
-                  <Title text="Regulation" className={TEXT_12_16} />
+                  <Title text="Contact" className={TEXT_12_16} />
                   <Description
-                    text="Regulated Custodian"
+                    text="+46 8 50 541 351 | info@FTAssetManagement.com"
                     className={TEXT_12_16}
                   />
                 </div>
@@ -388,21 +386,14 @@ const infoCardClasses = cn(
         if (summary) {
           const updatedAtEl = document.getElementById("reserves-updated-at");
           const totalBalanceEl = document.getElementById("total-balance");
-          const totalDebitEl = document.getElementById("total-debit");
           const totalCreditEl = document.getElementById("total-credit");
-          const institutionEl = document.getElementById(
-            "custodian-institution",
-          );
 
           if (updatedAtEl)
             updatedAtEl.innerText = `Updated: ${formatDate(summary.DateTime)}`;
           if (totalBalanceEl)
             totalBalanceEl.innerText = formatCurrency(summary.TotalBalance);
-          if (totalDebitEl)
-            totalDebitEl.innerText = formatCurrency(summary.TotalDebit);
           if (totalCreditEl)
             totalCreditEl.innerText = formatCurrency(summary.TotalCredit);
-          if (institutionEl) institutionEl.innerText = summary.companyname;
 
           // Toggle skeletons off
           document.querySelectorAll('[data-loading="true"]').forEach((el) => {
