@@ -55,7 +55,7 @@ const headerDashboardClasses = cn(
 );
 
 const metricsGridClasses = cn(
-  "w-full grid grid-cols-3 gap-[10px] max-sm:grid-cols-1",
+  "w-full grid grid-cols-2 gap-[10px] max-sm:grid-cols-1",
 );
 
 const metricCardClasses = cn(
@@ -235,18 +235,6 @@ const infoCardClasses = cn(
               />
             </div>
             <Description text="Reserves in Custody" className={TEXT_12_16} />
-          </div>
-          {/* Card 2 */}
-          <div class={metricCardClasses}>
-            <div class="relative min-h-[22px]" data-loading="true">
-              <Skeleton className="skeleton-placeholder h-[22px] w-24" />
-              <Title
-                text="$1.000.320.48"
-                className={cn(TEXT_18_22, "dynamic-content hidden")}
-                id="total-debit"
-              />
-            </div>
-            <Description text="Total Debit" className={TEXT_12_16} />
           </div>
           {/* Card 3 */}
           <div class={metricCardClasses}>
