@@ -9,6 +9,7 @@ interface Props {
 	className?: string;
 	style?: string;
 	icon?: ImageMetadata;
+	type?: "button" | "submit" | "reset";
 }
 
 const {
@@ -17,6 +18,7 @@ const {
 	className = "",
 	style = "",
 	icon = undefined,
+	type = "button",
 }: Props = Astro.props;
 
 // Classes base do botão
@@ -37,6 +39,13 @@ const variantClasses = {
 		// Layout
 		"group relative flex items-center justify-between rounded-full p-1 h-14 min-w-[220px] overflow-hidden",
 	),
+	// TODO: create secondary variant
+	secondary: cn(
+		// Background & Text
+		"bg-[#643390] hover:bg-[#9A3CEB] text-white",
+		// Layout
+		"group relative flex items-center justify-between rounded-full p-1 h-14 min-w-[220px] overflow-hidden",
+	),
 	outline: cn(
 		// Background & Border
 		"bg-transparent border border-white/[0.08] text-white hover:bg-white/[0.04] transition-colors",
@@ -49,7 +58,7 @@ const variantClasses = {
 const buttonClasses = cn(buttonBaseClasses, variantClasses[variant], className);
 ---
 
-<button class={buttonClasses} style={style}>
+<button type={type} class={buttonClasses} style={style}>
 	{
 		variant === "primary" ? (
 			<>

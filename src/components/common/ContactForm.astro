@@ -6,6 +6,8 @@ import UserIcon from "../../assets/icons/form/user-rounded.svg";
 import TextIcon from "../../assets/icons/form/text-square.svg";
 import { Image } from "astro:assets";
 
+const { formId } = Astro.props;
+
 const containerClasses = cn(
   "bg-contact-form-bg backdrop-blur-[80px] p-8 rounded-[16px] w-full max-w-[584px]",
   "flex flex-col gap-6",
@@ -41,35 +43,53 @@ const iconClasses = cn("w-6 h-6 text-text-grey/60 shrink-0");
     Contact our team!
   </p>
 
-  <form class="flex flex-col gap-2">
+  <form
+    class="flex flex-col gap-2"
+    action={formId ? `https://formspree.io/f/${formId}` : undefined}
+    method="POST"
+  >
     <div class="flex flex-col">
-      <label class={labelClasses}>First name</label>
+      <label class={labelClasses} for="first_name">First name</label>
       <div class={inputWrapperClasses}>
         <div class={iconClasses}>
           <Image src={UserIcon} alt="User" class="h-full object-contain" />
         </div>
-        <input type="text" placeholder="Ex: John" class={inputClasses} />
+        <input
+          type="text"
+          id="first_name"
+          name="first_name"
+          placeholder="Ex: John"
+          class={inputClasses}
+        />
       </div>
     </div>
 
     <div class="flex flex-col">
-      <label class={labelClasses}>Last name</label>
+      <label class={labelClasses} for="last_name">Last name</label>
       <div class={inputWrapperClasses}>
         <div class={iconClasses}>
           <Image src={UserIcon} alt="User" class="h-full object-contain" />
         </div>
-        <input type="text" placeholder="Ex: Doe" class={inputClasses} />
+        <input
+          type="text"
+          id="last_name"
+          name="last_name"
+          placeholder="Ex: Doe"
+          class={inputClasses}
+        />
       </div>
     </div>
 
     <div class="flex flex-col">
-      <label class={labelClasses}>Email</label>
+      <label class={labelClasses} for="email">Email</label>
       <div class={inputWrapperClasses}>
         <div class={iconClasses}>
           <Image src={EmailIcon} alt="Email" class="h-full object-contain" />
         </div>
         <input
           type="email"
+          id="email"
+          name="email"
           placeholder="Ex: email@email.com"
           class={inputClasses}
         />
@@ -77,19 +97,26 @@ const iconClasses = cn("w-6 h-6 text-text-grey/60 shrink-0");
     </div>
 
     <div class="flex flex-col">
-      <label class={labelClasses}>Description</label>
+      <label class={labelClasses} for="message">Description</label>
       <div class={textareaWrapperClasses}>
         <div class={cn(iconClasses)}>
           <Image src={TextIcon} alt="Text" class="h-full object-contain" />
         </div>
         <textarea
+          id="message"
+          name="message"
           placeholder="Type here..."
           class={cn(inputClasses, "resize-none h-full")}></textarea>
       </div>
     </div>
 
     <div class="mt-4">
-      <Button text="Send Email" variant="primary" className="sm:w-fit" />
+      <Button
+        type="submit"
+        text="Send Email"
+        variant="primary"
+        className="sm:w-fit"
+      />
     </div>
   </form>
 </div>
