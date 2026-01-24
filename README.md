@@ -4,7 +4,8 @@ A premium, high-performance landing page for a Fintech Asset management platform
 
 ## 🚀 Technologies
 
-- **Astro** 5.15.5 - Modern web framework for content-driven websites.
+- **Astro** 5.15.5 - Modern web framework with Server-Side Rendering (SSR).
+- **@astrojs/node** - Node.js serving adapter.
 - **Tailwind CSS** 4.1.17 - Utility-first CSS framework (v4 alpha).
 - **TypeScript** - Static typing for safer code.
 - **GSAP** - GreenSock Animation Platform for complex animations.
@@ -69,14 +70,33 @@ The project uses Tailwind CSS standard breakpoints, with specific attention to m
 
 ## 🚀 Deployment
 
-This project is **Static (SSG)** (mostly), but includes API endpoints (`src/pages/api`) which may require an adapter (like Vercel, Netlify, or Node) if dynamic server-side logic is expanded. Previously purely static, the addition of API routes for proxying might require a hybrid output config if not just built at build time. *Currently configured as static generation with client-side fetching via internal proxy routes if applicable, or direct static build.*
+This project creates a **Hybrid/Server** build using the **Node.js adapter** because of the secure API routes used for the Newsletter integration.
 
-### Build
+### Prerequisites
+
+- Node.js (v18+)
+- `BREVO_API_KEY` and `BREVO_LIST_ID` (see Environment Variables).
+
+### Build for Production
+
 ```bash
 npm run build
 ```
 
-The output will be in the `dist/` folder.
+To run the built server locally (which includes the API routes):
+```bash
+node ./dist/server/entry.mjs
+```
+
+## 🔑 Environment Variables
+
+The project requires the following environment variables. Copy `.env.example` to `.env` and fill in your values.
+
+| Variable | Description |
+| :--- | :--- |
+| `BREVO_API_KEY` | API Key from Brevo (Sendinblue) |
+| `BREVO_LIST_ID` | (Optional) List ID to add contacts to. Default: 2 |
+
 
 ## 🔗 Useful Links
 

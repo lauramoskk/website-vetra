@@ -19,11 +19,11 @@ Before creating a new UI element, check if it can be composed from existing comp
 
 ## 🏛️ Recent Architectural Decisions
 
-### 1. API Proxy for CORS
-To fetch data from external APIs (like the Reserves API) without CORS issues, we use an **Internal API Proxy** (`src/pages/api/...`).
-- The client fetches from `/api/external-data`.
-- The Astro server (or Vercel function) fetches from the real external URL server-side.
-- This hides tokens and bypasses browser CORS policies.
+### 1. API Proxy for CORS & Security (BFF Pattern)
+To fetch data from external APIs without CORS issues or exposing API keys, we use an **Internal API Proxy** (`src/pages/api/...`).
+- **Reserves**: Fetches from external financial API (server-side) to bypass CORS.
+- **Newsletter**: Acts as a **BFF (Backend for Frontend)**. It securely holds the Brevo API Key on the server and exposes a simplified endpoint to the client. Matches the frontend's specific needs (email only) to the backend's complexity.
+
 
 ### 2. Assets Handling
 - **Images**: Use `astro:assets` (`import myImg from '../assets/img.png'`) whenever possible for automatic optimization (WebP, resizing).
