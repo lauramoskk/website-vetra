@@ -70,32 +70,30 @@ The project uses Tailwind CSS standard breakpoints, with specific attention to m
 
 ## 🚀 Deployment
 
-This project creates a **Hybrid/Server** build using the **Node.js adapter** because of the secure API routes used for the Newsletter integration.
+## 🚀 Deployment
 
-### Prerequisites
+This project uses the **Vercel Adapter** for server-side rendering of API routes.
 
-- Node.js (v18+)
-- `BREVO_API_KEY` and `BREVO_LIST_ID` (see Environment Variables).
+### Recommended Hosting: Vercel
 
-### Build for Production
+1.  Push your code to a Git repository (GitHub/GitLab/Bitbucket).
+2.  Import the project into Vercel.
+3.  Vercel will automatically detect Astro.
+4.  **Important**: Add the Environment Variables in the Vercel Dashboard ("Settings" -> "Environment Variables").
 
-```bash
-npm run build
-```
-
-To run the built server locally (which includes the API routes):
-```bash
-node ./dist/server/entry.mjs
-```
-
-## 🔑 Environment Variables
-
-The project requires the following environment variables. Copy `.env.example` to `.env` and fill in your values.
+### Environment Variables
 
 | Variable | Description |
 | :--- | :--- |
 | `BREVO_API_KEY` | API Key from Brevo (Sendinblue) |
 | `BREVO_LIST_ID` | (Optional) List ID to add contacts to. Default: 2 |
+
+### Build command (if running manually)
+```bash
+npm run build
+```
+The output will be in `.vercel/output`.
+
 
 
 ## 🔗 Useful Links
