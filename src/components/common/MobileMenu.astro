@@ -3,10 +3,9 @@ import AlignmentLayout from "../../layouts/AlignmentLayout.astro";
 import Button from "../Button.astro";
 ---
 
-<AlignmentLayout
-  id="menu-mobile"
-  className="hidden fixed w-screen h-screen menu-closed z-20"
-  style="background: var(--color-banner-depth); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);"
+<div 
+  id="menu-mobile" 
+  class="hidden fixed inset-0 w-screen h-screen menu-closed z-20"
 >
   <AlignmentLayout
     direction="vertical"
@@ -45,49 +44,62 @@ import Button from "../Button.astro";
 
     <div class="flex flex-col items-center gap-6">
       <a
-        href="#"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/whitepaper"
         onclick="closeMenu()"
-        aria-label="Stake Vetra"
+        aria-label="View Whitepaper"
       >
         <Button
-          text="Stake Vetra"
+          text="View Whitepaper"
           className="whitespace-nowrap w-full"
           variant="primary"
         />
       </a>
     </div>
   </AlignmentLayout>
+</div>
 
-  <style>
-    #menu-mobile {
-      background: rgba(13, 11, 45, 0.95);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      opacity: 0;
-      visibility: hidden;
-      transition:
-        opacity 0.3s ease-in-out,
-        visibility 0.3s ease-in-out;
-    }
+<style>
+  #menu-mobile {
+    background: rgba(13, 11, 45, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease-in-out,
+      visibility 0.3s ease-in-out;
+  }
 
-    #menu-mobile:not(.hidden) {
-      display: block !important;
-    }
+  /* When specifically hidden (default state) */
+  #menu-mobile.hidden {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+  }
 
-    #menu-mobile.menu-open {
-      opacity: 1;
-      visibility: visible;
-    }
+  /* Open state - overrides everything else on mobile */
+  #menu-mobile.menu-open {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
 
+  #menu-mobile.menu-closed {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* Desktop force hide - highest priority */
+  @media (min-width: 640px) {
+    #menu-mobile,
+    #menu-mobile.menu-open,
     #menu-mobile.menu-closed {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    #menu-mobile.hidden {
       display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
     }
-  </style>
-</AlignmentLayout>
+  }
+</style>

@@ -99,7 +99,7 @@ const getNavClasses = (path: string) => {
 		</div>
 
 		<button
-			class="max-sm:flex hidden items-center justify-center w-10 h-10 rounded-lg border border-white/[0.1] bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 cursor-pointer group"
+			class="max-sm:flex hidden sm:hidden items-center justify-center w-10 h-10 rounded-lg border border-white/[0.1] bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 cursor-pointer group"
 			id="open-menu"
 			onclick="openMenu()"
 			aria-label="Open menu"
@@ -119,7 +119,7 @@ const getNavClasses = (path: string) => {
 		</button>
 
 		<button
-			class="hidden items-center justify-center w-10 h-10 rounded-lg border border-white/[0.1] bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 cursor-pointer"
+			class="hidden sm:hidden items-center justify-center w-10 h-10 rounded-lg border border-white/[0.1] bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 cursor-pointer"
 			id="close-menu"
 			onclick="closeMenu()"
 			aria-label="Fechar menu"
@@ -203,63 +203,19 @@ const getNavClasses = (path: string) => {
 		openMenuH?.classList.add("max-sm:flex");
 	}
 
-	function syncMenuState() {
-		if (!menuMobile || !openMenuH || !closeMenuH) {
-			initElements();
-		}
-		const isMobileView = window.innerWidth < 640;
 
-		if (isMobileView) {
-			// Em mobile: garantir que o menu está fechado e os botões estão no estado correto
-			menuMobile?.classList.add("hidden");
-			menuMobile?.classList.remove("menu-open");
-			menuMobile?.classList.add("menu-closed");
-			// Botão abrir visível, botão fechar oculto
-			openMenuH?.classList.remove("hidden");
-			openMenuH?.classList.add("max-sm:flex");
-			closeMenuH?.classList.add("hidden");
-			closeMenuH?.classList.remove("max-sm:flex");
-		} else {
-			// Em desktop: garantir que tudo está oculto
-			menuMobile?.classList.add("hidden");
-			menuMobile?.classList.remove("menu-open");
-			menuMobile?.classList.add("menu-closed");
-			// Ambos os botões ocultos
-			openMenuH?.classList.add("hidden");
-			openMenuH?.classList.remove("max-sm:flex");
-			closeMenuH?.classList.add("hidden");
-			closeMenuH?.classList.remove("max-sm:flex");
-		}
-	}
 
 	// Inicializar quando o DOM estiver pronto
 	if (document.readyState === "loading") {
 		document.addEventListener("DOMContentLoaded", () => {
 			initElements();
 			initHeader();
-			syncMenuState();
 		});
 	} else {
 		initElements();
 		initHeader();
-		syncMenuState();
 	}
-
-	// Handle window resize
-	let isMobile = window.innerWidth < 640;
-	let resizeTimeout;
-	window.addEventListener("resize", () => {
-		clearTimeout(resizeTimeout);
-		resizeTimeout = setTimeout(() => {
-			const nowMobile = window.innerWidth < 640;
-			if (isMobile !== nowMobile) {
-				// Mudou de mobile para desktop ou vice-versa - sincronizar estado
-				syncMenuState();
-				isMobile = nowMobile;
-			}
-		}, 250);
-	});
-
+	
 	window.addEventListener("scroll", initHeader, { passive: true });
 </script>
 
