@@ -36,7 +36,7 @@ const TEXT_14_18 =
 const TEXT_18_22 =
   "text-[18px] leading-[22px] max-md:text-[18px] max-md:leading-[22px]";
 
-const headerClasses = cn("gap-4", "max-w-[788px] text-center mx-auto");
+const headerClasses = cn("gap-4", "max-w-[656px] text-center mx-auto");
 
 const browserWindowClasses = cn(
   "w-full bg-browser-bg rounded-t-2xl overflow-hidden",
@@ -55,7 +55,7 @@ const headerDashboardClasses = cn(
 );
 
 const metricsGridClasses = cn(
-  "w-full grid grid-cols-2 gap-[10px] max-sm:grid-cols-1",
+  "w-full grid grid-cols-2 gap-2 max-sm:grid-cols-1",
 );
 
 const metricCardClasses = cn(
@@ -63,7 +63,7 @@ const metricCardClasses = cn(
 );
 
 const infoGridClasses = cn(
-  "bg-dashboard-card-bg flex-1 grid grid-cols-1 gap-6 max-sm:grid-cols-1 rounded-[4px]",
+  "bg-dashboard-card-bg flex-1 grid grid-cols-1 max-sm:grid-cols-1 rounded-[4px]",
 );
 
 const infoCardClasses = cn(
@@ -110,10 +110,10 @@ const infoCardClasses = cn(
           height={12}
         />
       </Badge>
-      <Title text="Built for real user" className="text-center" />
+      <Title text="Built on transparency, designed for real use" className="text-center" />
       <Description
-        text="Crafted for low-cost transfers, instant finality, and audit-ready transparency making digital value dependable for merchants, treasuries, and builders alike."
-        className="max-w-[800px] text-center"
+        text="Low-cost transfers, instant finality, and audit-ready reserves — providing a clear and reliable foundation for digital value."
+        className="text-center"
       />
     </AlignmentLayout>
 
@@ -216,7 +216,7 @@ const infoCardClasses = cn(
             direction="horizontal"
             justify="center"
             align="center"
-            className="bg-dashboard-badge-bg rounded-[4px] p-4 max-sm:w-full"
+            className="bg-dashboard-badge-bg border border-input-hover-bg rounded-[4px] p-4 max-sm:w-full"
           >
             <Title text="1 VTR = 1 USD guaranteed" className={TEXT_14_18} />
           </AlignmentLayout>
@@ -236,7 +236,7 @@ const infoCardClasses = cn(
             </div>
             <Description text="Reserves in Custody" className={TEXT_12_16} />
           </div>
-          {/* Card 3 */}
+          {/* Card 2 */}
           <div class={metricCardClasses}>
             <div class="relative min-h-[22px]" data-loading="true">
               <Skeleton className="skeleton-placeholder h-[22px] w-24" />
@@ -254,12 +254,10 @@ const infoCardClasses = cn(
           direction="horizontal"
           justify="start"
           align="stretch"
-          className="gap-2 w-full max-sm:flex-col"
+          className="gap-2 w-full grid grid-cols-2 max-sm:grid-cols-1"
         >
           {/* Info Grid */}
-          <div class={infoGridClasses}>
-            {/* Custody Certification */}
-            <AlignmentLayout direction="vertical" justify="start" align="start">
+            <AlignmentLayout direction="vertical" justify="start" align="start" className={infoGridClasses}>
               <AlignmentLayout
                 direction="horizontal"
                 justify="between"
@@ -282,7 +280,7 @@ const infoCardClasses = cn(
                   href="https://ftassetmanagement.com/verify/FTAM_CERT_24052025.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="border border-badge-purple text-dashboard-badge-text px-4 py-2 rounded-full text-sm hover:bg-badge-purple/10 transition-colors whitespace-nowrap"
+                  class="border border-badge-purple text-badge-purple px-4 py-2 rounded-full font-serif text-[12px] leading-[16px] font-semibold hover:bg-badge-purple/10 transition-colors whitespace-nowrap"
                 >
                   View certificate
                 </a>
@@ -319,7 +317,6 @@ const infoCardClasses = cn(
                 </div>
               </AlignmentLayout>
             </AlignmentLayout>
-          </div>
 
           {/* About Verification */}
           <div class={infoCardClasses}>
@@ -415,4 +412,3 @@ const infoCardClasses = cn(
     fetchData();
   })();
 </script>
-```

@@ -11,11 +11,7 @@ import Title from "../../components/Title.astro";
 import Description from "../Description.astro";
 
 // Social Icons
-import LinkedinIcon from "../../assets/icons/social/linkedin.svg";
-import FacebookIcon from "../../assets/icons/social/facebook.svg";
-import InstagramIcon from "../../assets/icons/social/instagram.svg";
-import DribbbleIcon from "../../assets/icons/social/dribbble.svg";
-import BehanceIcon from "../../assets/icons/social/behance.svg";
+import XIcon from "../../assets/icons/social/x.svg";
 import ArrowUpIcon from "../../assets/icons/footer/arrow-up.svg";
 
 // Classes
@@ -129,13 +125,12 @@ const backToTopClasses = cn(
             className="text-[20px] leading-[24px] font-light max-md:text-[20px] max-md:leading-[24px]"
           />
           <div class={contactListClasses}>
-            <a href="mailto:hello@vetra.com" class={contactItemClasses}
-              >hello@vetra.com</a
+            <a href="mailto:contactvtrcoin@gmail.com" class={contactItemClasses}
+              >Contactvtrcoin@gmail.com</a
             >
-            <a href="tel:+5500000000000" class={contactItemClasses}
-              >+55 00 0 0000 0000</a
+            <a onclick="window.location.href = '/contact-us'" class={contactItemClasses}
+              >Contact us</a
             >
-            <span class={contactItemClasses}>Location</span>
           </div>
         </div>
 
@@ -146,29 +141,9 @@ const backToTopClasses = cn(
             className="text-[20px] leading-[24px] font-light max-md:text-[20px] max-md:leading-[24px]"
           />
           <div class={socialIconsClasses}>
-            <a
-              href="#"
-              class={socialIconContainerClasses}
-              aria-label="Facebook"
-            >
-              <Image
-                src={FacebookIcon}
-                alt="Facebook"
-                class={socialIconClasses}
-              />
-            </a>
-            <a
-              href="#"
-              class={socialIconContainerClasses}
-              aria-label="Instagram"
-            >
-              <Image
-                src={InstagramIcon}
-                alt="Instagram"
-                class={socialIconClasses}
-              />
-            </a>
-            <a
+           <!-- 
+            TODO: Add LinkedIn link when available 
+           <a
               href="#"
               class={socialIconContainerClasses}
               aria-label="LinkedIn"
@@ -178,22 +153,16 @@ const backToTopClasses = cn(
                 alt="LinkedIn"
                 class={socialIconClasses}
               />
-            </a>
+            </a> -->
             <a
-              href="#"
+              href="https://x.com/vetravtr"
               class={socialIconContainerClasses}
-              aria-label="Dribbble"
+              aria-label="X"
+              target="_blank"
             >
               <Image
-                src={DribbbleIcon}
-                alt="Dribbble"
-                class={socialIconClasses}
-              />
-            </a>
-            <a href="#" class={socialIconContainerClasses} aria-label="Behance">
-              <Image
-                src={BehanceIcon}
-                alt="Behance"
+                src={XIcon}
+                alt="X"
                 class={socialIconClasses}
               />
             </a>

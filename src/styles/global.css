@@ -31,7 +31,7 @@
   --color-browser-address-bg: #100619;
   --color-browser-address-text: #C8D2D9;
   --color-dashboard-card-bg: #180F1E;
-  --color-dashboard-badge-bg: #2A0C46;
+  --color-dashboard-badge-bg: transparent;
   --color-dashboard-badge-text: #D8B4FE;
   --color-badge-bg-dark: #3d2b4d;
 
@@ -45,7 +45,7 @@
 
   /* Contact Section */
   --color-contact-form-bg: #19151D;
-  --color-contact-input-bg: #1E1A22;
+  --color-contact-input-bg: #130A1A;
   --color-contact-label: #C9CED3;
   --color-contact-input-text: #CBD1D6;
   --color-contact-linkedin-background: #5A6F80;

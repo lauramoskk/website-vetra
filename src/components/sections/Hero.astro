@@ -59,7 +59,7 @@ const buttonsContainerClasses = cn(
 	<Image
 		src={BackgroundImage}
 		alt="Background"
-		class="absolute inset-0 -z-10 w-full h-full object-cover max-sm:hidden"
+		class="absolute inset-0 -z-10 w-full h-full object-cover object-top max-sm:hidden"
 	/>
 	<Image
 		src={BackgroundImageMobile}
@@ -108,7 +108,7 @@ const buttonsContainerClasses = cn(
 			className="w-full"
 			style="gap: 2rem;"
 		>
-			<Badge text="The best stablecoin of 2026">
+			<Badge text="Built for stability in the next era of finance">
 				<Image
 					src={StarsIcon}
 					alt="Stars"
@@ -164,7 +164,9 @@ const buttonsContainerClasses = cn(
 		</AlignmentLayout>
 	</div>
 
-	<AlignmentLayout
+<!--
+	Commented because we don't have enough partners for the component to make sense
+<AlignmentLayout
 		direction="vertical"
 		justify="center"
 		align="center"
@@ -177,7 +179,7 @@ const buttonsContainerClasses = cn(
 		/>
 
 		<FeaturesBanner />
-	</AlignmentLayout>
+	</AlignmentLayout> -->
 </SectionLayout>
 
 <script>
