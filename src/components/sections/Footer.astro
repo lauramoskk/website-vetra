@@ -57,6 +57,7 @@ const contactListClasses = cn("flex flex-col gap-6");
 const contactItemClasses = cn(
   "text-text-secondary font-inter font-normal text-[16px] leading-[20px]", // Slightly larger than body? Fetching exact size would be better found in figma data, assuming 16px or 18px. Figma data said Body/Medium/Regular for description.
   "transition-colors cursor-pointer",
+  "w-fit"
 );
 
 // Social Column
@@ -128,8 +129,8 @@ const backToTopClasses = cn(
             <a href="mailto:contactvtrcoin@gmail.com" class={contactItemClasses}
               >Contactvtrcoin@gmail.com</a
             >
-            <a onclick="window.location.href = '/contact-us'" class={contactItemClasses}
-              >Contact us</a
+            <button onclick="window.location.href = '/contact-us'" class={contactItemClasses}
+              >Contact us</button
             >
           </div>
         </div>
