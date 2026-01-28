@@ -10,9 +10,14 @@ A premium, high-performance landing page for a Fintech Asset management platform
 - **TypeScript** - Static typing for safer code.
 - **GSAP** - GreenSock Animation Platform for complex animations.
 - **Lenis** - Smooth scrolling library.
+- **@fontsource** - Self-hosted fonts for better privacy and performance.
 
 ## ✨ Features
 
+- **Performance First**: 
+    - **Self-hosted Fonts**: Zero layout shift and privacy-friendly.
+    - **Smart Loading**: Dynamic imports for heavy scripts (GSAP, ScrollTrigger).
+    - **Mobile Optimized**: Heavy animations are completely disabled on mobile devices to save bandwidth.
 - **Dynamic Real-Time Reserves**: Fetches data from an external API with a Next.js-style proxy to handle CORS, featuring loading skeletons.
 - **Interactive Whitepaper**: A dedicated page with a sticky sidebar navigation and responsive tabbed content.
 - **Video Backgrounds**: Implemented in the Newsletter section for visual engagement.

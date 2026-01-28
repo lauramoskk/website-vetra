@@ -33,6 +33,13 @@ To fetch data from external APIs without CORS issues or exposing API keys, we us
 - Complex interactive look & feel (tabs, sticky scroll) is implemented using vanilla JS where necessary (for now) or reactive setups.
 - **Sticky Sidebar**: The Whitepaper sidebar uses `sticky top-24` but requires its parent container to share the full height of the content column (often achieved with grid or flex).
 
+### 4. Performance Strategy
+- **Fonts**: We use `@fontsource` to self-host fonts. This avoids extra DNS lookups to Google Fonts and improves FCP. Imports are done in the Layout frontmatter to ensure Vite bundles them correctly.
+- **Heavy Scripts (GSAP/Lenis)**:
+    - **Dynamic Import**: We use `await import('gsap')` inside `async` functions to load these libraries only after hydration, reducing TBT.
+    - **Mobile Exclusion**: For extremely heavy logic (like GSAP ScrollTrigger in `WhyChooseVetra`), we wrap the import in a conditional check `if (!window.matchMedia("(min-width: 1024px)").matches) return;`. This prevents the library from even downloading on mobile devices.
+- **Images**: LCP images (like the Hero background) use `loading="eager"` and `fetchpriority="high"`. Mobile-specific LCP images are also optimized this way.
+
 ## 🛠️ Troubleshooting & Tips
 
 - **"Module not found"**: Check if you are importing from `@/components` vs `../components`. The project uses standard relative paths mostly, be consistent.
