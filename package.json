@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^9.0.4",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/libre-franklin": "^5.2.8",
+    "@fontsource/urbanist": "^5.2.7",
     "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.15.5",

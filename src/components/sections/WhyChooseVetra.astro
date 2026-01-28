@@ -251,14 +251,18 @@ const cardClasses = cn(
 </style>
 
 <script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  let scrollTriggerInstance: any = null;
 
-  gsap.registerPlugin(ScrollTrigger);
+  const initScroll = async () => {
+    // Only load GSAP if screen size allows it (Desktop)
+    if (!window.matchMedia("(min-width: 1024px)").matches) return;
 
-  let scrollTriggerInstance: ScrollTrigger | null = null;
+    // Dynamic import GSAP
+    const { gsap } = await import("gsap");
+    const { ScrollTrigger } = await import("gsap/ScrollTrigger");
 
-  const initScroll = () => {
+    gsap.registerPlugin(ScrollTrigger);
+
     if (scrollTriggerInstance) {
       scrollTriggerInstance.kill();
       scrollTriggerInstance = null;
@@ -314,22 +318,29 @@ const cardClasses = cn(
   };
 
   let resizeTimeout: number;
-  const handleResize = () => {
+  const handleResize = async () => {
     clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      ScrollTrigger.refresh();
+    resizeTimeout = setTimeout(async () => {
+        // If GSAP is loaded, refresh it. If not, try to init (in case resize switched to desktop)
+        if (scrollTriggerInstance || window.matchMedia("(min-width: 1024px)").matches) {
+             // If haven't loaded yet, init will handle import.
+             // If loaded, we just want to refresh, but initScroll handles the setup safely.
+             // Ideally we just re-run initScroll to check media query and setup/teardown.
+             initScroll();
+        }
     }, 250);
   };
 
   initScroll();
   window.addEventListener('resize', handleResize, { passive: true });
 
-  document.addEventListener("astro:before-preparation", () => {
+  document.addEventListener("astro:before-preparation", async () => {
     window.removeEventListener('resize', handleResize);
     if (scrollTriggerInstance) {
       scrollTriggerInstance.kill();
     }
-    ScrollTrigger.getAll().forEach(st => st.kill());
+    const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+    ScrollTrigger.getAll().forEach((st:any) => st.kill());
   });
 
   document.addEventListener("astro:page-load", initScroll);
