@@ -12,18 +12,17 @@ import EcosystemImage from "../../assets/details/why-choose-ecosystem.png";
 import TransparencyImage from "../../assets/details/why-choose-transparency.png";
 import ScalabilityImage from "../../assets/details/why-choose-scalability.png";
 
-// Styles
 const sectionOuterClasses = cn(
   "flex items-center w-full relative",
   "why-choose-vetra-section",
 );
 
 const sectionInnerClasses = cn(
-  "w-full lg:h-[840px] h-auto max-sm:py-[88px]", // Removed overflow-hidden to allow mask to work correctly
+  "w-full lg:h-[840px] h-auto max-sm:py-[88px]",
 );
 
 const mainLayoutClasses = cn(
-  "gap-16 relative z-10 lg:h-full h-auto", // Spacing between header and cards
+  "gap-16 relative z-10 lg:h-full h-auto",
   "max-sm:flex-col",
 );
 
@@ -31,14 +30,14 @@ const headerClasses = cn("gap-4", "max-w-[788px] text-center mx-auto");
 
 const gridClasses = cn(
   "grid grid-cols-1 gap-6 w-full py-[88px]",
-  "lg:flex lg:flex-col lg:gap-8 lg:w-full", // Desktop: Vertical layout
-  "max-sm:grid-cols-1", // Mobile adapt
+  "lg:flex lg:flex-col lg:gap-8 lg:w-full",
+  "max-sm:grid-cols-1",
 );
 
 const cardClasses = cn(
-  "bg-card-background backdrop-blur-[80px] rounded-[8px]", // Matching MostTrusted style
-  "flex flex-col",
-  "lg:w-[592px] lg:shrink-0 lg:h-auto", // Full width on desktop
+  "bg-card-background rounded-[8px]",
+  "flex flex-col transform-gpu will-change-auto",
+  "lg:w-[592px] lg:shrink-0 lg:h-auto",
 );
 ---
 
@@ -53,7 +52,6 @@ const cardClasses = cn(
     align="center"
     className={mainLayoutClasses}
   >
-    <!-- Header Section -->
     <AlignmentLayout
       direction="vertical"
       justify="center"
@@ -76,15 +74,12 @@ const cardClasses = cn(
       />
     </AlignmentLayout>
 
-    <!-- Cards Grid -->
-    <!-- Cards Grid Wrapper (Mask) -->
     <div
       class="min-w-[592px] max-lg:min-w-auto lg:flex-1 lg:overflow-hidden relative custom-scrollbar-hide cards-mask-effect"
       id="vetra-cards-mask"
       style="height: 100%;"
     >
       <div class={gridClasses} id="vetra-cards-container">
-        <!-- Card 1: Security -->
         <div class={cardClasses}>
           <div class="w-full h-[282px]">
             <Image
@@ -93,6 +88,9 @@ const cardClasses = cn(
               class="w-full h-full rounded-t-[8px] object-cover"
               width={592}
               height={282}
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
             />
           </div>
 
@@ -115,7 +113,6 @@ const cardClasses = cn(
           </AlignmentLayout>
         </div>
 
-        <!-- Card 2: Ecosystem -->
         <div class={cardClasses}>
           <div class="w-full h-[282px]">
             <Image
@@ -124,6 +121,9 @@ const cardClasses = cn(
               class="w-full h-full rounded-t-[8px] object-cover"
               width={592}
               height={282}
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
             />
           </div>
 
@@ -146,7 +146,6 @@ const cardClasses = cn(
           </AlignmentLayout>
         </div>
 
-        <!-- Card 3: Transparency -->
         <div class={cardClasses}>
           <div class="w-full h-[282px]">
             <Image
@@ -155,6 +154,9 @@ const cardClasses = cn(
               class="w-full h-full rounded-t-[8px] object-cover"
               width={592}
               height={282}
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
             />
           </div>
 
@@ -177,7 +179,6 @@ const cardClasses = cn(
           </AlignmentLayout>
         </div>
 
-        <!-- Card 4: Scalability -->
         <div class={cardClasses}>
           <div class="w-full h-[282px]">
             <Image
@@ -186,6 +187,9 @@ const cardClasses = cn(
               class="w-full h-full rounded-t-[8px] object-cover"
               width={592}
               height={282}
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
             />
           </div>
 
@@ -215,6 +219,13 @@ const cardClasses = cn(
 <style>
   @media (min-width: 1024px) {
     .cards-mask-effect {
+      overflow: hidden;
+      transform: translateZ(0);
+      will-change: transform;
+      -webkit-transform: translateZ(0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      
       mask-image: linear-gradient(
         to bottom,
         transparent,
@@ -230,6 +241,12 @@ const cardClasses = cn(
         transparent
       );
     }
+    
+    #vetra-cards-container {
+      will-change: transform;
+      transform: translateZ(0);
+      -webkit-transform: translateZ(0);
+    }
   }
 </style>
 
@@ -239,7 +256,14 @@ const cardClasses = cn(
 
   gsap.registerPlugin(ScrollTrigger);
 
+  let scrollTriggerInstance: ScrollTrigger | null = null;
+
   const initScroll = () => {
+    if (scrollTriggerInstance) {
+      scrollTriggerInstance.kill();
+      scrollTriggerInstance = null;
+    }
+
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 1024px)", () => {
@@ -249,30 +273,64 @@ const cardClasses = cn(
 
       if (!section || !mask || !container) return;
 
-      // Calculate translation distance
-      const getScrollAmount = () => {
-        return -(container.scrollHeight - mask.clientHeight);
+      let scrollAmount = 0;
+      
+      const calculateScrollAmount = () => {
+        scrollAmount = -(container.scrollHeight - mask.clientHeight);
       };
+      
+      calculateScrollAmount();
+
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+      const scrubValue = isSafari ? 0.5 : 1;
 
       const tween = gsap.to(container, {
-        y: getScrollAmount,
+        y: () => scrollAmount,
         ease: "none",
         scrollTrigger: {
           trigger: section,
           pin: true,
           start: "top top",
-          end: () => `+=${container.scrollHeight - mask.clientHeight + 300}`, // Increased scroll duration for smoother feel
-          scrub: 1,
+          end: () => `+=${Math.abs(scrollAmount) + 300}`,
+          scrub: scrubValue,
           invalidateOnRefresh: true,
           anticipatePin: 1,
+          fastScrollEnd: true,
+          preventOverlaps: true,
+          onRefresh: calculateScrollAmount,
+          onEnter: (self) => {
+            scrollTriggerInstance = self;
+          }
         },
       });
+
+      return () => {
+        tween.kill();
+        if (scrollTriggerInstance) {
+          scrollTriggerInstance.kill();
+        }
+      };
     });
   };
 
-  // Run on load
-  initScroll();
+  let resizeTimeout: number;
+  const handleResize = () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 250);
+  };
 
-  // No changes needed for bg yet, icon download is priority.
+  initScroll();
+  window.addEventListener('resize', handleResize, { passive: true });
+
+  document.addEventListener("astro:before-preparation", () => {
+    window.removeEventListener('resize', handleResize);
+    if (scrollTriggerInstance) {
+      scrollTriggerInstance.kill();
+    }
+    ScrollTrigger.getAll().forEach(st => st.kill());
+  });
+
   document.addEventListener("astro:page-load", initScroll);
 </script>
