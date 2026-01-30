@@ -57,7 +57,7 @@ const contactListClasses = cn("flex flex-col gap-6");
 const contactItemClasses = cn(
   "text-text-secondary font-inter font-normal text-[16px] leading-[20px]", // Slightly larger than body? Fetching exact size would be better found in figma data, assuming 16px or 18px. Figma data said Body/Medium/Regular for description.
   "transition-colors cursor-pointer",
-  "w-fit"
+  "w-fit",
 );
 
 // Social Column
@@ -126,11 +126,12 @@ const backToTopClasses = cn(
             className="text-[20px] leading-[24px] font-light max-md:text-[20px] max-md:leading-[24px]"
           />
           <div class={contactListClasses}>
-            <a href="mailto:contactvtrcoin@gmail.com" class={contactItemClasses}
-              >contact@vtrcrypto.com</a
+            <a href="mailto:contact@vetravtr.com" class={contactItemClasses}
+              >contact@vetravtr.com</a
             >
-            <button onclick="window.location.href = '/contact-us'" class={contactItemClasses}
-              >Contact us</button
+            <button
+              onclick="window.location.href = '/contact-us'"
+              class={contactItemClasses}>Contact us</button
             >
           </div>
         </div>
@@ -142,7 +143,7 @@ const backToTopClasses = cn(
             className="text-[20px] leading-[24px] font-light max-md:text-[20px] max-md:leading-[24px]"
           />
           <div class={socialIconsClasses}>
-           <!-- 
+            <!-- 
             TODO: Add LinkedIn link when available 
            <a
               href="#"
@@ -161,11 +162,7 @@ const backToTopClasses = cn(
               aria-label="X"
               target="_blank"
             >
-              <Image
-                src={XIcon}
-                alt="X"
-                class={socialIconClasses}
-              />
+              <Image src={XIcon} alt="X" class={socialIconClasses} />
             </a>
           </div>
         </div>
