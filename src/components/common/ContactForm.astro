@@ -6,7 +6,7 @@ import UserIcon from "../../assets/icons/form/user-rounded.svg";
 import TextIcon from "../../assets/icons/form/text-square.svg";
 import { Image } from "astro:assets";
 
-const { formId } = Astro.props;
+const formId = import.meta.env.FORM_ID;
 
 const containerClasses = cn(
   "bg-browser-bg p-8 rounded-[16px] w-full max-w-[584px]",
