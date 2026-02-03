@@ -4,6 +4,7 @@ import Image from "astro/components/Image.astro";
 import { cn } from "../../utils/cn";
 import Logo from "../../assets/logo.svg";
 import Description from "../Description.astro";
+import Tooltip from "./Tooltip.astro";
 
 // Classes organizadas por categoria para melhor legibilidade
 const headerClasses = cn(
@@ -73,13 +74,6 @@ const getNavClasses = (path: string) => {
 					className={getNavClasses("/")}
 				/>
 			</a>
-			<a href="/contact-us">
-				<Description
-					text="Contact us"
-					variant="secondary"
-					className={getNavClasses("/contact-us")}
-				/>
-			</a>
 			<a href="/whitepaper">
 				<Description
 					text="Whitepaper"
@@ -87,7 +81,27 @@ const getNavClasses = (path: string) => {
 					className={getNavClasses("/whitepaper")}
 				/>
 			</a>
+			<a href="/contact-us">
+				<Description
+					text="Contact us"
+					variant="secondary"
+					className={getNavClasses("/contact-us")}
+				/>
+			</a>
+			<Tooltip 
+				content="0x34514180F94903BF8649884bD7e80fcDC1048b9d" 
+				label="Clique para copiar" 
+				position="bottom"
+			>
+				<Description
+					text="0x34...8b9d"
+					variant="secondary"
+					className={getNavClasses("/#real-time-reserves")}
+				/>
+			</Tooltip>
 		</nav>
+
+		
 
 		<div class="flex gap-4">
 			<a href="https://polygonscan.com/address/0x34514180F94903BF8649884bD7e80fcDC1048b9d" target="_blank" aria-label="Verify on PolygonScan" class="h-[56px]">
