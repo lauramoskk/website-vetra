@@ -1,6 +1,7 @@
 ---
 import AlignmentLayout from "../../layouts/AlignmentLayout.astro";
 import Button from "../Button.astro";
+import Tooltip from "./Tooltip.astro";
 ---
 
 <div 
@@ -40,6 +41,14 @@ import Button from "../Button.astro";
       >
         Whitepaper
       </a>
+      <Tooltip 
+        content="0x34514180F94903BF8649884bD7e80fcDC1048b9d" 
+        label="Clique para copiar" 
+        position="bottom"
+        className="text-white text-[24px] font-medium font-sans hover:text-light-purple transition-colors duration-300 py-3 px-6 min-h-[44px] flex items-center justify-center"
+      >
+        0x34...8b9d
+      </Tooltip>
     </AlignmentLayout>
 
     <div class="flex flex-col items-center gap-6">
