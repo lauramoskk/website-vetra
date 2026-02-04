@@ -92,6 +92,7 @@ This project uses the **Vercel Adapter** for server-side rendering of API routes
 | :--- | :--- |
 | `BREVO_API_KEY` | API Key from Brevo (Sendinblue) |
 | `BREVO_LIST_ID` | (Optional) List ID to add contacts to. Default: 2 |
+| `FORM_ID` | Form ID from Formspree |
 
 ### Build command (if running manually)
 ```bash
